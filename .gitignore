@@ -5,3 +5,7 @@
 *.snm
 *.toc
 *.vrb
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+

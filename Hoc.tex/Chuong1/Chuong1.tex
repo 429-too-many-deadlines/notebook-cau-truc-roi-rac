@@ -28,13 +28,13 @@
   \leavevmode%
   \hbox{%
     \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,left]{footleftbox}%
-      \hspace*{2ex}\scriptsize\color{white}TS. Nguyễn Văn Hợi%
+      \hspace*{2ex}\scriptsize TS. Nguyễn Văn Hợi%
     \end{beamercolorbox}%
     \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{footmidbox}%
-      \scriptsize\color{white}UIT -- Cấu Trúc Rời Rạc%
+      \scriptsize UIT -- Cấu Trúc Rời Rạc%
     \end{beamercolorbox}%
     \begin{beamercolorbox}[wd=.333334\paperwidth,ht=2.25ex,dp=1ex,right]{footrightbox}%
-      \scriptsize\color{white}\insertframenumber{} / 35\hspace*{2ex}%
+      \scriptsize \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}%
     \end{beamercolorbox}%
   }%
   \vskip0pt%
@@ -143,7 +143,7 @@ Phép \textbf{phủ định} của $p$ được ký hiệu là $\neg p$ hoặc $
 
     \vspace{0.3cm}
     \raggedright
-    \textit{VD: ``$3$ là số nguyên tố \textbf{hoặc} $3$ là số chẵn.'' (Đúng)}
+    \textit{VD: ``$3$ là số nguyên tố} \textbf{hoặc} \textit{$3$ là số chẵn.'' (Đúng)}
   \end{column}
   \begin{column}{0.47\textwidth}
     \textbf{Phép hội} ($p \land q$) là mệnh đề: ``$p$ và $q$''.\\
@@ -164,7 +164,7 @@ Phép \textbf{phủ định} của $p$ được ký hiệu là $\neg p$ hoặc $
 
     \vspace{0.3cm}
     \raggedright
-    \textit{VD: ``Trời đã mưa \textbf{và} hôm đó là thứ Sáu.''}
+    \textit{VD: ``Trời đã mưa} \textbf{và} \textit{hôm đó là thứ Sáu.''}
   \end{column}
 \end{columns}
 \end{frame}
@@ -334,7 +334,7 @@ $p$ & $q$ & $\bar{p}$ & $\bar{p} \lor q$ & $\neg(\bar{p} \lor q)\text{ (E)}$ \\
 \end{center}
 
 \vspace{0.25cm}
-\textit{Lưu ý: Hai biểu thức được gọi là \textbf{Tương đương Logic} nếu chúng có cột kết quả bảng chân lý giống hệt nhau.}
+\textit{Lưu ý: Hai biểu thức được gọi là} \textbf{Tương đương Logic} \textit{nếu chúng có cột kết quả bảng chân lý giống hệt nhau.}
 \end{frame}
 
 \begin{frame}{Ví dụ 2: Kiểm tra tương đương logic}
@@ -904,8 +904,9 @@ Lập luận \textbf{hợp lệ}.
 \end{enumerate}
 
 \vspace{0.2cm}
-\centering
-\textbf{Kết luận:} Lập luận \textbf{hợp lệ}.
+{\large\textbf{\color{red}Kết luận}}\\
+\vspace{0.05cm}
+Lập luận \textbf{hợp lệ}.
 \end{frame}
 
 \begin{frame}{Bài toán thực tế}
@@ -995,11 +996,11 @@ Lập luận \textbf{hợp lệ}.
 1. & $\neg p \land q$ & Tiền đề \\
 2. & $\neg p$ & Luật rút gọn từ (1) \\
 3. & $r \rightarrow p$ & Tiền đề \\
-4. & $\neg r$ & Modus tollens từ (2) và (3) \\
+4. & $\neg r$ & Modus Tollens từ (2) và (3) \\
 5. & $\neg r \rightarrow s$ & Tiền đề \\
-6. & $s$ & Modus ponens từ (4) và (5) \\
+6. & $s$ & Modus Ponens từ (4) và (5) \\
 7. & $s \rightarrow t$ & Tiền đề \\
-8. & $\textcolor{red}{t}$ & Modus ponens từ (6) và (7) \\
+8. & $\textcolor{red}{t}$ & Modus Ponens từ (6) và (7) \\
 \bottomrule
 \end{tabular}
 \end{center}
