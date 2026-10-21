@@ -15,6 +15,7 @@
 \definecolor{footleft}{RGB}{0, 0, 204}
 \definecolor{footmid}{RGB}{0, 0, 153}
 \definecolor{footright}{RGB}{0, 0, 115}
+\definecolor{reasoncolor}{RGB}{56, 144, 181}
 
 \setbeamercolor{frametitle}{fg=uitblue}
 \setbeamerfont{frametitle}{series=\bfseries, size=\large}
@@ -300,6 +301,324 @@ Cho $p$ là \textbf{Đúng} ($1$) và $q$ là \textbf{Sai} ($0$). Tính giá tr�
 \vspace{0.4cm}
 \centering
 \textbf{Nhận xét:} $p \rightarrow q$ và $q \rightarrow p$ không tương đương!
+\end{frame}
+
+\begin{frame}[plain]
+  \centering
+  \vspace*{2.2cm}
+  {\Huge\textbf{\color{uitblue}3. Biểu thức phức hợp}}
+  \par\vspace{0.4cm}
+  {\color{uitblue}\rule{0.55\textwidth}{1.2pt}}
+\end{frame}
+
+\begin{frame}{Bảng chân lý của các Mệnh đề phức hợp}
+Chúng ta có thể xây dựng các mệnh đề phức tạp chứa bất kỳ số lượng biến mệnh\\đề nào: $E(p, q, r\dots)$.\\
+\textbf{Ví dụ:} $E(p, q) = \neg(\neg p \lor q)$\\
+\textit{Cách làm: tính lần lượt từng cột, từ biểu thức con trong cùng ra ngoài.}
+
+\vspace{0.25cm}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$p$ & $q$ & $\bar{p}$ & $\bar{p} \lor q$ & $\neg(\bar{p} \lor q)\text{ (E)}$ \\
+\hline
+0 & 0 & 1 & 1 & 0 \\
+\hline
+0 & 1 & 1 & 1 & 0 \\
+\hline
+1 & 0 & 0 & 0 & \textcolor{red}{1} \\
+\hline
+1 & 1 & 0 & 1 & 0 \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.25cm}
+\textit{Lưu ý: Hai biểu thức được gọi là \textbf{Tương đương Logic} nếu chúng có cột kết quả bảng chân lý giống hệt nhau.}
+\end{frame}
+
+\begin{frame}{Ví dụ 2: Kiểm tra tương đương logic}
+\textbf{Yêu cầu:} Chứng minh $p \rightarrow q$ và $\neg p \lor q$ tương đương logic.\\
+\textit{Cách làm: lập bảng chân lý cho cả hai biểu thức rồi so sánh hai cột kết quả.}
+
+\vspace{0.25cm}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$p$ & $q$ & $p \rightarrow q$ & $\bar{p}$ & $\bar{p} \lor q$ \\
+\hline
+0 & 0 & \textcolor{red}{1} & 1 & \textcolor{red}{1} \\
+\hline
+0 & 1 & \textcolor{red}{1} & 1 & \textcolor{red}{1} \\
+\hline
+1 & 0 & \textcolor{red}{0} & 0 & \textcolor{red}{0} \\
+\hline
+1 & 1 & \textcolor{red}{1} & 0 & \textcolor{red}{1} \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.25cm}
+Cột 3 và cột 5 \textbf{giống hệt nhau}.\\
+$\Rightarrow p \rightarrow q \equiv \neg p \lor q$\quad (đây chính là \textbf{luật kéo theo}).
+\end{frame}
+
+\begin{frame}{Ví dụ 3: Biểu thức có 3 biến}
+\textbf{Ví dụ:} $E(p, q, r) = (p \rightarrow q) \land (q \rightarrow r)$\\
+\textit{Có 3 biến nên bảng có $2^3 = 8$ dòng.}
+
+\vspace{0.2cm}
+\begin{center}
+\small
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$p$ & $q$ & $r$ & $p \rightarrow q$ & $q \rightarrow r$ & $E$ \\
+\hline
+0 & 0 & 0 & 1 & 1 & \textcolor{red}{1} \\
+\hline
+0 & 0 & 1 & 1 & 1 & \textcolor{red}{1} \\
+\hline
+0 & 1 & 0 & 1 & 0 & 0 \\
+\hline
+0 & 1 & 1 & 1 & 1 & \textcolor{red}{1} \\
+\hline
+1 & 0 & 0 & 0 & 1 & 0 \\
+\hline
+1 & 0 & 1 & 0 & 1 & 0 \\
+\hline
+1 & 1 & 0 & 1 & 0 & 0 \\
+\hline
+1 & 1 & 1 & 1 & 1 & \textcolor{red}{1} \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.2cm}
+\textbf{Câu hỏi:} $E$ đúng trong những trường hợp nào? $\rightarrow$ 4 trường hợp được tô đỏ.
+\end{frame}
+
+\begin{frame}{Bài tập: Chứng minh tương đương logic qua bảng chân lý:}
+\vspace{0.4cm}
+\begin{itemize}
+  \item[\textcolor{uitblue}{\textbf{b)}}] $p \rightarrow (q \lor r) \Leftrightarrow \bar{r} \rightarrow (\bar{q} \rightarrow \bar{p})$
+  \vspace{0.15cm}
+  \item[\textcolor{uitblue}{\textbf{c)}}] $\overline{(p \land q) \lor r} \Leftrightarrow (p \rightarrow \bar{q}) \land \bar{r}$
+  \vspace{0.15cm}
+  \item[\textcolor{uitblue}{\textbf{d)}}] $p \land \overline{q \land r} \Leftrightarrow \overline{p \rightarrow q} \lor (p \land \bar{r})$
+  \vspace{0.15cm}
+  \item[\textcolor{uitblue}{\textbf{e)}}] $(p \rightarrow q) \land \bar{q} \land (q \rightarrow r) \Leftrightarrow \bar{q} \land \bar{p}$
+  \vspace{0.15cm}
+  \item[\textcolor{uitblue}{\textbf{f)}}] $(p \rightarrow q) \land (p \rightarrow r) \Leftrightarrow p \rightarrow (q \land r)$
+  \vspace{0.15cm}
+  \item[\textcolor{uitblue}{\textbf{g)}}] $((p \rightarrow r) \lor (q \rightarrow r)) \rightarrow (p \rightarrow r) \Leftrightarrow p \rightarrow (q \lor r)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Bảng các tương đương Logic (Phần 1)}
+\vspace{-0.1cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{ll}
+\toprule
+\textbf{Luật} & \textbf{Tương đương} \\
+\midrule
+\textbf{Đồng nhất} & $p \land 1 \equiv p$; $p \lor 0 \equiv p$ \\
+                   & $p \lor 1 \equiv 1$; $p \land 0 \equiv 0$ \\
+\textbf{Lũy đẳng}  & $p \lor p \equiv p$; $p \land p \equiv p$ \\
+\textbf{Phủ định kép} & $\neg(\neg p) \equiv p$ \\
+\textbf{Phủ định}  & $p \lor \neg p \equiv 1$ (Hằng đúng) \\
+                   & $p \land \neg p \equiv 0$ (Hằng sai) \\
+\textbf{Giao hoán} & $p \lor q \equiv q \lor p$ \\
+                   & $p \land q \equiv q \land p$ \\
+\textbf{Kết hợp}   & $(p \lor q) \lor r \equiv p \lor (q \lor r)$ \\
+                   & $(p \land q) \land r \equiv p \land (q \land r)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}{Lời giải: Câu (b)}
+\textbf{Chứng minh:} $p \rightarrow (q \lor r) \Leftrightarrow \bar{r} \rightarrow (\bar{q} \rightarrow \bar{p})$\\
+\textit{Có 3 biến nên bảng có $2^3 = 8$ dòng. Tính vế trái trước, rồi đến vế phải.}
+
+\vspace{0.15cm}
+\begin{center}
+\small
+\begin{tabular}{|c|c|c||c|c||c|c|}
+\hline
+$p$ & $q$ & $r$ & $q \lor r$ & $p \rightarrow (q \lor r)$ & $\bar{q} \rightarrow \bar{p}$ & $\bar{r} \rightarrow (\bar{q} \rightarrow \bar{p})$ \\
+\hline
+0 & 0 & 0 & 0 & \textcolor{red}{1} & 1 & \textcolor{red}{1} \\
+\hline
+0 & 0 & 1 & 1 & \textcolor{red}{1} & 1 & \textcolor{red}{1} \\
+\hline
+0 & 1 & 0 & 1 & \textcolor{red}{1} & 1 & \textcolor{red}{1} \\
+\hline
+0 & 1 & 1 & 1 & \textcolor{red}{1} & 1 & \textcolor{red}{1} \\
+\hline
+1 & 0 & 0 & 0 & \textcolor{red}{0} & 0 & \textcolor{red}{0} \\
+\hline
+1 & 0 & 1 & 1 & \textcolor{red}{1} & 0 & \textcolor{red}{1} \\
+\hline
+1 & 1 & 0 & 1 & \textcolor{red}{1} & 1 & \textcolor{red}{1} \\
+\hline
+1 & 1 & 1 & 1 & \textcolor{red}{1} & 1 & \textcolor{red}{1} \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.15cm}
+Hai cột kết quả \textbf{giống hệt nhau} (chỉ sai khi $p = 1, q = 0, r = 0$).\\
+$\Rightarrow$ Hai biểu thức \textbf{tương đương logic}.
+\end{frame}
+
+\begin{frame}{Lời giải: Câu (c)}
+\textbf{Chứng minh:} $\overline{(p \land q) \lor r} \Leftrightarrow (p \rightarrow \bar{q}) \land \bar{r}$\\
+\textit{Tính vế trái trước, rồi đến vế phải.}
+
+\vspace{0.15cm}
+\begin{center}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{|c|c|c||c|c|c||c|c|c|}
+\hline
+$p$ & $q$ & $r$ & $p \land q$ & $(p \land q) \lor r$ & $\overline{(p \land q) \lor r}$ & $p \rightarrow \bar{q}$ & $\bar{r}$ & $(p \rightarrow \bar{q}) \land \bar{r}$ \\
+\hline
+0 & 0 & 0 & 0 & 0 & \textcolor{red}{1} & 1 & 1 & \textcolor{red}{1} \\
+\hline
+0 & 0 & 1 & 0 & 1 & \textcolor{red}{0} & 1 & 0 & \textcolor{red}{0} \\
+\hline
+0 & 1 & 0 & 0 & 0 & \textcolor{red}{1} & 1 & 1 & \textcolor{red}{1} \\
+\hline
+0 & 1 & 1 & 0 & 1 & \textcolor{red}{0} & 1 & 0 & \textcolor{red}{0} \\
+\hline
+1 & 0 & 0 & 0 & 0 & \textcolor{red}{1} & 1 & 1 & \textcolor{red}{1} \\
+\hline
+1 & 0 & 1 & 0 & 1 & \textcolor{red}{0} & 1 & 0 & \textcolor{red}{0} \\
+\hline
+1 & 1 & 0 & 1 & 1 & \textcolor{red}{0} & 0 & 1 & \textcolor{red}{0} \\
+\hline
+1 & 1 & 1 & 1 & 1 & \textcolor{red}{0} & 0 & 0 & \textcolor{red}{0} \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.15cm}
+Hai cột kết quả \textbf{giống hệt nhau}.\\
+$\Rightarrow$ Hai biểu thức \textbf{tương đương logic}.
+\end{frame}
+
+\begin{frame}{Bảng các tương đương Logic (Phần 2)}
+\vspace{-0.1cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{ll}
+\toprule
+\textbf{Luật} & \textbf{Tương đương} \\
+\midrule
+\textbf{Phân phối} & $p \lor (q \land r) \equiv (p \lor q) \land (p \lor r)$ \\
+                   & $p \land (q \lor r) \equiv (p \land q) \lor (p \land r)$ \\
+\textbf{De Morgan} & $\neg(p \land q) \equiv \neg p \lor \neg q$ \\
+                   & $\neg(p \lor q) \equiv \neg p \land \neg q$ \\
+\textbf{Hấp thụ}   & $p \lor (p \land q) \equiv p$ \\
+                   & $p \land (p \lor q) \equiv p$ \\
+\midrule
+\textbf{Kéo theo}  & $p \rightarrow q \equiv \neg p \lor q$ \\
+                   & $p \rightarrow q \equiv \neg q \rightarrow \neg p$ (Phản đảo) \\
+\textbf{Tương đương} & $p \leftrightarrow q \equiv (p \rightarrow q) \land (q \rightarrow p)$ \\
+                   & $p \leftrightarrow q \equiv \neg p \leftrightarrow \neg q$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}{Ví dụ: Chứng minh tương đương Logic}
+\textbf{Yêu cầu:} Chứng minh $\neg(p \lor (\neg p \land q))$ và $\neg p \land \neg q$ tương đương logic bằng cách sử dụng các quy luật.
+
+\vspace{0.2cm}
+\begin{alignat*}{2}
+\neg(p \lor (\neg p \land q)) &\equiv \neg p \land \neg(\neg p \land q) &\qquad& \text{\color{reasoncolor}De Morgan} \\
+&\equiv \neg p \land [\neg(\neg p) \lor \neg q] && \text{\color{reasoncolor}De Morgan} \\
+&\equiv \neg p \land (p \lor \neg q) && \text{\color{reasoncolor}phủ định kép} \\
+&\equiv (\neg p \land p) \lor (\neg p \land \neg q) && \text{\color{reasoncolor}luật phân phối} \\
+&\equiv \textbf{0} \lor (\neg p \land \neg q) && \text{\color{reasoncolor}vì $\neg p \land p \equiv \textbf{0}$} \\
+&\equiv (\neg p \land \neg q) \lor \textbf{0} && \text{\color{reasoncolor}giao hoán} \\
+&\equiv \textcolor{red}{\neg p \land \neg q} && \text{\color{reasoncolor}đồng nhất}
+\end{alignat*}
+\end{frame}
+
+\begin{frame}{Ví dụ: Chứng minh một hằng đúng}
+\textbf{Yêu cầu:} Chứng minh $(p \land q) \rightarrow (p \lor q)$ là một hằng đúng (tautology).\\
+\textbf{Lời giải:} Chúng ta sẽ sử dụng các tương đương logic để đưa biểu thức về giá trị \textbf{1}.
+
+\vspace{0.2cm}
+\begin{alignat*}{2}
+(p \land q) \rightarrow (p \lor q) &\equiv \neg(p \land q) \lor (p \lor q) &\qquad& \text{\color{reasoncolor}Kéo theo} \\
+&\equiv (\neg p \lor \neg q) \lor (p \lor q) && \text{\color{reasoncolor}De Morgan thứ nhất} \\
+&\equiv (\neg p \lor p) \lor (\neg q \lor q) && \text{\color{reasoncolor}Kết hợp và giao hoán} \\
+&\equiv \textbf{1} \lor \textbf{1} && \text{\color{reasoncolor}Phủ định} \\
+&\equiv \textcolor{red}{\textbf{1}} && \text{\color{reasoncolor}Lũy đẳng}
+\end{alignat*}
+
+\vspace{0.2cm}
+Biểu thức luôn nhận giá trị \textbf{1} $\Rightarrow$ là \textbf{hằng đúng}.
+\end{frame}
+
+\begin{frame}{Bài tập: Áp dụng các luật logic}
+\textbf{Yêu cầu:} Không dùng bảng chân lý, hãy dùng các \textbf{luật logic} để chứng minh:
+
+\vspace{0.15cm}
+\begin{enumerate}
+  \item[\textcolor{uitblue}{\textbf{1.}}] $\neg(p \rightarrow q) \equiv p \land \neg q$
+  \item[\textcolor{uitblue}{\textbf{2.}}] $(p \rightarrow q) \land (p \rightarrow r) \equiv p \rightarrow (q \land r)$
+  \item[\textcolor{uitblue}{\textbf{3.}}] $(p \land q) \rightarrow p$ là một hằng đúng.
+  \item[\textcolor{uitblue}{\textbf{4.}}] $\neg(p \lor \neg q) \lor (\neg p \land \neg q) \equiv \neg p$
+  \item[\textcolor{uitblue}{\textbf{5.}}] $[(p \rightarrow q) \land p] \rightarrow q$ là một hằng đúng.
+\end{enumerate}
+
+\vspace{0.25cm}
+{\large\textbf{\color{uitblue}Gợi ý}}\\
+\vspace{0.1cm}
+Thường bắt đầu bằng \textbf{luật kéo theo} để khử dấu $\rightarrow$, rồi dùng \textbf{De Morgan} để đưa dấu phủ định vào trong.
+\end{frame}
+
+\begin{frame}{Lời giải: Bài 2}
+\textbf{Chứng minh:} $(p \rightarrow q) \land (p \rightarrow r) \equiv p \rightarrow (q \land r)$\\
+\textit{Gợi mở: Khử dấu $\rightarrow$ ở vế trái trước. Ta thấy $\neg p$ xuất hiện ở cả hai vế của phép $\land$.}
+
+\vspace{0.2cm}
+\begin{alignat*}{2}
+(p \rightarrow q) \land (p \rightarrow r) &\equiv (\neg p \lor q) \land (\neg p \lor r) &\qquad& \text{\color{reasoncolor}Kéo theo} \\
+&\equiv \neg p \lor (q \land r) && \text{\color{reasoncolor}Phân phối} \\
+&\equiv \textcolor{red}{p \rightarrow (q \land r)} && \text{\color{reasoncolor}Kéo theo}
+\end{alignat*}
+
+\vspace{0.2cm}
+{\large\textbf{\color{red}Kết luận}}\\
+\vspace{0.1cm}
+Hai biểu thức \textbf{tương đương logic}. Ý nghĩa: ``Nếu $p$ thì $q$, và nếu $p$ thì $r$'' cũng chính là ``Nếu $p$ thì cả $q$ và $r$''.
+\end{frame}
+
+\begin{frame}{Lời giải: Bài 5}
+\textbf{Chứng minh:} $[(p \rightarrow q) \land p] \rightarrow q$ là một hằng đúng.\\
+\textit{Mục tiêu: biến đổi biểu thức về giá trị} \textbf{1}.
+
+\vspace{-0.1cm}
+\setlength{\jot}{1.5pt}
+\begin{alignat*}{2}
+[(p \rightarrow q) \land p] \rightarrow q &\equiv [(\neg p \lor q) \land p] \rightarrow q &\qquad& \text{\color{reasoncolor}Kéo theo} \\
+&\equiv [(p \land \neg p) \lor (p \land q)] \rightarrow q && \text{\color{reasoncolor}Giao hoán, phân phối} \\
+&\equiv [\textbf{0} \lor (p \land q)] \rightarrow q && \text{\color{reasoncolor}Phủ định} \\
+&\equiv (p \land q) \rightarrow q && \text{\color{reasoncolor}Đồng nhất} \\
+&\equiv \neg(p \land q) \lor q && \text{\color{reasoncolor}Kéo theo} \\
+&\equiv (\neg p \lor \neg q) \lor q && \text{\color{reasoncolor}De Morgan} \\
+&\equiv \neg p \lor (\neg q \lor q) && \text{\color{reasoncolor}Kết hợp} \\
+&\equiv \neg p \lor \textbf{1} && \text{\color{reasoncolor}Phủ định} \\
+&\equiv \textcolor{red}{\textbf{1}} && \text{\color{reasoncolor}Đồng nhất}
+\end{alignat*}
+
+\vspace{0.05cm}
+$\Rightarrow$ Đây là hằng đúng. Nó chính là cơ sở của quy tắc \textbf{Modus Ponens}.
 \end{frame}
 
 \end{document}
