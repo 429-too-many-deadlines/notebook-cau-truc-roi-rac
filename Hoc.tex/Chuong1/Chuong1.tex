@@ -27,14 +27,14 @@
 \setbeamertemplate{footline}{%
   \leavevmode%
   \hbox{%
-    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.5ex,dp=1ex,left]{footleftbox}%
-      \hspace*{2ex}\textbf{\color{white}\small TS. Nguyễn Văn Hợi}%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,left]{footleftbox}%
+      \hspace*{2ex}\scriptsize\color{white}TS. Nguyễn Văn Hợi%
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.5ex,dp=1ex,center]{footmidbox}%
-      \textbf{\color{white}\small UIT -- Cấu Trúc Rời Rạc}%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{footmidbox}%
+      \scriptsize\color{white}UIT -- Cấu Trúc Rời Rạc%
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.333334\paperwidth,ht=2.5ex,dp=1ex,right]{footrightbox}%
-      \textbf{\color{white}\small \insertframenumber{} / 35}\hspace*{2ex}%
+    \begin{beamercolorbox}[wd=.333334\paperwidth,ht=2.25ex,dp=1ex,right]{footrightbox}%
+      \scriptsize\color{white}\insertframenumber{} / 35\hspace*{2ex}%
     \end{beamercolorbox}%
   }%
   \vskip0pt%
@@ -51,9 +51,9 @@ Một \textbf{mệnh đề} là một câu khẳng định một sự kiện: n�
 \vspace{0.2cm}
 \textbf{Ví dụ về Mệnh đề:}
 \begin{itemize}
-  \item ``Hà Nội là thủ đô của Việt Nam.'' $\to$ Mệnh đề Đúng.
-  \item ``$0 > e$'' hoặc ``$0 > 2$.'' $\to$ Mệnh đề Sai.
-  \item ``$3$ là một số nguyên tố.'' $\to$ Mệnh đề Đúng.
+  \item ``Hà Nội là thủ đô của Việt Nam.'' $\to$ \textbf{\textcolor{green!60!black}{Mệnh đề Đúng.}}
+  \item ``$0 > e$'' hoặc ``$0 > 2$.'' $\to$ \textbf{\textcolor{red}{Mệnh đề Sai.}}
+  \item ``$3$ là một số nguyên tố.'' $\to$ \textbf{\textcolor{green!60!black}{Mệnh đề Đúng.}}
 \end{itemize}
 
 \textbf{Không phải Mệnh đề:}
@@ -257,7 +257,7 @@ Thầy hứa: ``\textit{Nếu em học chăm chỉ} ($p$) \textit{thì em sẽ q
 
 \vspace{0.25cm}
 \begin{center}
-\begin{tabular}{|c|c|l|c|}
+\begin{tabular}{cclc}
 \hline
 $p$ & $q$ & \textbf{Tình huống} & $p \rightarrow q$ \\
 \hline
@@ -270,7 +270,7 @@ $p$ & $q$ & \textbf{Tình huống} & $p \rightarrow q$ \\
 \end{center}
 
 \vspace{0.25cm}
-\textbf{\textcolor{red}{Ghi nhớ:}}\\
+\textcolor{red}{Ghi nhớ}\\
 $p \rightarrow q$ chỉ \textbf{Sai} khi $p$ \textbf{Đúng} mà $q$ \textbf{Sai}. Giả thiết sai thì phép kéo theo luôn đúng.
 \end{frame}
 
@@ -312,7 +312,7 @@ Cho $p$ là \textbf{Đúng} ($1$) và $q$ là \textbf{Sai} ($0$). Tính giá tr�
 \end{frame}
 
 \begin{frame}{Bảng chân lý của các Mệnh đề phức hợp}
-Chúng ta có thể xây dựng các mệnh đề phức tạp chứa bất kỳ số lượng biến mệnh\\đề nào: $E(p, q, r\dots)$.\\
+Chúng ta có thể xây dựng các mệnh đề phức tạp chứa bất kỳ số lượng biến mệnh đề nào: $E(p, q, r\dots)$.\\
 \textbf{Ví dụ:} $E(p, q) = \neg(\neg p \lor q)$\\
 \textit{Cách làm: tính lần lượt từng cột, từ biểu thức con trong cùng ra ngoài.}
 
