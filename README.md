@@ -1,9 +1,6 @@
-# Cấu Trúc Rời Rạc (Toán Rời Rạc) — UIT
+# Cấu Trúc Rời Rạc (Toán Rời Rạc)
 
-Kho lưu trữ tài liệu học tập, slide bài giảng gốc và mã nguồn LaTeX chuyển đổi cho môn học **Cấu Trúc Rời Rạc** (Toán Rời Rạc) — Trường Đại học Công nghệ Thông tin, ĐHQG-HCM (UIT).
-
-- **Giảng viên:** TS. Nguyễn Văn Hợi
-- **Đơn vị:** UIT – ĐHQG-HCM
+Kho lưu trữ tài liệu học tập, slide bài giảng gốc và mã nguồn LaTeX chuyển đổi cho môn học **Cấu Trúc Rời Rạc** (Toán Rời Rạc).
 
 ---
 
@@ -33,7 +30,7 @@ CauTrucRoiRac/
 ## 📖 Nội dung các chương
 
 ### Chương 1: Logic Mệnh đề và Suy luận
-Chuyển đổi hoàn chỉnh từ slide bài giảng gốc sang [Chuong1.tex](file:///home/fullstuck_developer/Workspace/CITD/HocHanh/CauTrucRoiRac/Hoc/BaiGiang.tex/Chuong1/Chuong1.tex), cô đọng thành **35 slide chuẩn tỉ lệ 16:9** bám sát nhận diện UIT:
+Chuyển đổi hoàn chỉnh từ slide bài giảng gốc sang [Chuong1.tex](file:///home/fullstuck_developer/Workspace/CITD/HocHanh/CauTrucRoiRac/Hoc/BaiGiang.tex/Chuong1/Chuong1.tex), cô đọng thành **35 slide chuẩn tỉ lệ 16:9**:
 
 1. **Khái niệm Mệnh đề và Phân loại (Slide 1 -- 2):** Định nghĩa mệnh đề (khẳng định Đúng/Sai), ví dụ và phản ví dụ thực tế, biến mệnh đề ($p, q, r$), chân trị ($1/0$), mệnh đề sơ cấp vs mệnh đề phức hợp.
 2. **Các toán tử Logic cơ bản (Slide 3 -- 9):** Phép phủ định ($\neg p, \bar{p}$), phép tuyển ($\lor$), phép hội ($\land$), phép tuyển loại XOR ($\oplus$), phép kéo theo ($\rightarrow$), phép tương đương ($\leftrightarrow$), phân tích bản chất phép kéo theo qua ví dụ lời hứa, bài tập trắc nghiệm kiểm tra nhanh chân trị.
@@ -64,3 +61,4 @@ cd Hoc/BaiGiang.tex/Chuong1
 pdflatex -interaction=nonstopmode Chuong1.tex
 ```
 *(Nên chạy lệnh 2 lần để cập nhật số trang `\inserttotalframenumber` và các tham chiếu mục lục).*
+
