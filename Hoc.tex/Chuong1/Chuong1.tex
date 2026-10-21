@@ -1,0 +1,47 @@
+\documentclass[aspectratio=169, 11pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{array, tabularx, booktabs}
+\usepackage{xcolor}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamercolor{background canvas}{bg=white}
+
+\definecolor{uitblue}{RGB}{0, 0, 204}
+\definecolor{footleft}{RGB}{0, 0, 204}
+\definecolor{footmid}{RGB}{0, 0, 153}
+\definecolor{footright}{RGB}{0, 0, 115}
+
+\setbeamercolor{frametitle}{fg=uitblue}
+\setbeamerfont{frametitle}{series=\bfseries, size=\large}
+
+\setbeamercolor{footleftbox}{bg=footleft, fg=white}
+\setbeamercolor{footmidbox}{bg=footmid, fg=white}
+\setbeamercolor{footrightbox}{bg=footright, fg=white}
+
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.5ex,dp=1ex,left]{footleftbox}%
+      \hspace*{2ex}\textbf{\color{white}\small TS. Nguyễn Văn Hợi}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.5ex,dp=1ex,center]{footmidbox}%
+      \textbf{\color{white}\small UIT -- Cấu Trúc Rời Rạc}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.333334\paperwidth,ht=2.5ex,dp=1ex,right]{footrightbox}%
+      \textbf{\color{white}\small \insertframenumber{} / 35}\hspace*{2ex}%
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+
+\begin{document}
+
+\begin{frame}{Khung mẫu}
+Khởi tạo cấu trúc Beamer thành công.
+\end{frame}
+
+\end{document}
