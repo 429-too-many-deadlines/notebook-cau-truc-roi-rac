@@ -621,4 +621,392 @@ Hai biểu thức \textbf{tương đương logic}. Ý nghĩa: ``Nếu $p$ thì $
 $\Rightarrow$ Đây là hằng đúng. Nó chính là cơ sở của quy tắc \textbf{Modus Ponens}.
 \end{frame}
 
+\begin{frame}[plain]
+  \centering
+  \vspace*{2.2cm}
+  {\Huge\textbf{\color{uitblue}5. Suy luận và Chứng minh}}
+  \par\vspace{0.4cm}
+  {\color{uitblue}\rule{0.55\textwidth}{1.2pt}}
+\end{frame}
+
+\begin{frame}{Các quy tắc suy luận (Phần 1)}
+\begin{columns}[t, onlytextwidth]
+  \begin{column}{0.24\textwidth}
+    \centering
+    \parbox[t][0.85cm][t]{\linewidth}{\centering\color{uitblue}\textbf{Modus Ponens}}\par
+    \vspace{0.15cm}
+    $\begin{array}{l}
+      p \\
+      p \rightarrow q \\
+      \hline
+      \therefore q
+    \end{array}$\par
+    \vspace{0.3cm}
+    \footnotesize\textit{Trời mưa. Nếu mưa thì đường ướt.}\\
+    $\Rightarrow$ \textit{Đường ướt.}
+  \end{column}
+  \begin{column}{0.24\textwidth}
+    \centering
+    \parbox[t][0.85cm][t]{\linewidth}{\centering\color{uitblue}\textbf{Modus Tollens}}\par
+    \vspace{0.15cm}
+    $\begin{array}{l}
+      p \rightarrow q \\
+      \bar{q} \\
+      \hline
+      \therefore \bar{p}
+    \end{array}$\par
+    \vspace{0.3cm}
+    \footnotesize\textit{Nếu mưa thì đường ướt. Đường không ướt.}\\
+    $\Rightarrow$ \textit{Không mưa.}
+  \end{column}
+  \begin{column}{0.24\textwidth}
+    \centering
+    \parbox[t][0.85cm][t]{\linewidth}{\centering\color{uitblue}\textbf{Tam đoạn luận giả\\ định}}\par
+    \vspace{0.15cm}
+    $\begin{array}{l}
+      p \rightarrow q \\
+      q \rightarrow r \\
+      \hline
+      \therefore p \rightarrow r
+    \end{array}$\par
+    \vspace{0.3cm}
+    \footnotesize\textit{Học thì hiểu bài; hiểu bài thì qua môn.}\\
+    $\Rightarrow$ \textit{Học thì qua môn.}
+  \end{column}
+  \begin{column}{0.24\textwidth}
+    \centering
+    \parbox[t][0.85cm][t]{\linewidth}{\centering\color{uitblue}\textbf{Tam đoạn luận\\ tuyển}}\par
+    \vspace{0.15cm}
+    $\begin{array}{l}
+      p \lor q \\
+      \bar{p} \\
+      \hline
+      \therefore q
+    \end{array}$\par
+    \vspace{0.3cm}
+    \footnotesize\textit{Đi xe buýt hoặc đi bộ. Không đi xe buýt.}\\
+    $\Rightarrow$ \textit{Đi bộ.}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Các quy tắc suy luận (Phần 2)}
+\begin{columns}[t, onlytextwidth]
+  \begin{column}{0.24\textwidth}
+    \centering
+    \parbox[t][0.85cm][t]{\linewidth}{\centering\color{uitblue}\textbf{Quy tắc cộng}}\par
+    \vspace{0.15cm}
+    $\begin{array}{l}
+      p \\
+      \hline
+      \therefore p \lor q
+    \end{array}$\par
+    \vspace{0.35cm}
+    \footnotesize\textit{3 là số nguyên tố.}\\
+    $\Rightarrow$ \textit{3 là số nguyên tố hoặc 3 là số chẵn.}
+  \end{column}
+  \begin{column}{0.24\textwidth}
+    \centering
+    \parbox[t][0.85cm][t]{\linewidth}{\centering\color{uitblue}\textbf{Quy tắc rút gọn}}\par
+    \vspace{0.15cm}
+    $\begin{array}{l}
+      p \land q \\
+      \hline
+      \therefore p
+    \end{array}$\par
+    \vspace{0.35cm}
+    \footnotesize\textit{Trời mưa và lạnh.}\\
+    $\Rightarrow$ \textit{Trời mưa.}
+  \end{column}
+  \begin{column}{0.24\textwidth}
+    \centering
+    \parbox[t][0.85cm][t]{\linewidth}{\centering\color{uitblue}\textbf{Quy tắc hội}}\par
+    \vspace{0.15cm}
+    $\begin{array}{l}
+      p \\
+      q \\
+      \hline
+      \therefore p \land q
+    \end{array}$\par
+    \vspace{0.35cm}
+    \footnotesize\textit{Trời mưa. Trời lạnh.}\\
+    $\Rightarrow$ \textit{Trời mưa và lạnh.}
+  \end{column}
+  \begin{column}{0.24\textwidth}
+    \centering
+    \parbox[t][0.85cm][t]{\linewidth}{\centering\color{uitblue}\textbf{Quy tắc phân giải}}\par
+    \vspace{0.15cm}
+    $\begin{array}{l}
+      p \lor q \\
+      \bar{p} \lor r \\
+      \hline
+      \therefore q \lor r
+    \end{array}$\par
+    \vspace{0.35cm}
+    \footnotesize\textit{Mưa hoặc nắng. Không mưa hoặc lạnh.}\\
+    $\Rightarrow$ \textit{Nắng hoặc lạnh.}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Bài tập: Kiểm tra tính hợp lệ của các lập luận}
+\begin{columns}[t, onlytextwidth]
+  \begin{column}{0.30\textwidth}
+    \small
+    \textbf{a)}\; $\begin{array}[c]{l}
+      p \\
+      q \rightarrow r \\
+      p \rightarrow \bar{r} \\
+      \hline
+      \therefore \bar{q}
+    \end{array}$
+
+    \vspace{0.35cm}
+    \textbf{d)}\; $\begin{array}[c]{l}
+      p \rightarrow r \\
+      \bar{p} \rightarrow q \\
+      q \rightarrow s \\
+      \hline
+      \therefore \bar{r} \rightarrow s
+    \end{array}$
+
+    \vspace{0.35cm}
+    \textbf{g)}\; $\begin{array}[c]{l}
+      p \\
+      p \rightarrow q \\
+      \bar{s} \rightarrow r \\
+      r \rightarrow \bar{q} \\
+      \hline
+      \therefore s \lor t
+    \end{array}$
+  \end{column}
+  \begin{column}{0.34\textwidth}
+    \small
+    \textbf{b)}\; $\begin{array}[c]{l}
+      p \rightarrow q \\
+      \bar{q} \\
+      \bar{r} \\
+      \hline
+      \therefore \overline{p \lor r}
+    \end{array}$
+
+    \vspace{0.25cm}
+    \textbf{e)}\; $\begin{array}[c]{l}
+      p \leftrightarrow q \\
+      q \rightarrow r \\
+      r \lor \bar{s} \\
+      \bar{s} \rightarrow \bar{q} \\
+      \hline
+      \therefore s
+    \end{array}$
+
+    \vspace{0.25cm}
+    \textbf{h)}\; $\begin{array}[c]{l}
+      p \rightarrow q \\
+      r \rightarrow s \\
+      (s \land q) \rightarrow (p \land t) \\
+      t \rightarrow \bar{p} \\
+      \hline
+      \therefore \overline{p \land r}
+    \end{array}$
+  \end{column}
+  \begin{column}{0.34\textwidth}
+    \small
+    \textbf{c)}\; $\begin{array}[c]{l}
+      p \rightarrow (q \rightarrow r) \\
+      \bar{q} \rightarrow \bar{p} \\
+      p \\
+      \hline
+      \therefore r
+    \end{array}$
+
+    \vspace{0.25cm}
+    \textbf{f)}\; $\begin{array}[c]{l}
+      p \land q \\
+      p \rightarrow (r \land q) \\
+      r \rightarrow (s \lor t) \\
+      \bar{s} \\
+      \hline
+      \therefore t
+    \end{array}$
+
+    \vspace{0.25cm}
+    \textbf{i)}\; $\begin{array}[c]{l}
+      t \rightarrow u \\
+      r \rightarrow (s \lor t) \\
+      (\bar{p} \lor q) \rightarrow r \\
+      \overline{s \lor u} \\
+      \hline
+      \therefore p
+    \end{array}$
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Lời giải chi tiết: Bài (a)}
+\textbf{Lập luận:} $p,\quad q \rightarrow r,\quad p \rightarrow \bar{r}\quad \therefore \bar{q}$
+
+\vspace{0.2cm}
+\textit{Gợi mở: Từ $p$ và $p \rightarrow \bar{r}$, ta suy ra được gì?}
+
+\vspace{0.25cm}
+\begin{enumerate}
+  \item[\textcolor{uitblue}{1.}] $p$ \hfill (Tiền đề)
+  \item[\textcolor{uitblue}{2.}] $p \rightarrow \bar{r}$ \hfill (Tiền đề)
+  \item[\textcolor{uitblue}{3.}] $\bar{r}$ \hfill (Modus Ponens từ 1, 2)
+  \item[\textcolor{uitblue}{4.}] $q \rightarrow r$ \hfill (Tiền đề)
+  \item[\textcolor{uitblue}{5.}] $\textcolor{red}{\bar{q}}$ \hfill (\textbf{Modus Tollens} từ 3, 4)
+\end{enumerate}
+
+\vspace{0.25cm}
+{\large\textbf{\color{red}Kết luận}}\\
+\vspace{0.05cm}
+Lập luận \textbf{hợp lệ}.
+\end{frame}
+
+\begin{frame}{Lời giải chi tiết: Bài (b)}
+\textbf{Lập luận:} $p \rightarrow q,\quad \bar{q},\quad \bar{r}\quad \therefore \overline{p \lor r}$
+
+\vspace{0.2cm}
+\textit{Gợi mở: Theo De Morgan, $\overline{p \lor r} \equiv \bar{p} \land \bar{r}$. Ta đã có $\bar{r}$, cần tìm $\bar{p}$.}
+
+\vspace{0.25cm}
+\begin{enumerate}
+  \item[\textcolor{uitblue}{1.}] $p \rightarrow q$ \hfill (Tiền đề)
+  \item[\textcolor{uitblue}{2.}] $\bar{q}$ \hfill (Tiền đề)
+  \item[\textcolor{uitblue}{3.}] $\bar{p}$ \hfill (\textbf{Modus Tollens} từ 1, 2)
+  \item[\textcolor{uitblue}{4.}] $\bar{r}$ \hfill (Tiền đề)
+  \item[\textcolor{uitblue}{5.}] $\bar{p} \land \bar{r}$ \hfill (Phép hội từ 3, 4)
+  \item[\textcolor{uitblue}{6.}] $\textcolor{red}{\overline{p \lor r}}$ \hfill (\textbf{De Morgan} từ 5)
+\end{enumerate}
+
+\vspace{0.25cm}
+{\large\textbf{\color{red}Kết luận}}\\
+\vspace{0.05cm}
+Lập luận \textbf{hợp lệ}.
+\end{frame}
+
+\begin{frame}{Lời giải chi tiết: Bài (c)}
+\textbf{Lập luận:} $p \rightarrow (q \rightarrow r),\quad \bar{q} \rightarrow \bar{p},\quad p\quad \therefore r$
+
+\vspace{0.15cm}
+\textit{Gợi mở: Để có $r$ từ $q \rightarrow r$, ta cần chứng minh được $q$.}
+
+\vspace{0.15cm}
+\begin{enumerate}
+  \item[\textcolor{uitblue}{1.}] $p$ \hfill (Tiền đề)
+  \item[\textcolor{uitblue}{2.}] $p \rightarrow (q \rightarrow r)$ \hfill (Tiền đề)
+  \item[\textcolor{uitblue}{3.}] $q \rightarrow r$ \hfill (Modus Ponens từ 1, 2)
+  \item[\textcolor{uitblue}{4.}] $\bar{q} \rightarrow \bar{p}$ \hfill (Tiền đề)
+  \item[\textcolor{uitblue}{5.}] $p \rightarrow q$ \hfill (\textbf{Phản đảo} của 4)
+  \item[\textcolor{uitblue}{6.}] $q$ \hfill (Modus Ponens từ 1, 5)
+  \item[\textcolor{uitblue}{7.}] $\textcolor{red}{r}$ \hfill (\textbf{Modus Ponens} từ 3, 6)
+\end{enumerate}
+
+\vspace{0.2cm}
+\centering
+\textbf{Kết luận:} Lập luận \textbf{hợp lệ}.
+\end{frame}
+
+\begin{frame}{Bài toán thực tế}
+\textbf{Đọc đề và tìm các mệnh đề sơ cấp:}
+
+\vspace{0.15cm}
+Ông Minh nói rằng nếu ông không được tăng lương, ông sẽ nghỉ việc. Mặt khác, nếu ông nghỉ việc và vợ ông mất việc, ông sẽ phải bán xe. Biết rằng nếu vợ ông đi làm muộn, bà ấy sớm muộn cũng sẽ mất việc và \textcolor{red}{ông Minh đã được tăng lương}. Nếu ông không bán xe, thì vợ ông đã không đi làm muộn!
+
+\vspace{0.25cm}
+\begin{itemize}
+  \item $p$: ``Ông Minh được tăng lương'' (câu gốc là $\neg p$)
+  \item $q$: ``Ông nghỉ việc''
+  \item $r$: ``Vợ ông mất việc''
+  \item $s$: ``Ông bán xe''
+  \item $t$: ``Vợ ông đi làm muộn''
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Bài toán thực tế (tt)}
+\textbf{Tiền đề:}
+
+\vspace{0.15cm}
+\begin{enumerate}
+  \item[\textcolor{uitblue}{1.}] Không tăng lương ($\neg p$) $\rightarrow$ nghỉ việc ($q$): $\neg p \rightarrow q$
+  \item[\textcolor{uitblue}{2.}] Nghỉ việc ($q$) VÀ vợ mất việc ($r$) $\rightarrow$ bán xe ($s$): $(q \land r) \rightarrow s$
+  \item[\textcolor{uitblue}{3.}] Vợ đi muộn ($t$) $\rightarrow$ mất việc ($r$): $t \rightarrow r$
+  \item[\textcolor{uitblue}{4.}] Sự kiện: Ông Minh được tăng lương ($p$ đúng).
+\end{enumerate}
+
+\vspace{0.35cm}
+\textbf{Yêu cầu:} Chứng minh ``Nếu không bán xe ($\neg s$), thì vợ không đi muộn ($\neg t$).''
+\end{frame}
+
+\begin{frame}{Bài toán: Đi bơi hay đi canô?}
+\textbf{Yêu cầu:} Chứng minh các tiền đề sau dẫn đến kết luận: \textit{``Chúng ta sẽ về nhà trước khi mặt trời lặn.''}
+
+\vspace{0.2cm}
+\begin{enumerate}
+  \item[\textcolor{uitblue}{1.}] ``Chiều nay trời không nắng và trời lạnh hơn hôm qua.''
+  \item[\textcolor{uitblue}{2.}] ``Chúng ta sẽ đi bơi chỉ khi trời nắng.''
+  \item[\textcolor{uitblue}{3.}] ``Nếu chúng ta không đi bơi, chúng ta sẽ đi tham quan bằng canô.''
+  \item[\textcolor{uitblue}{4.}] ``Nếu đi tham quan bằng canô, chúng ta sẽ về nhà trước khi mặt trời lặn.''
+\end{enumerate}
+
+\vspace{0.3cm}
+\textit{Câu hỏi: Có bao nhiêu mệnh đề sơ cấp trong bài toán này?}
+\end{frame}
+
+\begin{frame}{Bài toán: Đặt mệnh đề và hình thức hóa}
+\begin{columns}[onlytextwidth, t]
+  \begin{column}{0.5\textwidth}
+    \textbf{Đặt các mệnh đề:}
+    \vspace{0.15cm}
+    \begin{itemize}
+      \item $p$: ``Chiều nay trời nắng.''
+      \item $q$: ``Trời lạnh hơn hôm qua.''
+      \item $r$: ``Chúng ta sẽ đi bơi.''
+      \item $s$: ``Chúng ta sẽ đi tham quan bằng canô.''
+      \item $t$: ``Chúng ta sẽ về nhà trước khi mặt trời lặn.''
+    \end{itemize}
+  \end{column}
+  \begin{column}{0.48\textwidth}
+    \textbf{Hình thức hóa:}
+    \vspace{0.15cm}
+    \begin{enumerate}
+      \item[\textcolor{uitblue}{1.}] $\neg p \land q$
+      \item[\textcolor{uitblue}{2.}] $r \rightarrow p$ (``$r$ chỉ khi $p$'')
+      \item[\textcolor{uitblue}{3.}] $\neg r \rightarrow s$
+      \item[\textcolor{uitblue}{4.}] $s \rightarrow t$
+    \end{enumerate}
+
+    \vspace{0.35cm}
+    \textbf{Kết luận:} $t$
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Bài toán: Lời giải}
+\textbf{Tiền đề:} $\neg p \land q$, $r \rightarrow p$, $\neg r \rightarrow s$, $s \rightarrow t$. \textbf{Kết luận:} $t$.
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Bước} & \textbf{Mệnh đề} & \textbf{Lý do} \\
+\midrule
+1. & $\neg p \land q$ & Tiền đề \\
+2. & $\neg p$ & Luật rút gọn từ (1) \\
+3. & $r \rightarrow p$ & Tiền đề \\
+4. & $\neg r$ & Modus tollens từ (2) và (3) \\
+5. & $\neg r \rightarrow s$ & Tiền đề \\
+6. & $s$ & Modus ponens từ (4) và (5) \\
+7. & $s \rightarrow t$ & Tiền đề \\
+8. & $\textcolor{red}{t}$ & Modus ponens từ (6) và (7) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.15cm}
+\centering
+$\therefore$ Kết luận \textbf{``Chúng ta sẽ về nhà trước khi mặt trời lặn''} là hợp lệ.
+\end{frame}
+
 \end{document}
