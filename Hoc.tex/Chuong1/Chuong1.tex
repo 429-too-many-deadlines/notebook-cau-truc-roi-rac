@@ -85,4 +85,221 @@ Một \textbf{mệnh đề} là một câu khẳng định một sự kiện: n�
 Về mặt toán học, mệnh đề phức hợp được hình thành từ các mệnh đề hiện có bằng các toán tử logic.
 \end{frame}
 
+\begin{frame}[plain]
+  \centering
+  \vspace*{2.2cm}
+  {\Huge\textbf{\color{uitblue}2. Các toán tử Logic}}
+  \par\vspace{0.4cm}
+  {\color{uitblue}\rule{0.55\textwidth}{1.2pt}}
+\end{frame}
+
+\begin{frame}{1. Phép phủ định (NOT)}
+Phép \textbf{phủ định} của $p$ được ký hiệu là $\neg p$ hoặc $\bar{p}$, là mệnh đề: ``Không phải trường hợp $p$''. Giá trị chân lý của nó ngược lại với $p$.
+
+\vspace{0.4cm}
+\begin{columns}[c, onlytextwidth]
+  \begin{column}{0.35\textwidth}
+    \centering
+    \begin{tabular}{|c|c|}
+    \hline
+    $p$ & $\bar{p}$ \\
+    \hline
+    0 & 1 \\
+    1 & 0 \\
+    \hline
+    \end{tabular}
+  \end{column}
+  \begin{column}{0.65\textwidth}
+    \textbf{Ví dụ:}
+    \begin{itemize}
+      \item $p$: ``Paris là thủ đô của Pháp.''\\
+            $\to \bar{p}$: ``Paris \textbf{không phải} là thủ đô của Pháp.''
+      \item $q$: ``$9$ là một số chính phương.''\\
+            $\to \bar{q}$: ``$9$ \textbf{không phải} là một số chính phương.''
+    \end{itemize}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{2. Phép hoặc (OR) và 3. Phép giao (AND)}
+\begin{columns}[t, onlytextwidth]
+  \begin{column}{0.51\textwidth}
+    \textbf{Phép tuyển} ($p \lor q$) là mệnh đề: ``$p$ hoặc $q$''.\\
+    \textit{``Đúng nếu có ít nhất một mệnh đề đúng.''}
+
+    \vspace{0.3cm}
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    $p$ & $q$ & $p \lor q$ \\
+    \hline
+    0 & 0 & 0 \\
+    0 & 1 & 1 \\
+    1 & 0 & 1 \\
+    1 & 1 & 1 \\
+    \hline
+    \end{tabular}
+
+    \vspace{0.3cm}
+    \raggedright
+    \textit{VD: ``$3$ là số nguyên tố \textbf{hoặc} $3$ là số chẵn.'' (Đúng)}
+  \end{column}
+  \begin{column}{0.47\textwidth}
+    \textbf{Phép hội} ($p \land q$) là mệnh đề: ``$p$ và $q$''.\\
+    \textit{``Đúng chỉ khi cả hai đều đúng.''}
+
+    \vspace{0.3cm}
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    $p$ & $q$ & $p \land q$ \\
+    \hline
+    0 & 0 & 0 \\
+    0 & 1 & 0 \\
+    1 & 0 & 0 \\
+    1 & 1 & 1 \\
+    \hline
+    \end{tabular}
+
+    \vspace{0.3cm}
+    \raggedright
+    \textit{VD: ``Trời đã mưa \textbf{và} hôm đó là thứ Sáu.''}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{4. Phép tuyển loại (XOR)}
+Phép \textbf{tuyển loại} của $p$ và $q$, ký hiệu là $p \oplus q$, là mệnh đề đúng khi \textbf{chỉ duy nhất một} trong hai mệnh đề $p$ hoặc $q$ đúng, và sai trong các trường hợp còn lại.
+
+\vspace{0.3cm}
+\begin{columns}[t, onlytextwidth]
+  \begin{column}{0.4\textwidth}
+    \textbf{Bảng chân lý:}
+    \vspace{0.2cm}
+    \begin{center}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    $p$ & $q$ & $p \oplus q$ \\
+    \hline
+    0 & 0 & 0 \\
+    0 & 1 & 1 \\
+    1 & 0 & 1 \\
+    1 & 1 & 0 \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \vspace{0.1cm}
+    \centering
+    \textit{Khác với OR ở dòng cuối!}
+  \end{column}
+  \begin{column}{0.58\textwidth}
+    \textbf{Ví dụ:} \textit{``Sinh viên có thể chọn súp miễn phí hoặc salad miễn phí kèm bữa ăn.''}
+    \begin{itemize}
+      \item $p$: ``Bạn chọn súp.''
+      \item $q$: ``Bạn chọn salad.''
+    \end{itemize}
+    \textbf{Logic ($p \oplus q$):}
+    \begin{itemize}
+      \item Đúng nếu bạn chỉ lấy một thứ.
+      \item \textbf{Sai} nếu bạn cố lấy \textbf{cả hai} hoặc không lấy thứ nào.
+    \end{itemize}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{5. Phép kéo theo và 6. Phép tương đương}
+\begin{columns}[t, onlytextwidth]
+  \begin{column}{0.48\textwidth}
+    \textbf{Phép kéo theo} ($p \rightarrow q$):\\
+    ``Nếu $p$, thì $q$.''
+
+    \vspace{0.25cm}
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    $p$ & $q$ & $p \rightarrow q$ \\
+    \hline
+    0 & 0 & 1 \\
+    0 & 1 & 1 \\
+    1 & 0 & 0 \\
+    1 & 1 & 1 \\
+    \hline
+    \end{tabular}
+  \end{column}
+  \begin{column}{0.48\textwidth}
+    \textbf{Phép tương đương} ($p \leftrightarrow q$):\\
+    ``$p$ nếu và chỉ nếu $q$.''
+
+    \vspace{0.25cm}
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    $p$ & $q$ & $p \leftrightarrow q$ \\
+    \hline
+    0 & 0 & 1 \\
+    0 & 1 & 0 \\
+    1 & 0 & 0 \\
+    1 & 1 & 1 \\
+    \hline
+    \end{tabular}
+  \end{column}
+\end{columns}
+
+\vspace{0.4cm}
+\textit{Ví dụ $p \rightarrow q$: ``Nếu bạn học chăm chỉ, bạn sẽ qua môn.''}\\
+\textit{Ví dụ $p \leftrightarrow q$: ``Bạn có thể đi chuyến bay nếu và chỉ nếu bạn mua vé.''}
+\end{frame}
+
+\begin{frame}{Hiểu phép kéo theo qua một lời hứa}
+Thầy hứa: ``\textit{Nếu em học chăm chỉ} ($p$) \textit{thì em sẽ qua môn} ($q$).''\\
+\textbf{Câu hỏi:} Trong trường hợp nào thầy đã \textbf{nói sai}?
+
+\vspace{0.25cm}
+\begin{center}
+\begin{tabular}{|c|c|l|c|}
+\hline
+$p$ & $q$ & \textbf{Tình huống} & $p \rightarrow q$ \\
+\hline
+1 & 1 & Học chăm, qua môn $\Rightarrow$ thầy giữ lời & 1 \\
+1 & 0 & Học chăm, vẫn trượt $\Rightarrow$ \textcolor{red}{thầy thất hứa} & \textcolor{red}{0} \\
+0 & 1 & Không học, vẫn qua $\Rightarrow$ thầy không nói sai & 1 \\
+0 & 0 & Không học, trượt $\Rightarrow$ thầy không nói sai & 1 \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.25cm}
+\textbf{\textcolor{red}{Ghi nhớ:}}\\
+$p \rightarrow q$ chỉ \textbf{Sai} khi $p$ \textbf{Đúng} mà $q$ \textbf{Sai}. Giả thiết sai thì phép kéo theo luôn đúng.
+\end{frame}
+
+\begin{frame}{Kiểm tra nhanh}
+Cho $p$ là \textbf{Đúng} ($1$) và $q$ là \textbf{Sai} ($0$). Tính giá trị chân lý:
+
+\vspace{0.4cm}
+\begin{columns}[T, onlytextwidth]
+  \begin{column}{0.48\textwidth}
+    \centering
+    \begin{tabular}[t]{lll}
+      \textcolor{uitblue}{\textbf{1.}} & $\neg p$ & $= \textcolor{red}{0}$ \\[6pt]
+      \textcolor{uitblue}{\textbf{2.}} & $p \lor q$ & $= \textcolor{green!60!black}{1}$ \\[6pt]
+      \textcolor{uitblue}{\textbf{3.}} & $p \land q$ & $= \textcolor{red}{0}$ \\[6pt]
+      \textcolor{uitblue}{\textbf{4.}} & $p \oplus q$ & $= \textcolor{green!60!black}{1}$
+    \end{tabular}
+  \end{column}
+  \begin{column}{0.48\textwidth}
+    \centering
+    \begin{tabular}[t]{lll}
+      \textcolor{uitblue}{\textbf{5.}} & $p \rightarrow q$ & $= \textcolor{red}{0}$ \\[6pt]
+      \textcolor{uitblue}{\textbf{6.}} & $q \rightarrow p$ & $= \textcolor{green!60!black}{1}$ \\[6pt]
+      \textcolor{uitblue}{\textbf{7.}} & $p \leftrightarrow q$ & $= \textcolor{red}{0}$
+    \end{tabular}
+  \end{column}
+\end{columns}
+
+\vspace{0.4cm}
+\centering
+\textbf{Nhận xét:} $p \rightarrow q$ và $q \rightarrow p$ không tương đương!
+\end{frame}
+
 \end{document}
