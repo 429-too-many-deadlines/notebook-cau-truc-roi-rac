@@ -9,6 +9,7 @@
 
 \setbeamertemplate{navigation symbols}{}
 \setbeamercolor{background canvas}{bg=white}
+\setbeamertemplate{itemize item}[circle]
 
 \definecolor{uitblue}{RGB}{0, 0, 204}
 \definecolor{footleft}{RGB}{0, 0, 204}
@@ -40,8 +41,48 @@
 
 \begin{document}
 
-\begin{frame}{Khung mẫu}
-Khởi tạo cấu trúc Beamer thành công.
+\begin{frame}{Mệnh đề là gì?}
+Một \textbf{mệnh đề} là một câu khẳng định một sự kiện: nó phải có giá trị \textbf{Đúng} hoặc \textbf{Sai}, nhưng không thể vừa đúng vừa sai.
+
+\vspace{0.2cm}
+\textit{Câu hỏi: Các câu sau có phải là mệnh đề không?}
+
+\vspace{0.2cm}
+\textbf{Ví dụ về Mệnh đề:}
+\begin{itemize}
+  \item ``Hà Nội là thủ đô của Việt Nam.'' $\to$ Mệnh đề Đúng.
+  \item ``$0 > e$'' hoặc ``$0 > 2$.'' $\to$ Mệnh đề Sai.
+  \item ``$3$ là một số nguyên tố.'' $\to$ Mệnh đề Đúng.
+\end{itemize}
+
+\textbf{Không phải Mệnh đề:}
+\begin{itemize}
+  \item ``Một ngày đẹp trời làm sao!'' (Câu cảm thán).
+  \item ``Thầy Hợi rất đẹp trai!'' (Chủ quan/Cảm thán).
+  \item ``$3 + x = 2$.'' $\to$ Không phải mệnh đề (Chưa xác định được Đúng/Sai).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Ký hiệu và Phân loại}
+\begin{itemize}
+  \item \textbf{Ký hiệu:} $p, q, r, \dots$
+  \item \textbf{Giá trị chân lý:} Đ (Đúng/$1$) hoặc S (Sai/$0$).
+\end{itemize}
+
+\textbf{Phân loại:}
+\begin{enumerate}
+  \item \textbf{Mệnh đề sơ cấp (Đơn giản):} Chỉ chứa một sự kiện duy nhất. Không thể chia nhỏ hơn.
+  \begin{itemize}
+    \item ``$3$ là một số nguyên tố.''
+  \end{itemize}
+  \item \textbf{Mệnh đề phức hợp:} Được tạo ra bằng cách kết hợp các mệnh đề sơ cấp bằng các liên từ/toán tử logic (không, và, hoặc, nếu\dots thì, nếu và chỉ nếu).
+  \begin{itemize}
+    \item ``$2$ là số nguyên tố và là một số chẵn.''
+    \item ``Thầy Hợi đang dạy học hoặc đang xem phim.''
+  \end{itemize}
+\end{enumerate}
+\vspace{0.3cm}
+Về mặt toán học, mệnh đề phức hợp được hình thành từ các mệnh đề hiện có bằng các toán tử logic.
 \end{frame}
 
 \end{document}
