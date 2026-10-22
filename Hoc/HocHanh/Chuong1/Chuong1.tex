@@ -1269,40 +1269,38 @@
 
 \begin{frame}{Lời Giải Chi Tiết: Kiểm Tra Lập Luận Hình Thức (Bài a)}
   \begin{columns}[t, onlytextwidth]
-    \begin{column}{0.58\textwidth}
-      \begin{cozyExample}[Chứng Minh: $\neg p \land q, \; r \to p, \; \neg r \to s, \; s \to t \;\vdash\; t$]
+    \begin{column}{0.54\textwidth}
+      \begin{cozyExample}[Bài (a): $p, \; q \to r, \; p \to \neg r \;\vdash\; \neg q$]
         \centering
-        \renewcommand{\arraystretch}{1.03}
+        \renewcommand{\arraystretch}{1.1}
         \footnotesize
         \setlength{\tabcolsep}{3pt}
         \begin{tabular}{cll}
           \toprule
           \textbf{Bước} & \textbf{Mệnh đề} & \textbf{Lý do / Quy tắc áp dụng} \\
           \midrule
-          1. & $\neg p \land q$ & Tiền đề 1 \\
-          2. & $\neg p$ & Quy tắc Rút gọn từ (1) \\
-          3. & $r \to p$ & Tiền đề 2 \\
-          4. & $\neg r$ & \textbf{Modus Tollens} từ (2) và (3) \\
-          5. & $\neg r \to s$ & Tiền đề 3 \\
-          6. & $s$ & \textbf{Modus Ponens} từ (4) và (5) \\
-          7. & $s \to t$ & Tiền đề 4 \\
-          8. & $\mathbf{\textcolor{cozyTrue}{t}}$ & \textbf{Modus Ponens} từ (6) và (7) \\
+          1. & $p$ & Tiền đề 1 \\
+          2. & $p \to \neg r$ & Tiền đề 2 \\
+          3. & $\neg r$ & \textbf{Modus Ponens} từ (1) và (2) \\
+          4. & $q \to r$ & Tiền đề 3 \\
+          5. & $\mathbf{\textcolor{cozyTrue}{\neg q}}$ & \textbf{Modus Tollens} từ (3) và (4) \\
           \bottomrule
         \end{tabular}
-        \par\vspace{0.05cm}
-        \centering\footnotesize\color{cozyTrue}$\therefore$ Kết luận $t$ được suy ra $\implies$ Lập luận \textbf{HỢP LỆ}!
+        \par\vspace{0.08cm}
+        \centering\footnotesize\color{cozyTrue}$\therefore$ Kết luận $\neg q$ được suy ra $\implies$ Lập luận \textbf{HỢP LỆ}!
       \end{cozyExample}
     \end{column}
-    \begin{column}{0.40\textwidth}
-      \begin{cozyInsight}[Chiến Lược Giải Bài Lập Luận]
+    \begin{column}{0.44\textwidth}
+      \begin{cozyInsight}[Chiến Lược Kết Hợp Kinh Điển]
         \small
         \begin{itemize}
-          \setlength{\itemsep}{2pt}
-          \item \textbf{Khởi đầu:} Luôn bắt đầu từ mệnh đề hội ($A \land B$) hoặc biến đơn để rút trích chân trị gốc ($\neg p$).
-          \item \textbf{Mắt xích quan trọng (Bước 4):}\\
-          Kết hợp $\neg p$ và $r \to p$ qua \textbf{Modus Tollens} để tạo chìa khóa $\neg r$.
-          \item \textbf{Hiệu ứng domino (Bước 6, 8):}\\
-          Áp dụng liên tiếp \textbf{Modus Ponens} để mở khóa biến $s$ rồi biến $t$.
+          \setlength{\itemsep}{2.5pt}
+          \item \textbf{Khởi đầu từ biến đơn:}\\
+          Bắt đầu từ mệnh đề đơn $p$ đã biết chân trị Đúng.
+          \item \textbf{Mở khóa qua Modus Ponens:}\\
+          Khẳng định tiền đề $p$ của $p \to \neg r \implies$ Thu được chìa khóa $\neg r$.
+          \item \textbf{Về đích qua Modus Tollens:}\\
+          Có $\neg r$ (phủ định kết luận của $q \to r$) $\implies$ Buộc tiền đề $q$ phải Sai ($\neg q$).
         \end{itemize}
       \end{cozyInsight}
     \end{column}
