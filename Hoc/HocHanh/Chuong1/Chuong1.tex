@@ -685,10 +685,10 @@
       \toprule
       $p$ & $q$ & $\neg p$ & $\neg p \land q$ & $p \lor (\neg p \land q)$ & $A = \neg(p \lor (\neg p \land q))$ & $\neg q$ & $B = \neg p \land \neg q$ \\
       \midrule
-      $0$ & $0$ & $1$ & $0$ & $0$ & \textbf{\textcolor{cozyTrue}{1}} & $1$ & \textbf{\textcolor{cozyTrue}{1}} \\
-      $0$ & $1$ & $1$ & $1$ & $1$ & \textbf{\textcolor{cozyFalse}{0}} & $0$ & \textbf{\textcolor{cozyFalse}{0}} \\
-      $1$ & $0$ & $0$ & $0$ & $1$ & \textbf{\textcolor{cozyFalse}{0}} & $1$ & \textbf{\textcolor{cozyFalse}{0}} \\
       $1$ & $1$ & $0$ & $0$ & $1$ & \textbf{\textcolor{cozyFalse}{0}} & $0$ & \textbf{\textcolor{cozyFalse}{0}} \\
+      $1$ & $0$ & $0$ & $0$ & $1$ & \textbf{\textcolor{cozyFalse}{0}} & $1$ & \textbf{\textcolor{cozyFalse}{0}} \\
+      $0$ & $1$ & $1$ & $1$ & $1$ & \textbf{\textcolor{cozyFalse}{0}} & $0$ & \textbf{\textcolor{cozyFalse}{0}} \\
+      $0$ & $0$ & $1$ & $0$ & $0$ & \textbf{\textcolor{cozyTrue}{1}} & $1$ & \textbf{\textcolor{cozyTrue}{1}} \\
       \bottomrule
     \end{tabular}
   \end{cozyExample}
@@ -697,7 +697,7 @@
     \small
     \begin{itemize}
       \setlength{\itemsep}{1.5pt}
-      \item Hai cột kết quả của \textbf{$A$} và \textbf{$B$} \textbf{giống hệt nhau} trên từng dòng ($1, 0, 0, 0$).
+      \item Hai cột kết quả của \textbf{$A$} và \textbf{$B$} \textbf{giống hệt nhau} trên từng dòng ($0, 0, 0, 1$).
       \item $\implies$ Hai biểu thức \textbf{tương đương logic}: $\neg(p \lor (\neg p \land q)) \equiv \neg p \land \neg q$.
       \item \textbf{Định nghĩa chuẩn mực:} Hai mệnh đề phức hợp $A$ và $B$ tương đương logic ($A \equiv B$ hoặc $A \Leftrightarrow B$) khi và chỉ khi mệnh đề tương đương $A \leftrightarrow B$ là một \textbf{hằng đúng} (nhận giá trị $1$ ở mọi trường hợp).
     \end{itemize}
@@ -903,8 +903,8 @@
           ta lập tức thu được một đẳng thức logic \textbf{luôn đúng mới}!
           \item \textbf{Ví dụ đối ngẫu:}
           \begin{itemize}
-            \item $p \lor (p \land q) \equiv p \iff p \land (p \lor q) \equiv p$
-            \item $p \lor \neg p \equiv \mathbf{T} \iff p \land \neg p \equiv \mathbf{F}$
+            \item $p \lor (p \land q) \equiv p \;\longleftrightarrow\; p \land (p \lor q) \equiv p$
+            \item $p \lor \neg p \equiv \mathbf{T} \;\longleftrightarrow\; p \land \neg p \equiv \mathbf{F}$
           \end{itemize}
           \item $\implies$ Giảm \textbf{$50\%$ công sức} học thuộc lòng!
         \end{itemize}
@@ -1058,6 +1058,511 @@
         \vspace{0.03cm}
         \par\centering\tiny\color{cozySlate}$\implies$ Là hằng đúng (cơ sở quy tắc \textbf{Modus Ponens})!
       \end{cozyExample}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ==========================================
+% PHẦN 4: QUY TẮC SUY LUẬN & BÀI TOÁN THỰC TẾ
+% ==========================================
+
+\begin{frame}[plain]
+  \centering
+  \vspace*{2.0cm}
+  {\LARGE\textbf{\color{cozySlate}4. Quy Tắc Suy Luận \& Bài Toán Thực Tế}}
+  \par\vspace{0.4cm}
+  {\color{cozyWarm}\rule{0.6\textwidth}{1.5pt}}
+  \par\vspace{0.3cm}
+  {\normalsize\color{cozyMuted}Phương pháp chứng minh hình thức và giải quyết bài toán đời sống}
+\end{frame}
+
+\begin{frame}{Thế Nào Là Một Lập Luận Hợp Lệ? (Valid Argument)}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.485\textwidth}
+      \begin{cozyDef}[Định Nghĩa Lập Luận Hợp Lệ]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{1.5pt}
+          \item Một \textbf{lập luận} gồm các \textbf{tiền đề} $P_1, P_2, \dots, P_k$ và \textbf{kết luận} $C$, ký hiệu:
+          $$P_1, P_2, \dots, P_k \vdash C \quad (\therefore C)$$
+          \item Lập luận là \textbf{\textcolor{cozyTrue}{HỢP LỆ (Valid)}} khi và chỉ khi:
+          $$(P_1 \land P_2 \land \dots \land P_k) \to C$$
+          là một \textbf{HẰNG ĐÚNG (Tautology)}.
+          \item \textbf{Quy tắc vàng:} Nếu \textbf{TẤT CẢ} các tiền đề đều Đúng, thì kết luận \textbf{BẮT BUỘC} phải Đúng! (Không bao giờ xảy ra $1 \to 0$).
+        \end{itemize}
+      \end{cozyDef}
+    \end{column}
+    \begin{column}{0.485\textwidth}
+      \begin{cozyInsight}[Hợp Lệ (Valid) vs Chân Thực (Sound)]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{1.5pt}
+          \item \textbf{Hợp lệ (Validity):} Chỉ quan tâm đến \textbf{cấu trúc hình thức}, không phụ thuộc thực tế.
+          \begin{itemize}
+            \setlength{\itemsep}{0.8pt}
+            \item \textit{Ví dụ:} ``Mọi loài chim đều biết bay. Chim cánh cụt là chim $\implies$ Chim cánh cụt biết bay.''
+            \item Cấu trúc lập luận này \textbf{\textcolor{cozyTrue}{HỢP LỆ}}, dù tiền đề $1$ sai trong sinh học!
+          \end{itemize}
+          \item \textbf{Chân thực (Soundness):} Lập luận vừa \textbf{Hợp lệ} vừa có \textbf{toàn bộ tiền đề Đúng trong thực tế}.
+          \item \textbf{Trọng tâm môn học:} Toán học \& Tin học tập trung kiểm định \textbf{tính hợp lệ hình thức}.
+        \end{itemize}
+      \end{cozyInsight}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{8 Quy Tắc Suy Luận Nền Tảng (Phần 1: Kéo Theo \& Tuyển)}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.485\textwidth}
+      \begin{cozyDef}[1. Modus Ponens (Khẳng định tiền đề)]
+        \scriptsize
+        \vspace{-0.1cm}
+        $$\begin{array}{l} p \\ p \to q \\ \hline \therefore q \end{array} \quad \Big( [p \land (p \to q)] \to q \equiv \mathbf{T} \Big)$$
+        \vspace{-0.1cm}
+        \textbf{Ý nghĩa:} Tiền đề $p$ đúng $\implies$ Kéo theo $q$ xảy ra.\\
+        \textit{Ví dụ:} Hôm nay mưa. Nếu mưa thì đường ướt $\implies$ Đường ướt.
+      \end{cozyDef}
+      \vspace{0.08cm}
+      \begin{cozyDef}[3. Tam đoạn luận giả định (Bắc cầu)]
+        \scriptsize
+        \vspace{-0.1cm}
+        $$\begin{array}{l} p \to q \\ q \to r \\ \hline \therefore p \to r \end{array} \quad \Big( [(p \to q) \land (q \to r)] \to (p \to r) \equiv \mathbf{T} \Big)$$
+        \vspace{-0.1cm}
+        \textbf{Ý nghĩa:} Tính bắc cầu qua mắt xích trung gian $q$.\\
+        \textit{Ví dụ:} Học chăm $\to$ hiểu bài; hiểu bài $\to$ qua môn $\implies$ Học chăm $\to$ qua môn.
+      \end{cozyDef}
+    \end{column}
+    \begin{column}{0.485\textwidth}
+      \begin{cozyDef}[2. Modus Tollens (Phủ định kết luận)]
+        \scriptsize
+        \vspace{-0.1cm}
+        $$\begin{array}{l} \neg q \\ p \to q \\ \hline \therefore \neg p \end{array} \quad \Big( [\neg q \land (p \to q)] \to \neg p \equiv \mathbf{T} \Big)$$
+        \vspace{-0.1cm}
+        \textbf{Ý nghĩa:} Kết luận không có $\implies$ Tiền đề không xảy ra.\\
+        \textit{Ví dụ:} Đường không ướt. Nếu mưa thì đường ướt $\implies$ Trời không mưa.
+      \end{cozyDef}
+      \vspace{0.08cm}
+      \begin{cozyDef}[4. Tam đoạn luận tuyển (Loại trừ)]
+        \scriptsize
+        \vspace{-0.1cm}
+        $$\begin{array}{l} p \lor q \\ \neg p \\ \hline \therefore q \end{array} \quad \Big( [(p \lor q) \land \neg p] \to q \equiv \mathbf{T} \Big)$$
+        \vspace{-0.1cm}
+        \textbf{Ý nghĩa:} Một trong hai phải đúng, loại cái này $\implies$ Chọn cái kia.\\
+        \textit{Ví dụ:} Đi xe buýt hoặc đi bộ. Không đi xe buýt $\implies$ Đi bộ.
+      \end{cozyDef}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{8 Quy Tắc Suy Luận Nền Tảng (Phần 2: Thao Tác \& Phân Giải)}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.485\textwidth}
+      \begin{cozyDef}[5. Quy Tắc Cộng (Addition)]
+        \scriptsize
+        \vspace{-0.1cm}
+        $$\begin{array}{l} p \\ \hline \therefore p \lor q \end{array} \quad \Big( p \to (p \lor q) \equiv \mathbf{T} \Big)$$
+        \vspace{-0.1cm}
+        \textbf{Ý nghĩa:} Khi $p$ đã đúng, tuyển với bất kỳ $q$ nào cũng đúng.\\
+        \textit{Ví dụ:} $3$ là số nguyên tố $\implies 3$ là số nguyên tố hoặc $3$ là số chẵn.
+      \end{cozyDef}
+      \vspace{0.08cm}
+      \begin{cozyDef}[7. Quy Tắc Ghép Hội (Conjunction)]
+        \scriptsize
+        \vspace{-0.1cm}
+        $$\begin{array}{l} p \\ q \\ \hline \therefore p \land q \end{array} \quad \Big( (p \land q) \to (p \land q) \equiv \mathbf{T} \Big)$$
+        \vspace{-0.1cm}
+        \textbf{Ý nghĩa:} Hai sự thật độc lập cùng đúng thì phép hội đúng.\\
+        \textit{Ví dụ:} Bạn học chăm ($p$). Bạn thông minh ($q$) $\implies$ Bạn vừa chăm vừa thông minh ($p \land q$).
+      \end{cozyDef}
+    \end{column}
+    \begin{column}{0.485\textwidth}
+      \begin{cozyDef}[6. Quy Tắc Rút Gọn (Simplification)]
+        \scriptsize
+        \vspace{-0.1cm}
+        $$\begin{array}{l} p \land q \\ \hline \therefore p \end{array} \quad \Big( (p \land q) \to p \equiv \mathbf{T} \Big)$$
+        \vspace{-0.1cm}
+        \textbf{Ý nghĩa:} Cả hai cùng đúng thì hiển nhiên từng cái đúng.\\
+        \textit{Ví dụ:} Hôm nay trời mưa và lạnh $\implies$ Hôm nay trời mưa.
+      \end{cozyDef}
+      \vspace{0.08cm}
+      \begin{cozyInsight}[8. Quy Tắc Phân Giải (Resolution)]
+        \scriptsize
+        \vspace{-0.1cm}
+        $$\begin{array}{l} p \lor q \\ \neg p \lor r \\ \hline \therefore q \lor r \end{array} \quad \Big( [(p \lor q) \land (\neg p \lor r)] \to (q \lor r) \equiv \mathbf{T} \Big)$$
+        \vspace{-0.1cm}
+        \textbf{Ý nghĩa:} Triệt tiêu cặp bù nhau $(p, \neg p)$ giữa hai tuyển.\\
+        \textbf{Ứng dụng:} Nền tảng của các hệ chứng minh tự động trong Trí tuệ nhân tạo (AI) và Lập trình Prolog!
+      \end{cozyInsight}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Cảnh Báo: 2 Cạm Bẫy Ngụy Biện Bài Thi Thường Gặp (Formal Fallacies)}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.54\textwidth}
+      \begin{cozyTrap}[2 Ngụy Biện Kinh Điển Phải Tuyệt Đối Tránh]
+        \small
+        \begin{enumerate}
+          \setlength{\itemsep}{2.5pt}
+          \item \textbf{Khẳng định kết luận (Affirming Consequent):}\\
+          Có $p \to q$ và $q \;\not\vdash\; p$ \textbf{\textcolor{cozyFalse}{(SAI!)}}.\\
+          \textit{Ví dụ:} ``Nếu trời mưa thì đường ướt. Đường ướt $\to$ Trời mưa.''\\
+          $\implies$ \textbf{Sai}, xe bồn tưới nước cũng làm đường ướt!
+          \item \textbf{Phủ định tiền đề (Denying Antecedent):}\\
+          Có $p \to q$ và $\neg p \;\not\vdash\; \neg q$ \textbf{\textcolor{cozyFalse}{(SAI!)}}.\\
+          \textit{Ví dụ:} ``Nếu là cá heo thì biết bơi. Tôi không phải cá heo $\to$ Tôi không biết bơi.''\\
+          $\implies$ \textbf{Sai}, người và vịt vẫn bơi rất giỏi!
+        \end{enumerate}
+      \end{cozyTrap}
+    \end{column}
+    \begin{column}{0.43\textwidth}
+      \begin{cozyInsight}[Bản Chất Góc Nhìn Chân Trị]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{2pt}
+          \item Phép kéo theo $p \to q$ chỉ cho phép suy luận 2 hướng chuẩn:
+          \begin{itemize}
+            \item \textbf{Thuận:} $p \implies q$ (Modus Ponens)
+            \item \textbf{Phản đảo:} $\neg q \implies \neg p$ (Modus Tollens)
+          \end{itemize}
+          \item Khi $p = 0$, $p \to q$ luôn \textbf{tự động nhận giá trị Đúng} (Vacuous Truth) dù $q = 1$ hay $q = 0$.
+          \item $\implies$ Biết $q$ Đúng hoặc $\neg p$ Đúng \textbf{hoàn toàn không cho phép suy ra} biến còn lại!
+        \end{itemize}
+      \end{cozyInsight}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Giải Mã Loạt Bài Tập Suy Luận Ngôn Ngữ Tự Nhiên (Câu d -- i)}
+  \begin{cozyExample}[Phân Tích Tính Hợp Lệ Của 6 Câu Hỏi Ngôn Ngữ Tự Nhiên]
+    \footnotesize
+    \begin{columns}[t, onlytextwidth]
+      \begin{column}{0.485\textwidth}
+        \begin{itemize}
+          \setlength{\itemsep}{2pt}
+          \item \textbf{(d) ``Mưa $\to$ ở nhà. Ở nhà $\to$ Mưa'':}\\
+          Cấu trúc: $p \to q, q \vdash p \implies$ \textbf{\textcolor{cozyFalse}{Khẳng định kết luận (Sai)}}.
+          \item \textbf{(e) ``Chăm chỉ $\to$ qua môn. Qua môn $\to$ Chăm'':}\\
+          Cấu trúc: $p \to q, q \vdash p \implies$ \textbf{\textcolor{cozyFalse}{Khẳng định kết luận (Sai)}}.
+          \item \textbf{(f) ``$x > 2 \to x^2 > 4$. Cho $x \le 2 \to x^2 \le 4$'':}\\
+          Cấu trúc: $p \to q, \neg p \vdash \neg q \implies$ \textbf{\textcolor{cozyFalse}{Phủ định tiền đề (Sai)}}.\\
+          \scriptsize\textcolor{cozyMuted}{(Phản ví dụ: $x = -3 \le 2$ nhưng $(-3)^2 = 9 > 4$!)}
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.485\textwidth}
+        \begin{itemize}
+          \setlength{\itemsep}{2pt}
+          \item \textbf{(g) ``Không ăn sáng $\to$ đói. Ăn sáng $\to$ không đói'':}\\
+          Cấu trúc: $\neg p \to q, p \vdash \neg q \implies$ \textbf{\textcolor{cozyFalse}{Phủ định tiền đề (Sai)}}.
+          \item \textbf{(h) ``Yêu $\to$ tặng quà. Không yêu $\to$ không tặng'':}\\
+          Cấu trúc: $p \to q, \neg p \vdash \neg q \implies$ \textbf{\textcolor{cozyFalse}{Phủ định tiền đề (Sai)}}.
+          \item \textbf{(i) ``Lửa $\to$ khói. Có khói $\to$ Có lửa'':}\\
+          Cấu trúc: $p \to q, q \vdash p \implies$ \textbf{\textcolor{cozyFalse}{Khẳng định kết luận (Sai)}}.\\
+          \scriptsize\textcolor{cozyMuted}{(Khói có thể do đá khô, máy tạo khói sân khấu).}
+        \end{itemize}
+      \end{column}
+    \end{columns}
+  \end{cozyExample}
+  \vspace{0.03cm}
+  \par\centering\footnotesize\color{cozyWarm}\textbf{Quy tắc vàng bài thi:} Kéo theo 1 chiều ($p \to q$) không tương đương với 2 chiều ($p \leftrightarrow q$)!
+\end{frame}
+
+\begin{frame}{Lời Giải Chi Tiết: Kiểm Tra Lập Luận Hình Thức (Bài a)}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.58\textwidth}
+      \begin{cozyExample}[Chứng Minh: $\neg p \land q, \; r \to p, \; \neg r \to s, \; s \to t \;\vdash\; t$]
+        \centering
+        \renewcommand{\arraystretch}{1.03}
+        \footnotesize
+        \setlength{\tabcolsep}{3pt}
+        \begin{tabular}{cll}
+          \toprule
+          \textbf{Bước} & \textbf{Mệnh đề} & \textbf{Lý do / Quy tắc áp dụng} \\
+          \midrule
+          1. & $\neg p \land q$ & Tiền đề 1 \\
+          2. & $\neg p$ & Quy tắc Rút gọn từ (1) \\
+          3. & $r \to p$ & Tiền đề 2 \\
+          4. & $\neg r$ & \textbf{Modus Tollens} từ (2) và (3) \\
+          5. & $\neg r \to s$ & Tiền đề 3 \\
+          6. & $s$ & \textbf{Modus Ponens} từ (4) và (5) \\
+          7. & $s \to t$ & Tiền đề 4 \\
+          8. & $\mathbf{\textcolor{cozyTrue}{t}}$ & \textbf{Modus Ponens} từ (6) và (7) \\
+          \bottomrule
+        \end{tabular}
+        \par\vspace{0.05cm}
+        \centering\footnotesize\color{cozyTrue}$\therefore$ Kết luận $t$ được suy ra $\implies$ Lập luận \textbf{HỢP LỆ}!
+      \end{cozyExample}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \begin{cozyInsight}[Chiến Lược Giải Bài Lập Luận]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{2pt}
+          \item \textbf{Khởi đầu:} Luôn bắt đầu từ mệnh đề hội ($A \land B$) hoặc biến đơn để rút trích chân trị gốc ($\neg p$).
+          \item \textbf{Mắt xích quan trọng (Bước 4):}\\
+          Kết hợp $\neg p$ và $r \to p$ qua \textbf{Modus Tollens} để tạo chìa khóa $\neg r$.
+          \item \textbf{Hiệu ứng domino (Bước 6, 8):}\\
+          Áp dụng liên tiếp \textbf{Modus Ponens} để mở khóa biến $s$ rồi biến $t$.
+        \end{itemize}
+      \end{cozyInsight}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Lời Giải Chi Tiết: Kiểm Tra Lập Luận Hình Thức (Bài b \& c)}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.485\textwidth}
+      \begin{cozyExample}[Bài (b): $p \to q, \; \neg q, \; \neg r \;\vdash\; \neg(p \lor r)$]
+        \centering
+        \renewcommand{\arraystretch}{1.03}
+        \footnotesize
+        \setlength{\tabcolsep}{2.5pt}
+        \begin{tabular}{cll}
+          \toprule
+          \textbf{B} & \textbf{Mệnh đề} & \textbf{Quy tắc áp dụng} \\
+          \midrule
+          1. & $p \to q$ & Tiền đề 1 \\
+          2. & $\neg q$ & Tiền đề 2 \\
+          3. & $\neg p$ & \textbf{Modus Tollens} (1, 2) \\
+          4. & $\neg r$ & Tiền đề 3 \\
+          5. & $\neg p \land \neg r$ & \textbf{Ghép hội} (3, 4) \\
+          6. & $\mathbf{\textcolor{cozyTrue}{\neg(p \lor r)}}$ & \textbf{Luật De Morgan} (5) \\
+          \bottomrule
+        \end{tabular}
+        \par\vspace{0.05cm}
+        \centering\footnotesize\color{cozyTrue}$\therefore$ Lập luận \textbf{HỢP LỆ}!
+      \end{cozyExample}
+    \end{column}
+    \begin{column}{0.485\textwidth}
+      \begin{cozyExample}[Bài (c): $p \to (q \to r), \; \neg q \to \neg p, \; p \;\vdash\; r$]
+        \centering
+        \renewcommand{\arraystretch}{1.03}
+        \footnotesize
+        \setlength{\tabcolsep}{2.5pt}
+        \begin{tabular}{cll}
+          \toprule
+          \textbf{B} & \textbf{Mệnh đề} & \textbf{Quy tắc áp dụng} \\
+          \midrule
+          1. & $p$ & Tiền đề 1 \\
+          2. & $p \to (q \to r)$ & Tiền đề 2 \\
+          3. & $q \to r$ & \textbf{Modus Ponens} (1, 2) \\
+          4. & $\neg q \to \neg p$ & Tiền đề 3 \\
+          5. & $p \to q$ & \textbf{Luật Phản đảo} (4) \\
+          6. & $q$ & \textbf{Modus Ponens} (1, 5) \\
+          7. & $\mathbf{\textcolor{cozyTrue}{r}}$ & \textbf{Modus Ponens} (3, 6) \\
+          \bottomrule
+        \end{tabular}
+        \par\vspace{0.05cm}
+        \centering\footnotesize\color{cozyTrue}$\therefore$ Lập luận \textbf{HỢP LỆ}!
+      \end{cozyExample}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Chinh Phục Bài Toán Thực Tế: Quy Trình 4 Bước Hình Thức Hóa}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.54\textwidth}
+      \begin{cozyMethod}[Quy Trình 4 Bước Giải Bài Toán Suy Luận Thực Tế]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{0.8pt}
+          \item \textbf{Bước 1 (Nguyên tử hóa biến):}\\
+          Đặt các biến mệnh đề đơn $p, q, r, s, t$ cho các câu khẳng định cơ sở (luôn đặt ở thể khẳng định).
+          \item \textbf{Bước 2 (Hình thức hóa giả thiết):}\\
+          Dịch từng câu văn trong đề bài thành các tiền đề logic $P_1, P_2, \dots, P_k$ và kết luận $C$.
+          \item \textbf{Bước 3 (Lập chiến lược suy diễn):}\\
+          Xác định điểm khởi đầu (mệnh đề hội hoặc chân trị đơn), dùng Modus Ponens / Tollens mở khóa từng bước.
+          \item \textbf{Bước 4 (Dựng bảng chứng minh):}\\
+          Lập bảng 3 cột chuẩn mực, đối chiếu từng dòng với tên quy tắc cụ thể.
+        \end{itemize}
+      \end{cozyMethod}
+    \end{column}
+    \begin{column}{0.43\textwidth}
+      \begin{cozyTrap}[Từ Khóa Dễ Bẫy Khi Dịch Đề]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{0.8pt}
+          \item \textbf{``$A$ chỉ khi $B$'':} $\implies A \to B$\\
+          {\footnotesize\color{cozyMuted}(Không phải $B \to A$! $B$ là điều kiện cần).}
+          \item \textbf{``$A$ khi $B$'':} $\implies B \to A$\\
+          {\footnotesize\color{cozyMuted}($B$ là điều kiện đủ để có $A$)}.
+          \item \textbf{``Trừ khi $A$, thì $B$'':} $\implies \neg A \to B$.
+          \item \textbf{``$A$ nhưng $B$'':} $\implies A \land B$\\
+          {\footnotesize\color{cozyMuted}(Bản chất là phép hội đồng thời)}.
+        \end{itemize}
+      \end{cozyTrap}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Bài Toán Dã Ngoại: Đi Bơi Hay Đi Canô? (Đề Bài \& Đặt Biến)}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.485\textwidth}
+      \begin{cozyDef}[Đề Bài Ngôn Ngữ Tự Nhiên]
+        \small
+        Cho các sự kiện trong chuyến dã ngoại:
+        \begin{enumerate}
+          \setlength{\itemsep}{0.5pt}
+          \item ``Chiều nay trời không nắng và trời lạnh hơn hôm qua.''
+          \item ``Chúng ta sẽ đi bơi \textbf{chỉ khi} trời nắng.''
+          \item ``Nếu chúng ta không đi bơi, chúng ta sẽ đi tham quan bằng canô.''
+          \item ``Nếu đi tham quan bằng canô, chúng ta sẽ về nhà trước khi mặt trời lặn.''
+        \end{enumerate}
+        \par\vspace{0.02cm}
+        \textbf{Yêu cầu:} Chứng minh kết luận: \textit{``Chúng ta sẽ về nhà trước khi mặt trời lặn''} là hợp lệ.
+      \end{cozyDef}
+    \end{column}
+    \begin{column}{0.485\textwidth}
+      \begin{cozyMethod}[Bước 1 \& 2: Đặt Biến \& Hình Thức Hóa]
+        \footnotesize
+        \textbf{1. Đặt 5 biến mệnh đề sơ cấp:}
+        \begin{itemize}
+          \setlength{\itemsep}{0.3pt}
+          \item $p$: ``Chiều nay trời nắng.''
+          \item $q$: ``Trời lạnh hơn hôm qua.''
+          \item $r$: ``Chúng ta đi bơi.''
+          \item $s$: ``Chúng ta đi tham quan bằng canô.''
+          \item $t$: ``Chúng ta về nhà trước khi mặt trời lặn.''
+        \end{itemize}
+        \textbf{2. Dịch thành 4 tiền đề \& kết luận:}
+        \begin{itemize}
+          \setlength{\itemsep}{0.3pt}
+          \item Tiền đề 1: $\neg p \land q$
+          \item Tiền đề 2: $r \to p$ (\textit{``$r$ chỉ khi $p$''})
+          \item Tiền đề 3: $\neg r \to s$
+          \item Tiền đề 4: $s \to t$
+          \item \textbf{Cần chứng minh:} $t$
+        \end{itemize}
+      \end{cozyMethod}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Bài Toán Dã Ngoại: Bảng Suy Luận 8 Bước Hoàn Chỉnh}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.56\textwidth}
+      \begin{cozyExample}[Bảng Suy Luận Logic Hình Thức 8 Bước]
+        \centering
+        \renewcommand{\arraystretch}{1.03}
+        \footnotesize
+        \setlength{\tabcolsep}{2.5pt}
+        \begin{tabular}{cll}
+          \toprule
+          \textbf{Bước} & \textbf{Mệnh đề} & \textbf{Lý do / Quy tắc áp dụng} \\
+          \midrule
+          1. & $\neg p \land q$ & Tiền đề 1 \\
+          2. & $\neg p$ & Quy tắc Rút gọn từ (1) \\
+          3. & $r \to p$ & Tiền đề 2 \\
+          4. & $\mathbf{\textcolor{cozyFalse}{\neg r}}$ & \textbf{Modus Tollens} từ (2) và (3) \\
+          5. & $\neg r \to s$ & Tiền đề 3 \\
+          6. & $\mathbf{\textcolor{cozyWarm}{s}}$ & \textbf{Modus Ponens} từ (4) và (5) \\
+          7. & $s \to t$ & Tiền đề 4 \\
+          8. & $\mathbf{\textcolor{cozyTrue}{t}}$ & \textbf{Modus Ponens} từ (6) và (7) \\
+          \bottomrule
+        \end{tabular}
+        \par\vspace{0.05cm}
+        \centering\footnotesize\color{cozyTrue}$\therefore$ Kết luận được chứng minh hợp lệ tuyệt đối!
+      \end{cozyExample}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{cozyInsight}[Giải Mã Ngữ Nghĩa Thực Tế]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{2pt}
+          \item \textbf{Bước 2 ($\neg p$):}\\
+          Thực tế trời không nắng.
+          \item \textbf{Bước 4 ($\neg r$ -- Bước mấu chốt):}\\
+          Vì chỉ đi bơi khi trời nắng, mà trời không nắng $\implies$ \textbf{Không đi bơi}.
+          \item \textbf{Bước 6 ($s$):}\\
+          Không đi bơi thì đi canô $\implies$ \textbf{Đi tham quan bằng canô}.
+          \item \textbf{Bước 8 ($t$ -- Đích đến):}\\
+          Đi canô thì về trước khi lặn $\implies$ \textbf{Về nhà trước khi mặt trời lặn}!
+        \end{itemize}
+      \end{cozyInsight}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Tổng Kết Chương 1: Bản Đồ Tư Duy Logic Mệnh Đề}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.485\textwidth}
+      \begin{cozyDef}[1. Mệnh Đề \& Chân Trị (Foundation)]
+        \footnotesize
+        \begin{itemize}
+          \setlength{\itemsep}{0.5pt}
+          \item Khẳng định mang chân trị nhị phân duy nhất ($1/0$).
+          \item Biến mệnh đề sơ cấp ($p, q$) $\to$ Phức hợp.
+          \item Mẹo nhị phân $2^n$ dòng lập bảng chân lý.
+        \end{itemize}
+      \end{cozyDef}
+      \vspace{0.04cm}
+      \begin{cozyMethod}[3. Tương Đương Logic (Equivalence)]
+        \footnotesize
+        \begin{itemize}
+          \setlength{\itemsep}{0.5pt}
+          \item 11 luật tương đương chia theo 3 cụm dễ nhớ.
+          \item Nguyên lý đối ngẫu: $(\lor \leftrightarrow \land, \mathbf{T} \leftrightarrow \mathbf{F})$.
+          \item Quy trình 3 bước (Khử $\to \implies$ De Morgan $\implies$ Rút gọn).
+        \end{itemize}
+      \end{cozyMethod}
+    \end{column}
+    \begin{column}{0.485\textwidth}
+      \begin{cozyInsight}[2. 6 Toán Tử Cơ Bản (Operators)]
+        \footnotesize
+        \begin{itemize}
+          \setlength{\itemsep}{0.5pt}
+          \item Phủ định ($\neg$), Tuyển ($\lor$), Hội ($\land$), Tuyển loại ($\oplus$).
+          \item Kéo theo ($p \to q$): Mô hình lời hứa, Vacuous Truth.
+          \item Tương đương ($p \leftrightarrow q$): Cùng chân trị thì đúng.
+        \end{itemize}
+      \end{cozyInsight}
+      \vspace{0.04cm}
+      \begin{cozyTrap}[4. Suy Luận \& Thực Tế (Inference)]
+        \footnotesize
+        \begin{itemize}
+          \setlength{\itemsep}{0.5pt}
+          \item 8 quy tắc suy luận (Modus Ponens/Tollens...).
+          \item Tránh 2 ngụy biện (Khẳng định kết luận \& Phủ định tiền đề).
+          \item Quy trình 4 bước giải quyết trọn vẹn bài toán thực tế.
+        \end{itemize}
+      \end{cozyTrap}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Checklist Ôn Tập Nhanh \& Bài Học Tiếp Theo}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.485\textwidth}
+      \begin{cozyMethod}[Checklist Năng Lực Sau Chương 1]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{1.5pt}
+          \item[$\boxtimes$] Nhận diện chính xác câu nào là mệnh đề nhị phân.
+          \item[$\boxtimes$] Thành thạo 6 bảng chân trị và mô hình lời hứa $p \to q$.
+          \item[$\boxtimes$] Sử dụng 11 luật biến đổi đại số mệnh đề không kẻ bảng.
+          \item[$\boxtimes$] Vận dụng 8 quy tắc suy luận chứng minh lập luận hợp lệ.
+          \item[$\boxtimes$] Nhận biết và né tránh 2 cạm bẫy ngụy biện trong bài thi.
+        \end{itemize}
+      \end{cozyMethod}
+    \end{column}
+    \begin{column}{0.485\textwidth}
+      \begin{cozyInsight}[Cầu Nối Sang Chương 2: Vị Từ \& Lượng Từ]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{1.5pt}
+          \item \textbf{Giới hạn của Logic Mệnh đề:}\\
+          Không thể phân tích cấu trúc bên trong câu (ví dụ: ``Mọi sinh viên đều yêu thích lập trình'').
+          \item \textbf{Chương 2: Logic Vị Từ (Predicate Logic):}
+          \begin{itemize}
+            \setlength{\itemsep}{1pt}
+            \item Hàm vị từ $P(x)$ với biến đối tượng $x$.
+            \item Lượng từ phổ quát: \textbf{$\forall x$} (Với mọi).
+            \item Lượng từ tồn tại: \textbf{$\exists x$} (Tồn tại ít nhất một).
+          \end{itemize}
+        \end{itemize}
+        \par\vspace{0.1cm}
+        \centering\textbf{\color{cozyWarm}Chúc các bạn học tập tốt \& Hẹn gặp lại ở Chương 2!}
+      \end{cozyInsight}
     \end{column}
   \end{columns}
 \end{frame}
