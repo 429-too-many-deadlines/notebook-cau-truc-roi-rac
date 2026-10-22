@@ -874,12 +874,12 @@
 
 \begin{frame}{Hệ Thống 11 Luật Tương Đương: Cụm 3 -- Chuyển Đổi Toán Tử}
   \begin{columns}[t, onlytextwidth]
-    \begin{column}{0.54\textwidth}
+    \begin{column}{0.51\textwidth}
       \begin{cozyDef}[Bảng Luật Cụm 3: Chuyển Đổi Toán Tử]
         \centering
         \renewcommand{\arraystretch}{1.08}
         \small
-        \setlength{\tabcolsep}{3pt}
+        \setlength{\tabcolsep}{2.5pt}
         \begin{tabular}{ll}
           \toprule
           \textbf{Tên Luật} & \textbf{Công Thức Tương Đương} \\
@@ -893,7 +893,7 @@
         \end{tabular}
       \end{cozyDef}
     \end{column}
-    \begin{column}{0.43\textwidth}
+    \begin{column}{0.47\textwidth}
       \begin{cozyInsight}[Nguyên Lý Đối Ngẫu (Duality)]
         \small
         \begin{itemize}
@@ -901,12 +901,10 @@
           \item \textbf{Quy tắc vàng:} Trong bất kỳ đẳng thức logic nào chỉ gồm các phép $\{\lor, \land\}$ và hằng số $\{\mathbf{T}, \mathbf{F}\}$, nếu ta đồng thời hoán đổi:
           $$\lor \longleftrightarrow \land \quad \text{và} \quad \mathbf{T} \longleftrightarrow \mathbf{F}$$
           ta lập tức thu được một đẳng thức logic \textbf{luôn đúng mới}!
-          \item \textbf{Ví dụ đối ngẫu:}
-          \begin{itemize}
-            \item $p \lor (p \land q) \equiv p \;\longleftrightarrow\; p \land (p \lor q) \equiv p$
-            \item $p \lor \neg p \equiv \mathbf{T} \;\longleftrightarrow\; p \land \neg p \equiv \mathbf{F}$
-          \end{itemize}
-          \item $\implies$ Giảm \textbf{$50\%$ công sức} học thuộc lòng!
+          \item \textbf{Ví dụ đối ngẫu:}\\
+          {\footnotesize $\bullet$ $p \lor (p \land q) \equiv p \;\longleftrightarrow\; p \land (p \lor q) \equiv p$}\\
+          {\footnotesize $\bullet$ $p \lor \neg p \equiv \mathbf{T} \;\longleftrightarrow\; p \land \neg p \equiv \mathbf{F}$}
+          \item $\implies$ Giảm \textbf{$50\%$ công sức} học~thuộc~lòng!
         \end{itemize}
       \end{cozyInsight}
     \end{column}
@@ -1138,7 +1136,7 @@
         \vspace{-0.1cm}
         $$\begin{array}{l} \neg q \\ p \to q \\ \hline \therefore \neg p \end{array} \quad \Big( [\neg q \land (p \to q)] \to \neg p \equiv \mathbf{T} \Big)$$
         \vspace{-0.1cm}
-        \textbf{Ý nghĩa:} Kết luận không có $\implies$ Tiền đề không xảy ra.\\
+        \textbf{Ý nghĩa:} Kết luận sai $\implies$ Tiền đề bắt buộc~sai.\\
         \textit{Ví dụ:} Đường không ướt. Nếu mưa thì đường ướt $\implies$ Trời không mưa.
       \end{cozyDef}
       \vspace{0.08cm}
@@ -1182,7 +1180,7 @@
         $$\begin{array}{l} p \land q \\ \hline \therefore p \end{array} \quad \Big( (p \land q) \to p \equiv \mathbf{T} \Big)$$
         \vspace{-0.1cm}
         \textbf{Ý nghĩa:} Cả hai cùng đúng thì hiển nhiên từng cái đúng.\\
-        \textit{Ví dụ:} Hôm nay trời mưa và lạnh $\implies$ Hôm nay trời mưa.
+        \textit{Ví dụ:} Trời mưa và lạnh $\implies$ Trời~mưa.
       \end{cozyDef}
       \vspace{0.08cm}
       \begin{cozyInsight}[8. Quy Tắc Phân Giải (Resolution)]
@@ -1470,7 +1468,7 @@
           \item \textbf{Bước 2 ($\neg p$):}\\
           Thực tế trời không nắng.
           \item \textbf{Bước 4 ($\neg r$ -- Bước mấu chốt):}\\
-          Vì chỉ đi bơi khi trời nắng, mà trời không nắng $\implies$ \textbf{Không đi bơi}.
+          Vì chỉ đi bơi khi trời nắng, mà trời không nắng $\implies$ \textbf{Không~đi~bơi}.
           \item \textbf{Bước 6 ($s$):}\\
           Không đi bơi thì đi canô $\implies$ \textbf{Đi tham quan bằng canô}.
           \item \textbf{Bước 8 ($t$ -- Đích đến):}\\
