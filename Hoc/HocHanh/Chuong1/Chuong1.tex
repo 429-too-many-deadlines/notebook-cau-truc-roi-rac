@@ -918,17 +918,17 @@
     \begin{column}{0.54\textwidth}
       \begin{cozyMethod}[Quy Trình 3 Bước Biến Đổi Rút Gọn / Chứng Minh]
         \small
-        \begin{enumerate}
+        \begin{itemize}
           \setlength{\itemsep}{2.5pt}
-          \item[\textbf{Bước 1.}] \textbf{Khử mũi tên ($\to$ và $\leftrightarrow$):}\\
+          \item \textbf{Bước 1 (Khử mũi tên $\to$ và $\leftrightarrow$):}\\
           Đưa toàn bộ biểu thức về 3 phép toán chuẩn $\{\neg, \lor, \land\}$:\\
           $p \to q \equiv \neg p \lor q$\\
           $p \leftrightarrow q \equiv (p \to q) \land (q \to p)$
-          \item[\textbf{Bước 2.}] \textbf{Đưa phủ định ($\neg$) vào sát biến:}\\
+          \item \textbf{Bước 2 (Đưa phủ định $\neg$ vào sát biến):}\\
           Áp dụng luật \textbf{De Morgan} để đẩy phủ định qua ngoặc và triệt tiêu bằng luật \textbf{Phủ định kép}: $\neg(\neg p) \equiv p$.
-          \item[\textbf{Bước 3.}] \textbf{Gom nhóm \& Rút gọn tối giản:}\\
+          \item \textbf{Bước 3 (Gom nhóm \& Rút gọn tối giản):}\\
           Sử dụng \textbf{Phân phối}, \textbf{Hấp thụ}, \textbf{Phần bù} ($p \lor \neg p \equiv \mathbf{T}$), \textbf{Nuốt} và \textbf{Đồng nhất}.
-        \end{enumerate}
+        \end{itemize}
       \end{cozyMethod}
     \end{column}
     \begin{column}{0.43\textwidth}
@@ -1015,11 +1015,11 @@
     \begin{column}{0.485\textwidth}
       \begin{cozyExample}[Rút Gọn: $\neg(p \lor (\neg p \land q))$]
         \scriptsize
-        \renewcommand{\arraystretch}{1.05}
+        \renewcommand{\arraystretch}{1.0}
         \setlength{\tabcolsep}{1.2pt}
         \begin{tabular}{cll}
           \toprule
-          \textbf{Biến đổi} & \textbf{Luật Áp Dụng} \\
+          \multicolumn{2}{l}{\textbf{Biến đổi}} & \textbf{Luật Áp Dụng} \\
           \midrule
           & $\neg(p \lor (\neg p \land q))$ \\
           $\equiv$ & $\neg p \land \neg(\neg p \land q)$ & De Morgan \\
@@ -1030,18 +1030,18 @@
           $\equiv$ & $\mathbf{\textcolor{cozyWarm}{\neg p \land \neg q}}$ & Đồng nhất \\
           \bottomrule
         \end{tabular}
-        \vspace{0.05cm}
+        \vspace{0.03cm}
         \par\centering\tiny\color{cozyTrue}$\implies$ Trùng khớp với bảng chân lý Slide 20!
       \end{cozyExample}
     \end{column}
     \begin{column}{0.485\textwidth}
       \begin{cozyExample}[{Bài 5: Hằng Đúng $[(p \to q) \land p] \to q$}]
         \scriptsize
-        \renewcommand{\arraystretch}{1.05}
+        \renewcommand{\arraystretch}{1.0}
         \setlength{\tabcolsep}{1.2pt}
         \begin{tabular}{cll}
           \toprule
-          \textbf{Biến đổi} & \textbf{Luật Áp Dụng} \\
+          \multicolumn{2}{l}{\textbf{Biến đổi}} & \textbf{Luật Áp Dụng} \\
           \midrule
           & $[(p \to q) \land p] \to q$ \\
           $\equiv$ & $[(\neg p \lor q) \land p] \to q$ & Kéo theo \\
@@ -1049,12 +1049,13 @@
           $\equiv$ & $[\mathbf{F} \lor (p \land q)] \to q$ & Phần bù \\
           $\equiv$ & $(p \land q) \to q$ & Đồng nhất \\
           $\equiv$ & $\neg(p \land q) \lor q$ & Kéo theo \\
+          $\equiv$ & $(\neg p \lor \neg q) \lor q$ & De Morgan \\
           $\equiv$ & $\neg p \lor (\neg q \lor q)$ & Kết hợp \\
           $\equiv$ & $\neg p \lor \mathbf{T}$ & Phần bù \\
           $\equiv$ & $\mathbf{\textcolor{cozyTrue}{T}}$ & Luật Nuốt \\
           \bottomrule
         \end{tabular}
-        \vspace{0.05cm}
+        \vspace{0.03cm}
         \par\centering\tiny\color{cozySlate}$\implies$ Là hằng đúng (cơ sở quy tắc \textbf{Modus Ponens})!
       \end{cozyExample}
     \end{column}
