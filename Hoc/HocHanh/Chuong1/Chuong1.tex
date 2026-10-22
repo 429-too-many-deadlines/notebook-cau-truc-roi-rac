@@ -46,7 +46,7 @@
       \scriptsize\bfseries Chương 1: Logic Mệnh Đề \& Suy Luận%
     \end{beamercolorbox}%
     \begin{beamercolorbox}[wd=.333334\paperwidth,ht=2.3ex,dp=1ex,right]{footrightbox}%
-      \scriptsize \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}%
+      \scriptsize\bfseries \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}%
     \end{beamercolorbox}%
   }%
   \vskip0pt%
@@ -78,7 +78,7 @@
 }
 
 \newtcolorbox{cozyExample}[1][]{
-  enhanced, colback=cozyBg, colframe=cozyMuted, coltitle=cozySlate,
+  enhanced, colback=cozyBg, colframe=cozyMuted, coltitle=white,
   fonttitle=\bfseries\small, title={#1}, arc=2mm, boxrule=0.6pt,
   left=2mm, right=2mm, top=1.5mm, bottom=1.5mm
 }
@@ -120,6 +120,109 @@
       \end{cozyTrap}
     \end{column}
   \end{columns}
+\end{frame}
+
+% ==========================================
+% PHẦN 1: KHÁI NIỆM MỆNH ĐỀ & PHÂN LOẠI
+% ==========================================
+
+\begin{frame}[plain]
+  \centering
+  \vspace*{2.0cm}
+  {\Huge\textbf{\color{cozySlate}1. Khái Niệm Mệnh Đề \& Phân Loại}}
+  \par\vspace{0.4cm}
+  {\color{cozyWarm}\rule{0.6\textwidth}{1.5pt}}
+  \par\vspace{0.3cm}
+  {\normalsize\color{cozyMuted}Nền tảng của logic hình thức và toán học rời rạc}
+\end{frame}
+
+\begin{frame}{Mệnh Đề là Gì? (Bản chất Nhị phân)}
+  \begin{cozyDef}[Định nghĩa Mệnh đề (Proposition)]
+    Một \textbf{mệnh đề} là một câu khẳng định một sự kiện khách quan, có giá trị chân lý hoặc \textbf{Đúng} ($1$) hoặc \textbf{Sai} ($0$), tuyệt đối không thể vừa đúng vừa sai hoặc không xác định.
+  \end{cozyDef}
+  \vspace{0.05cm}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \begin{cozyInsight}[Ví dụ về Mệnh Đề]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{1pt}
+          \item ``Hà Nội là thủ đô của Việt Nam.''\\
+          $\to$ \textbf{\textcolor{cozyTrue}{Đúng (1)}}
+          \item ``$0 > 2$''\\
+          $\to$ \textbf{\textcolor{cozyFalse}{Sai (0)}}
+          \item ``$3$ là một số nguyên tố.''\\
+          $\to$ \textbf{\textcolor{cozyTrue}{Đúng (1)}}
+        \end{itemize}
+      \end{cozyInsight}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{cozyTrap}[KHÔNG Phải Mệnh Đề]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{1pt}
+          \item ``Một ngày đẹp trời làm sao!''\\
+          \textcolor{cozyMuted}{(Câu cảm thán)}
+          \item ``Thầy Hợi rất đẹp trai!''\\
+          \textcolor{cozyMuted}{(Đánh giá chủ quan)}
+          \item ``$3 + x = 2$''\\
+          \textcolor{cozyMuted}{(Vị từ chứa biến, chưa biết $x$)}
+          \item ``Câu này là sai.''\\
+          \textcolor{cozyMuted}{(Nghịch lý tự quy chiếu)}
+        \end{itemize}
+      \end{cozyTrap}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Ký Hiệu, Chân Trị \& Góc Nhìn Khoa Học Máy Tính}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \begin{cozyDef}[Ký hiệu \& Chân trị (Truth Value)]
+        \small
+        \begin{itemize}
+          \item \textbf{Ký hiệu:} $p, q, r, s, \dots$
+          \item \textbf{Chân trị:} Mỗi mệnh đề nhận duy nhất một trong hai giá trị:
+          \begin{itemize}
+            \item \textbf{Đúng} (True): Ký hiệu \textbf{Đ} hoặc $\mathbf{1}$.
+            \item \textbf{Sai} (False): Ký hiệu \textbf{S} hoặc $\mathbf{0}$.
+          \end{itemize}
+          \item Tuyệt đối không có trạng thái thứ ba.
+        \end{itemize}
+      \end{cozyDef}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{cozyInsight}[Góc nhìn Khoa học Máy tính \& Công nghệ Phần mềm]
+        \small
+        \begin{itemize}
+          \item Trong máy tính, chân lý nhị phân chính là \textbf{Bit ($1 / 0$)}, là mức điện thế Cao/Thấp trong vi mạch bán dẫn.
+          \item Trong lập trình, đây chính là kiểu dữ liệu nguyên thủy \textbf{\texttt{bool}} (\texttt{True} / \texttt{False}), quyết định mọi luồng rẽ nhánh \texttt{if / else}, vòng lặp và logic điều khiển trong phần mềm.
+        \end{itemize}
+      \end{cozyInsight}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Phân Loại Mệnh Đề: Sơ Cấp vs Phức Hợp}
+  \begin{cozyDef}[1. Mệnh đề Sơ cấp (Nguyên tử -- Atomic Proposition)]
+    \small
+    Chỉ chứa duy nhất một sự kiện, không thể chia nhỏ hơn thành các mệnh đề khác.
+    \begin{itemize}
+      \item \textit{Ví dụ:} ``$3$ là số nguyên tố'', ``$2$ là số chẵn''.
+    \end{itemize}
+  \end{cozyDef}
+  \vspace{0.15cm}
+  \begin{cozyMethod}[2. Mệnh đề Phức hợp (Compound Proposition)]
+    \small
+    Được hình thành bằng cách kết hợp các mệnh đề sơ cấp lại với nhau thông qua các \textbf{toán tử logic} (liên từ: \textit{và, hoặc, phủ định, nếu\dots thì, nếu và chỉ nếu}).
+    \begin{itemize}
+      \item \textit{Ví dụ 1:} ``$2$ là số nguyên tố \textbf{\color{cozyWarm}VÀ} là một số chẵn.''
+      \item \textit{Ví dụ 2:} ``Thầy Hợi đang dạy học \textbf{\color{cozyWarm}HOẶC} đang xem phim.''
+    \end{itemize}
+    \vspace{0.1cm}
+    \par
+    \textbf{\color{cozySlate}Lưu ý sư phạm:} Trong toán học, mệnh đề phức hợp được mô hình hóa như một hàm chân trị nhận các biến mệnh đề đầu vào.
+  \end{cozyMethod}
 \end{frame}
 
 \end{document}
