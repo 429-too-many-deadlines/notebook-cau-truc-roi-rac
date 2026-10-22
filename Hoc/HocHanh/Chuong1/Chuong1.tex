@@ -486,7 +486,7 @@
       \end{cozyTrap}
     \end{column}
     \begin{column}{0.48\textwidth}
-      \begin{cozyMethod}[Công Thức Tương Đương Cốt Lõi: $p \to q \equiv \neg p \lor q$]
+      \begin{cozyMethod}[Công Thức Cốt Lõi: \mbox{$p \to q \equiv \neg p \lor q$}]
         \small
         \begin{itemize}
           \setlength{\itemsep}{3pt}
@@ -539,11 +539,12 @@
           $$p \leftrightarrow q \equiv (p \to q) \land (q \to p)$$
           $p$ vừa là điều kiện cần, vừa là điều kiện đủ của $q$.
           \item \textit{Ví dụ từ giáo trình:}\\
-          ``Bạn có thể lên chuyến bay nếu và chỉ nếu bạn mua vé.''
+          ``Bạn có thể lên chuyến bay nếu và chỉ nếu bạn mua vé.''\\
+          {\footnotesize\color{cozyMuted}(với $p$: ``Lên chuyến bay'', $q$: ``Mua vé'')}
           \begin{itemize}
             \setlength{\itemsep}{2pt}
-            \item Có vé $\implies$ Được bay ($p \to q$).
-            \item Được bay $\implies$ Đã có vé ($q \to p$).
+            \item Lên chuyến bay $\implies$ Đã mua vé ($p \to q$).
+            \item Có vé $\implies$ Được lên chuyến bay ($q \to p$).
           \end{itemize}
         \end{itemize}
       \end{cozyInsight}
@@ -622,6 +623,442 @@
       \end{itemize}
     \end{enumerate}
   \end{cozyExample}
+\end{frame}
+
+% ==========================================
+% PHẦN 3: BIỂU THỨC PHỨC HỢP & TƯƠNG ĐƯƠNG LOGIC
+% ==========================================
+
+\begin{frame}[plain]
+  \centering
+  \vspace*{2.0cm}
+  {\LARGE\textbf{\color{cozySlate}3. Biểu Thức Phức Hợp \& Tương Đương Logic}}
+  \par\vspace{0.4cm}
+  {\color{cozyWarm}\rule{0.6\textwidth}{1.5pt}}
+  \par\vspace{0.3cm}
+  {\normalsize\color{cozyMuted}Phương pháp bảng chân lý và biến đổi đại số mệnh đề}
+\end{frame}
+
+\begin{frame}{Kỹ Năng Lập Bảng Chân Lý \& Mẹo Nhị Phân (Binary Trick)}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.485\textwidth}
+      \begin{cozyDef}[Quy Tắc $2^n$ Dòng Chân Trị]
+        \small
+        Một biểu thức chứa $n$ biến mệnh đề độc lập có đúng \textbf{$2^n$ tổ hợp chân trị} (tương ứng $2^n$ dòng trong bảng chân lý):
+        \begin{itemize}
+          \setlength{\itemsep}{2pt}
+          \item \textbf{$1$ biến ($p$):} $2^1 = 2$ dòng ($1, 0$).
+          \item \textbf{$2$ biến ($p, q$):} $2^2 = 4$ dòng ($11, 10, 01, 00$).
+          \item \textbf{$3$ biến ($p, q, r$):} $2^3 = 8$ dòng.
+          \item \textbf{$4$ biến ($p, q, r, s$):} $2^4 = 16$ dòng.
+        \end{itemize}
+        \vspace{0.05cm}
+        \par\footnotesize\color{cozyMuted}Số dòng tăng theo hàm mũ $\implies$ Cần quy luật điền bit chuẩn xác để không bao giờ bị trùng hoặc sót dòng!
+      \end{cozyDef}
+    \end{column}
+    \begin{column}{0.485\textwidth}
+      \begin{cozyMethod}[Mẹo Điền Bit Không Bao Giờ Nhầm/Sót Dòng]
+        \small
+        Để lập bảng cho $n$ biến ($2^n$ dòng, ví dụ 3 biến $p, q, r$ có $8$ dòng):
+        \begin{itemize}
+          \setlength{\itemsep}{2pt}
+          \item \textbf{Cột biến thứ 1 ($p$):} Điền \textbf{nửa trên là 1, nửa dưới là 0}\\
+          ($4$ số $1$, tiếp theo là $4$ số $0$).
+          \item \textbf{Cột biến thứ 2 ($q$):} Điền xen kẽ từng cụm \textbf{2 số 1, 2 số 0}\\
+          ($11, 00, 11, 00$).
+          \item \textbf{Cột biến thứ 3 ($r$):} Điền xen kẽ từng \textbf{số 1, 0, 1, 0\dots}\\
+          ($1, 0, 1, 0, 1, 0, 1, 0$).
+        \end{itemize}
+        \vspace{0.05cm}
+        \par\footnotesize\color{cozyWarm}\textbf{Bản chất:} Đếm lùi nhị phân từ $(111)_2 = 7$ về $(000)_2 = 0$.
+      \end{cozyMethod}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Ví Dụ Bảng Chân Lý 2 Biến: Kiểm Tra Tương Đương Logic}
+  \begin{cozyExample}[Bài toán: Kiểm tra hai biểu thức $A = \neg(p \lor (\neg p \land q))$ và $B = \neg p \land \neg q$ có tương đương không?]
+    \centering
+    \renewcommand{\arraystretch}{1.05}
+    \footnotesize
+    \begin{tabular}{cc|cccc|cc}
+      \toprule
+      $p$ & $q$ & $\neg p$ & $\neg p \land q$ & $p \lor (\neg p \land q)$ & $A = \neg(p \lor (\neg p \land q))$ & $\neg q$ & $B = \neg p \land \neg q$ \\
+      \midrule
+      $0$ & $0$ & $1$ & $0$ & $0$ & \textbf{\textcolor{cozyTrue}{1}} & $1$ & \textbf{\textcolor{cozyTrue}{1}} \\
+      $0$ & $1$ & $1$ & $1$ & $1$ & \textbf{\textcolor{cozyFalse}{0}} & $0$ & \textbf{\textcolor{cozyFalse}{0}} \\
+      $1$ & $0$ & $0$ & $0$ & $1$ & \textbf{\textcolor{cozyFalse}{0}} & $1$ & \textbf{\textcolor{cozyFalse}{0}} \\
+      $1$ & $1$ & $0$ & $0$ & $1$ & \textbf{\textcolor{cozyFalse}{0}} & $0$ & \textbf{\textcolor{cozyFalse}{0}} \\
+      \bottomrule
+    \end{tabular}
+  \end{cozyExample}
+  \vspace{0.03cm}
+  \begin{cozyInsight}[Kết Luận \& Định Nghĩa Tương Đương Logic]
+    \small
+    \begin{itemize}
+      \setlength{\itemsep}{1.5pt}
+      \item Hai cột kết quả của \textbf{$A$} và \textbf{$B$} \textbf{giống hệt nhau} trên từng dòng ($1, 0, 0, 0$).
+      \item $\implies$ Hai biểu thức \textbf{tương đương logic}: $\neg(p \lor (\neg p \land q)) \equiv \neg p \land \neg q$.
+      \item \textbf{Định nghĩa chuẩn mực:} Hai mệnh đề phức hợp $A$ và $B$ tương đương logic ($A \equiv B$ hoặc $A \Leftrightarrow B$) khi và chỉ khi mệnh đề tương đương $A \leftrightarrow B$ là một \textbf{hằng đúng} (nhận giá trị $1$ ở mọi trường hợp).
+    \end{itemize}
+  \end{cozyInsight}
+\end{frame}
+
+\begin{frame}{Ví Dụ Bảng Chân Lý 3 Biến (8 dòng)}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.55\textwidth}
+      \begin{cozyExample}[Lập Bảng Chân Lý: $(p \lor q) \to (p \land \neg r)$]
+        \centering
+        \renewcommand{\arraystretch}{1.04}
+        \scriptsize
+        \setlength{\tabcolsep}{3pt}
+        \begin{tabular}{ccc|ccc|c}
+          \toprule
+          $p$ & $q$ & $r$ & $p \lor q$ & $\neg r$ & $p \land \neg r$ & $(p \lor q) \to (p \land \neg r)$ \\
+          \midrule
+          $1$ & $1$ & $1$ & $1$ & $0$ & $0$ & \textbf{\textcolor{cozyFalse}{0}} \\
+          $1$ & $1$ & $0$ & $1$ & $1$ & $1$ & \textbf{\textcolor{cozyTrue}{1}} \\
+          $1$ & $0$ & $1$ & $1$ & $0$ & $0$ & \textbf{\textcolor{cozyFalse}{0}} \\
+          $1$ & $0$ & $0$ & $1$ & $1$ & $1$ & \textbf{\textcolor{cozyTrue}{1}} \\
+          $0$ & $1$ & $1$ & $1$ & $0$ & $0$ & \textbf{\textcolor{cozyFalse}{0}} \\
+          $0$ & $1$ & $0$ & $1$ & $1$ & $0$ & \textbf{\textcolor{cozyFalse}{0}} \\
+          $0$ & $0$ & $1$ & $0$ & $0$ & $0$ & \textbf{\textcolor{cozyTrue}{1}} \textcolor{cozyMuted}{($0 \to 0$)} \\
+          $0$ & $0$ & $0$ & $0$ & $1$ & $0$ & \textbf{\textcolor{cozyTrue}{1}} \textcolor{cozyMuted}{($0 \to 0$)} \\
+          \bottomrule
+        \end{tabular}
+      \end{cozyExample}
+    \end{column}
+    \begin{column}{0.43\textwidth}
+      \begin{cozyInsight}[Phân Tích Bảng 8 Dòng]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{2pt}
+          \item \textbf{Cấu trúc bit:} Áp dụng mẹo nhị phân điền từ $111$ xuống $000$ gọn gàng, không bỏ sót.
+          \item \textbf{Kết quả:} Biểu thức Đúng ($1$) tại \textbf{4 dòng}: $110, 100, 001, 000$.
+          \item \textbf{Trọng tâm sư phạm:}
+          Tại 2 dòng cuối ($001, 000$), tiền đề $p \lor q = 0$ $\implies$ Mệnh đề kéo theo \textbf{tự động nhận giá trị Đúng ($1$)} (Vacuous Truth)!
+        \end{itemize}
+      \end{cozyInsight}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Bài Tập: Chứng Minh Bằng Bảng Chân Lý (Bài b \& c)}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.54\textwidth}
+      \begin{cozyExample}[Bảng Chân Lý Đối Chiếu 8 Dòng]
+        \centering
+        \renewcommand{\arraystretch}{1.03}
+        \scriptsize
+        \setlength{\tabcolsep}{1.8pt}
+        \begin{tabular}{ccc|c|c|c|c}
+          \toprule
+          $p$ & $q$ & $r$ & $q \to r$ & $p \to (q \to r)$ & $(p \land q) \to r$ & \begin{tabular}{@{}c@{}} $(p \to r)$ \\ $\lor (q \to r)$ \end{tabular} \\
+          \midrule
+          $1$ & $1$ & $1$ & $1$ & \textbf{\textcolor{cozyTrue}{1}} & \textbf{\textcolor{cozyTrue}{1}} & \textbf{\textcolor{cozyTrue}{1}} \\
+          $1$ & $1$ & $0$ & $0$ & \textbf{\textcolor{cozyFalse}{0}} & \textbf{\textcolor{cozyFalse}{0}} & \textbf{\textcolor{cozyFalse}{0}} \\
+          $1$ & $0$ & $1$ & $1$ & \textbf{\textcolor{cozyTrue}{1}} & \textbf{\textcolor{cozyTrue}{1}} & \textbf{\textcolor{cozyTrue}{1}} \\
+          $1$ & $0$ & $0$ & $1$ & \textbf{\textcolor{cozyTrue}{1}} & \textbf{\textcolor{cozyTrue}{1}} & \textbf{\textcolor{cozyTrue}{1}} \\
+          $0$ & $1$ & $1$ & $1$ & \textbf{\textcolor{cozyTrue}{1}} & \textbf{\textcolor{cozyTrue}{1}} & \textbf{\textcolor{cozyTrue}{1}} \\
+          $0$ & $1$ & $0$ & $0$ & \textbf{\textcolor{cozyTrue}{1}} & \textbf{\textcolor{cozyTrue}{1}} & \textbf{\textcolor{cozyTrue}{1}} \\
+          $0$ & $0$ & $1$ & $1$ & \textbf{\textcolor{cozyTrue}{1}} & \textbf{\textcolor{cozyTrue}{1}} & \textbf{\textcolor{cozyTrue}{1}} \\
+          $0$ & $0$ & $0$ & $1$ & \textbf{\textcolor{cozyTrue}{1}} & \textbf{\textcolor{cozyTrue}{1}} & \textbf{\textcolor{cozyTrue}{1}} \\
+          \bottomrule
+        \end{tabular}
+        \par\vspace{0.03cm}
+        \tiny\color{cozyFalse}Cả 3 biểu thức chỉ Sai duy nhất tại dòng $2$ ($p=1, q=1, r=0$)!
+      \end{cozyExample}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{cozyInsight}[Phân Tích 2 Đẳng Thức Tương Đương]
+        \footnotesize
+        \textbf{1. Câu (b) -- Luật Xuất Khẩu (Exportation):}
+        $$p \to (q \to r) \equiv (p \land q) \to r$$
+        \begin{itemize}
+          \setlength{\itemsep}{1pt}
+          \item Cột 5 và cột 6 \textbf{trùng khớp hoàn toàn}.
+          \item \textit{Ý nghĩa:} ``Nếu có $p$ thì (nếu có $q$ sẽ có $r$)'' $\equiv$ ``Nếu có cả $p$ và $q$ thì có $r$''.
+        \end{itemize}
+        \vspace{0.06cm}
+        \textbf{2. Câu (c) -- Phân Rã Tiền Đề Hội:}
+        $$(p \land q) \to r \equiv (p \to r) \lor (q \to r)$$
+        \begin{itemize}
+          \setlength{\itemsep}{1pt}
+          \item Cột 6 và cột 7 \textbf{trùng khớp hoàn toàn}.
+          \item Cả 2 vế khẳng định tương đương logic tuyệt đối.
+        \end{itemize}
+      \end{cozyInsight}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Hệ Thống 11 Luật Tương Đương: Cụm 1 -- Tương Đồng Số Học}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.54\textwidth}
+      \begin{cozyDef}[Bảng Luật Cụm 1: Tương Đồng Số Học]
+        \centering
+        \renewcommand{\arraystretch}{1.04}
+        \small
+        \setlength{\tabcolsep}{3pt}
+        \begin{tabular}{ll}
+          \toprule
+          \textbf{Tên Luật} & \textbf{Công Thức Tương Đương} \\
+          \midrule
+          \textbf{1. Giao hoán} & $p \lor q \equiv q \lor p$ \\
+                                & $p \land q \equiv q \land p$ \\
+          \textbf{2. Kết hợp}   & $(p \lor q) \lor r \equiv p \lor (q \lor r)$ \\
+                                & $(p \land q) \land r \equiv p \land (q \land r)$ \\
+          \textbf{3. Đồng nhất} & $p \land \mathbf{T} \equiv p$, \quad $p \lor \mathbf{F} \equiv p$ \\
+          \textbf{4. Nuốt}      & $p \lor \mathbf{T} \equiv \mathbf{T}$, \quad $p \land \mathbf{F} \equiv \mathbf{F}$ \\
+          \textbf{5. Phủ định kép} & $\neg(\neg p) \equiv p$ \\
+          \bottomrule
+        \end{tabular}
+      \end{cozyDef}
+    \end{column}
+    \begin{column}{0.43\textwidth}
+      \begin{cozyInsight}[Trực Giác Số Học Đối Chiếu]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{1pt}
+          \item \textbf{Phép $\lor \sim$ Phép cộng ($+$):}\\
+          $\mathbf{F}$ ($0$) là phần tử trung hòa ($x + 0 = x \longleftrightarrow p \lor \mathbf{F} \equiv p$).
+          \item \textbf{Phép $\land \sim$ Phép nhân ($\times$):}\\
+          $\mathbf{T}$ ($1$) là phần tử đơn vị ($x \times 1 = x \longleftrightarrow p \land \mathbf{T} \equiv p$).
+          \item \textbf{Tính chất nuốt (Domination):}\\
+          Số $0$ nuốt trong phép nhân ($x \times 0 = 0 \longleftrightarrow p \land \mathbf{F} \equiv \mathbf{F}$); $\mathbf{T}$ nuốt trong phép tuyển ($p \lor \mathbf{T} \equiv \mathbf{T}$).
+          \item \textbf{Phủ định kép:}\\
+          Hai lần đổi dấu là khẳng định ($-(-x) = x$).
+        \end{itemize}
+      \end{cozyInsight}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Hệ Thống 11 Luật Tương Đương: Cụm 2 -- Đặc Thù Đại Số Boole}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.55\textwidth}
+      \begin{cozyDef}[Bảng Luật Cụm 2: Đặc Thù Đại Số Boole]
+        \centering
+        \renewcommand{\arraystretch}{1.08}
+        \small
+        \begin{tabular}{ll}
+          \toprule
+          \textbf{Tên Luật} & \textbf{Công Thức Tương Đương} \\
+          \midrule
+          \textbf{6. Lũy đẳng}   & $p \lor p \equiv p$ \\
+                                 & $p \land p \equiv p$ \\
+          \textbf{7. Phân phối}  & $p \lor (q \land r) \equiv (p \lor q) \land (p \lor r)$ \\
+                                 & $p \land (q \lor r) \equiv (p \land q) \lor (p \land r)$ \\
+          \textbf{8. Hấp thụ}    & $p \lor (p \land q) \equiv p$ \\
+                                 & $p \land (p \lor q) \equiv p$ \\
+          \textbf{9. Phần bù}    & $p \lor \neg p \equiv \mathbf{T}$ \\
+                                 & $p \land \neg p \equiv \mathbf{F}$ \\
+          \bottomrule
+        \end{tabular}
+      \end{cozyDef}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{cozyTrap}[Cạm Bẫy Phân Phối \& Mẹo Hấp Thụ]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{2pt}
+          \item \textbf{Phân phối 2 chiều:}\\
+          Trong số học chỉ có $a(b+c) = ab+ac$, \textbf{không có} $a+(bc)=(a+b)(a+c)$. Trong logic Boole, phân phối \textbf{đối xứng cả hai chiều} ($\lor$ cho $\land$ và $\land$ cho $\lor$)!
+          \item \textbf{Mẹo nhớ Luật Hấp thụ:}\\
+          Biến $p$ đứng ngoài và lặp lại bên trong ngoặc với toán tử ngược: $p \lor (p \land q) \equiv p$ $\implies p$ ``hấp thụ'' toàn bộ ngoặc!
+        \end{itemize}
+      \end{cozyTrap}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Hệ Thống 11 Luật Tương Đương: Cụm 3 -- Chuyển Đổi Toán Tử}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.54\textwidth}
+      \begin{cozyDef}[Bảng Luật Cụm 3: Chuyển Đổi Toán Tử]
+        \centering
+        \renewcommand{\arraystretch}{1.08}
+        \small
+        \setlength{\tabcolsep}{3pt}
+        \begin{tabular}{ll}
+          \toprule
+          \textbf{Tên Luật} & \textbf{Công Thức Tương Đương} \\
+          \midrule
+          \textbf{10. De Morgan} & $\neg(p \land q) \equiv \neg p \lor \neg q$ \\
+                                 & $\neg(p \lor q) \equiv \neg p \land \neg q$ \\
+          \textbf{11. Kéo theo}  & $p \to q \equiv \neg p \lor q$ \\
+          \textbf{Phản đảo}      & $p \to q \equiv \neg q \to \neg p$ \\
+          \textbf{Tương đương}   & $p \leftrightarrow q \equiv (p \to q) \land (q \to p)$ \\
+          \bottomrule
+        \end{tabular}
+      \end{cozyDef}
+    \end{column}
+    \begin{column}{0.43\textwidth}
+      \begin{cozyInsight}[Nguyên Lý Đối Ngẫu (Duality)]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{1.5pt}
+          \item \textbf{Quy tắc vàng:} Trong bất kỳ đẳng thức logic nào chỉ gồm các phép $\{\lor, \land\}$ và hằng số $\{\mathbf{T}, \mathbf{F}\}$, nếu ta đồng thời hoán đổi:
+          $$\lor \longleftrightarrow \land \quad \text{và} \quad \mathbf{T} \longleftrightarrow \mathbf{F}$$
+          ta lập tức thu được một đẳng thức logic \textbf{luôn đúng mới}!
+          \item \textbf{Ví dụ đối ngẫu:}
+          \begin{itemize}
+            \item $p \lor (p \land q) \equiv p \iff p \land (p \lor q) \equiv p$
+            \item $p \lor \neg p \equiv \mathbf{T} \iff p \land \neg p \equiv \mathbf{F}$
+          \end{itemize}
+          \item $\implies$ Giảm \textbf{$50\%$ công sức} học thuộc lòng!
+        \end{itemize}
+      \end{cozyInsight}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Phương Pháp 3 Bước Biến Đổi Đại Số Mệnh Đề}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.54\textwidth}
+      \begin{cozyMethod}[Quy Trình 3 Bước Biến Đổi Rút Gọn / Chứng Minh]
+        \small
+        \begin{enumerate}
+          \setlength{\itemsep}{2.5pt}
+          \item[\textbf{Bước 1.}] \textbf{Khử mũi tên ($\to$ và $\leftrightarrow$):}\\
+          Đưa toàn bộ biểu thức về 3 phép toán chuẩn $\{\neg, \lor, \land\}$:\\
+          $p \to q \equiv \neg p \lor q$\\
+          $p \leftrightarrow q \equiv (p \to q) \land (q \to p)$
+          \item[\textbf{Bước 2.}] \textbf{Đưa phủ định ($\neg$) vào sát biến:}\\
+          Áp dụng luật \textbf{De Morgan} để đẩy phủ định qua ngoặc và triệt tiêu bằng luật \textbf{Phủ định kép}: $\neg(\neg p) \equiv p$.
+          \item[\textbf{Bước 3.}] \textbf{Gom nhóm \& Rút gọn tối giản:}\\
+          Sử dụng \textbf{Phân phối}, \textbf{Hấp thụ}, \textbf{Phần bù} ($p \lor \neg p \equiv \mathbf{T}$), \textbf{Nuốt} và \textbf{Đồng nhất}.
+        \end{enumerate}
+      \end{cozyMethod}
+    \end{column}
+    \begin{column}{0.43\textwidth}
+      \begin{cozyInsight}[Vì Sao Cần Phương Pháp Này?]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{2pt}
+          \item Khi biểu thức có $4, 5$ biến $\implies$ Bảng chân lý cần $16$ hoặc $32$ dòng $\to$ Rất dài và dễ nhầm lẫn.
+          \item Biến đổi đại số giúp giải quyết bài toán mạch lạc trong $3 - 5$ dòng.
+        \end{itemize}
+      \end{cozyInsight}
+      \vspace{0.08cm}
+      \begin{cozyTrap}[Quy Tắc Trình Bày Bài Thi]
+        \small
+        Mỗi bước biến đổi $\equiv$ phải ghi rõ \textbf{tên luật tương đương} ở bên cạnh để đạt điểm tối đa!
+      \end{cozyTrap}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Ví Dụ Mẫu: Chứng Minh Hằng Đúng (Tautology)}
+  \begin{cozyExample}[Đề bài: Chứng minh biểu thức $E = (p \land q) \to (p \lor q)$ là một hằng đúng (luôn nhận giá trị 1)]
+    \centering
+    \renewcommand{\arraystretch}{0.98}
+    \small
+    \begin{tabular}{cll}
+      \toprule
+      \textbf{Bước} & \textbf{Biểu Thức Biến Đổi} & \textbf{Luật Tương Đương Áp Dụng} \\
+      \midrule
+      & $(p \land q) \to (p \lor q)$ & \textcolor{cozyMuted}{(Biểu thức ban đầu)} \\
+      $\equiv$ & $\neg(p \land q) \lor (p \lor q)$ & \textbf{Luật Kéo theo} ($A \to B \equiv \neg A \lor B$) \\
+      $\equiv$ & $(\neg p \lor \neg q) \lor (p \lor q)$ & \textbf{Luật De Morgan} \\
+      $\equiv$ & $(\neg p \lor p) \lor (\neg q \lor q)$ & \textbf{Luật Kết hợp \& Giao hoán} \\
+      $\equiv$ & $\mathbf{T} \lor \mathbf{T}$ & \textbf{Luật Phần bù} ($\neg x \lor x \equiv \mathbf{T}$) \\
+      $\equiv$ & $\mathbf{T}$ & \textbf{Luật Lũy đẳng} ($\mathbf{T} \lor \mathbf{T} \equiv \mathbf{T}$) \\
+      \bottomrule
+    \end{tabular}
+  \end{cozyExample}
+  \vspace{0.02cm}
+  \begin{cozyInsight}[Định Nghĩa Hằng Đúng (Tautology)]
+    \footnotesize
+    Một biểu thức luôn nhận chân trị \textbf{Đúng} ($\mathbf{T} / 1$) trong mọi trường hợp của các biến thành phần được gọi là \textbf{Hằng đúng}.\\
+    \textit{Ý nghĩa trực giác:} ``Nếu bạn có cả $p$ và $q$ ($p \land q$), hiển nhiên bạn có ít nhất một trong hai ($p \lor q$).''
+  \end{cozyInsight}
+\end{frame}
+
+\begin{frame}{Lời Giải Chi Tiết: Bài Tập 2 Áp Dụng Luật Logic}
+  \begin{cozyExample}[Đề bài (Bài 2): Chứng minh $(p \to q) \land (p \to r) \equiv p \to (q \land r)$ không dùng bảng chân lý]
+    \centering
+    \renewcommand{\arraystretch}{1.12}
+    \small
+    \begin{tabular}{cll}
+      \toprule
+      \textbf{Bước} & \textbf{Biến Đổi Vế Trái (VT)} & \textbf{Luật Tương Đương Áp Dụng} \\
+      \midrule
+      & $(p \to q) \land (p \to r)$ & \textcolor{cozyMuted}{(Vế trái ban đầu)} \\
+      $\equiv$ & $(\neg p \lor q) \land (\neg p \lor r)$ & \textbf{Luật Kéo theo} (B1: Khử 2 dấu $\to$) \\
+      $\equiv$ & $\neg p \lor (q \land r)$ & \textbf{Luật Phân phối} (chiều ngược: đặt $\neg p \lor$ ra ngoài) \\
+      $\equiv$ & $p \to (q \land r)$ & \textbf{Luật Kéo theo} (tái lập cấu trúc $\neg A \lor B \equiv A \to B$) \\
+      \bottomrule
+    \end{tabular}
+  \end{cozyExample}
+  \vspace{0.05cm}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.485\textwidth}
+      \begin{cozyInsight}[Ý Nghĩa Phát Biểu Tự Nhiên]
+        \small
+        \textit{``Nếu đi học đều thì hiểu bài, và nếu đi học đều thì điểm cao''}\\
+        $\equiv$ \textit{``Nếu đi học đều thì vừa hiểu bài vừa điểm cao''}.
+      \end{cozyInsight}
+    \end{column}
+    \begin{column}{0.485\textwidth}
+      \begin{cozyMethod}[Ứng Dụng Trong Tối Ưu Code]
+        \small
+        Gộp hai câu lệnh điều kiện độc lập:
+        \texttt{if (p) q; if (p) r;} thành \texttt{if (p) \{ q and r; \}}, giúp rút gọn luồng điều khiển và tối ưu rẽ nhánh vi xử lý.
+      \end{cozyMethod}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Lời Giải Chi Tiết: Bài Tập 5 Áp Dụng Luật Logic}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.485\textwidth}
+      \begin{cozyExample}[Rút Gọn: $\neg(p \lor (\neg p \land q))$]
+        \scriptsize
+        \renewcommand{\arraystretch}{1.05}
+        \setlength{\tabcolsep}{1.2pt}
+        \begin{tabular}{cll}
+          \toprule
+          \textbf{Biến đổi} & \textbf{Luật Áp Dụng} \\
+          \midrule
+          & $\neg(p \lor (\neg p \land q))$ \\
+          $\equiv$ & $\neg p \land \neg(\neg p \land q)$ & De Morgan \\
+          $\equiv$ & $\neg p \land (\neg\neg p \lor \neg q)$ & De Morgan \\
+          $\equiv$ & $\neg p \land (p \lor \neg q)$ & Phủ định kép \\
+          $\equiv$ & $(\neg p \land p) \lor (\neg p \land \neg q)$ & Phân phối \\
+          $\equiv$ & $\mathbf{F} \lor (\neg p \land \neg q)$ & Phần bù \\
+          $\equiv$ & $\mathbf{\textcolor{cozyWarm}{\neg p \land \neg q}}$ & Đồng nhất \\
+          \bottomrule
+        \end{tabular}
+        \vspace{0.05cm}
+        \par\centering\tiny\color{cozyTrue}$\implies$ Trùng khớp với bảng chân lý Slide 20!
+      \end{cozyExample}
+    \end{column}
+    \begin{column}{0.485\textwidth}
+      \begin{cozyExample}[{Bài 5: Hằng Đúng $[(p \to q) \land p] \to q$}]
+        \scriptsize
+        \renewcommand{\arraystretch}{1.05}
+        \setlength{\tabcolsep}{1.2pt}
+        \begin{tabular}{cll}
+          \toprule
+          \textbf{Biến đổi} & \textbf{Luật Áp Dụng} \\
+          \midrule
+          & $[(p \to q) \land p] \to q$ \\
+          $\equiv$ & $[(\neg p \lor q) \land p] \to q$ & Kéo theo \\
+          $\equiv$ & $[(\neg p \land p) \lor (q \land p)] \to q$ & Phân phối \\
+          $\equiv$ & $[\mathbf{F} \lor (p \land q)] \to q$ & Phần bù \\
+          $\equiv$ & $(p \land q) \to q$ & Đồng nhất \\
+          $\equiv$ & $\neg(p \land q) \lor q$ & Kéo theo \\
+          $\equiv$ & $\neg p \lor (\neg q \lor q)$ & Kết hợp \\
+          $\equiv$ & $\neg p \lor \mathbf{T}$ & Phần bù \\
+          $\equiv$ & $\mathbf{\textcolor{cozyTrue}{T}}$ & Luật Nuốt \\
+          \bottomrule
+        \end{tabular}
+        \vspace{0.05cm}
+        \par\centering\tiny\color{cozySlate}$\implies$ Là hằng đúng (cơ sở quy tắc \textbf{Modus Ponens})!
+      \end{cozyExample}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \end{document}
