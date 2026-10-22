@@ -129,7 +129,7 @@
 \begin{frame}[plain]
   \centering
   \vspace*{2.0cm}
-  {\Huge\textbf{\color{cozySlate}1. Khái Niệm Mệnh Đề \& Phân Loại}}
+  {\LARGE\textbf{\color{cozySlate}1. Khái Niệm Mệnh Đề \& Phân Loại}}
   \par\vspace{0.4cm}
   {\color{cozyWarm}\rule{0.6\textwidth}{1.5pt}}
   \par\vspace{0.3cm}
@@ -192,7 +192,7 @@
       \end{cozyDef}
     \end{column}
     \begin{column}{0.48\textwidth}
-      \begin{cozyInsight}[Góc nhìn Khoa học Máy tính \& Công nghệ Phần mềm]
+      \begin{cozyInsight}[Góc nhìn Khoa học Máy tính]
         \small
         \begin{itemize}
           \item Trong máy tính, chân lý nhị phân chính là \textbf{Bit ($1 / 0$)}, là mức điện thế Cao/Thấp trong vi mạch bán dẫn.
@@ -223,6 +223,405 @@
     \par
     \textbf{\color{cozySlate}Lưu ý sư phạm:} Trong toán học, mệnh đề phức hợp được mô hình hóa như một hàm chân trị nhận các biến mệnh đề đầu vào.
   \end{cozyMethod}
+\end{frame}
+
+% ==========================================
+% PHẦN 2: 6 TOÁN TỬ LOGIC CƠ BẢN
+% ==========================================
+
+\begin{frame}[plain]
+  \centering
+  \vspace*{2.0cm}
+  {\LARGE\textbf{\color{cozySlate}2. Các Toán Tử Logic Cơ Bản}}
+  \par\vspace{0.4cm}
+  {\color{cozyWarm}\rule{0.6\textwidth}{1.5pt}}
+  \par\vspace{0.3cm}
+  {\normalsize\color{cozyMuted}Ngôn ngữ hình thức để xây dựng các mệnh đề phức hợp}
+\end{frame}
+
+\begin{frame}{1. Phép Phủ Định (NOT -- $\neg p$ hoặc $\bar{p}$)}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.44\textwidth}
+      \begin{cozyDef}[Định nghĩa \& Bảng Chân Lý]
+        \small
+        Phủ định của mệnh đề $p$ là mệnh đề \textbf{``Không phải trường hợp $p$''}, ký hiệu là $\neg p$ hoặc $\bar{p}$.\\
+        \vspace{0.05cm}
+        Giá trị chân lý của $\bar{p}$ luôn \textbf{ngược lại} với $p$: đúng khi $p$ sai, và sai khi $p$ đúng.
+        \vspace{0.2cm}
+        \begin{center}
+          \renewcommand{\arraystretch}{1.15}
+          \begin{tabular}{cc}
+            \toprule
+            \textbf{Mệnh đề ($p$)} & \textbf{Phủ định ($\bar{p}$)} \\
+            \midrule
+            $0$ & \textbf{\textcolor{cozyTrue}{1}} \\
+            $1$ & \textbf{\textcolor{cozyFalse}{0}} \\
+            \bottomrule
+          \end{tabular}
+        \end{center}
+        \vspace{0.1cm}
+        \par\footnotesize\centering\color{cozyMuted}
+        Đảo bit: $0 \leftrightarrow 1$ (Cổng NOT logic)
+      \end{cozyDef}
+    \end{column}
+    \begin{column}{0.53\textwidth}
+      \begin{cozyInsight}[Ví dụ Minh Họa từ Thực Tế]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{4pt}
+          \item $p$: ``Paris là thủ đô của Pháp.'' (\textbf{\textcolor{cozyTrue}{1}})\\
+          $\implies \bar{p}$: ``Paris \textbf{không phải} là thủ đô của Pháp.'' (\textbf{\textcolor{cozyFalse}{0}})
+          \item $q$: ``$9$ là một số chính phương.'' (\textbf{\textcolor{cozyTrue}{1}})\\
+          $\implies \bar{q}$: ``$9$ \textbf{không phải} là một số chính phương.'' (\textbf{\textcolor{cozyFalse}{0}})
+          \item $r$: ``$0 > 2$'' (\textbf{\textcolor{cozyFalse}{0}})\\
+          $\implies \bar{r}$: ``$0 \le 2$'' (\textbf{\textcolor{cozyTrue}{1}})
+        \end{itemize}
+      \end{cozyInsight}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{2. Phép Tuyển Thường (OR -- $p \lor q$)}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.44\textwidth}
+      \begin{cozyDef}[Định nghĩa \& Bảng Chân Lý]
+        \small
+        Phép tuyển của $p$ và $q$ là mệnh đề \textbf{``$p$ hoặc $q$''}, ký hiệu là $p \lor q$.\\
+        \vspace{0.05cm}
+        $p \lor q$ \textbf{\textcolor{cozyTrue}{Đúng}} khi có \textbf{ít nhất một} mệnh đề thành phần đúng; chỉ \textbf{\textcolor{cozyFalse}{Sai}} khi cả $p$ và $q$ đều sai.
+        \vspace{0.15cm}
+        \begin{center}
+          \renewcommand{\arraystretch}{1.1}
+          \begin{tabular}{cc|c}
+            \toprule
+            $p$ & $q$ & $p \lor q$ \\
+            \midrule
+            $0$ & $0$ & \textbf{\textcolor{cozyFalse}{0}} \\
+            $0$ & $1$ & \textbf{\textcolor{cozyTrue}{1}} \\
+            $1$ & $0$ & \textbf{\textcolor{cozyTrue}{1}} \\
+            $1$ & $1$ & \textbf{\textcolor{cozyTrue}{1}} \\
+            \bottomrule
+          \end{tabular}
+        \end{center}
+        \vspace{0.05cm}
+        \par\footnotesize\centering\color{cozyMuted}Chỉ cần 1 đầu vào đúng $\implies$ Đúng
+      \end{cozyDef}
+    \end{column}
+    \begin{column}{0.53\textwidth}
+      \begin{cozyInsight}[Bản chất Inclusive OR \& Ví dụ]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{3pt}
+          \item \textbf{Inclusive OR (Tuyển bao hàm):} Trong toán học, ``hoặc'' cho phép \textbf{cả hai cùng xảy ra}.
+          \item \textit{Ví dụ xét học bổng:} ``Sinh viên có GPA $\ge 8.0$ \textbf{HOẶC} có bài báo nghiên cứu khoa học.''\\
+          $\to$ Đạt \textbf{cả hai} điều kiện thì càng xứng đáng!
+          \item \textit{Ví dụ slide gốc:} ``$3$ là số nguyên tố \textbf{hoặc} $3$ là số chẵn.''\\
+          $\to$ Vì $3$ là số nguyên tố (Đúng) $\implies$ Toàn bộ mệnh đề \textbf{\textcolor{cozyTrue}{Đúng (1)}}.
+        \end{itemize}
+      \end{cozyInsight}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{3. Phép Hội (AND -- $p \land q$)}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.44\textwidth}
+      \begin{cozyDef}[Định nghĩa \& Bảng Chân Lý]
+        \small
+        Phép hội của $p$ và $q$ là mệnh đề \textbf{``$p$ và $q$''}, ký hiệu là $p \land q$.\\
+        \vspace{0.05cm}
+        $p \land q$ chỉ \textbf{\textcolor{cozyTrue}{Đúng}} khi \textbf{cả hai} mệnh đề đều đúng; chỉ cần một mệnh đề sai thì kết quả sẽ \textbf{\textcolor{cozyFalse}{Sai}}.
+        \vspace{0.15cm}
+        \begin{center}
+          \renewcommand{\arraystretch}{1.1}
+          \begin{tabular}{cc|c}
+            \toprule
+            $p$ & $q$ & $p \land q$ \\
+            \midrule
+            $0$ & $0$ & \textbf{\textcolor{cozyFalse}{0}} \\
+            $0$ & $1$ & \textbf{\textcolor{cozyFalse}{0}} \\
+            $1$ & $0$ & \textbf{\textcolor{cozyFalse}{0}} \\
+            $1$ & $1$ & \textbf{\textcolor{cozyTrue}{1}} \\
+            \bottomrule
+          \end{tabular}
+        \end{center}
+        \vspace{0.05cm}
+        \par\footnotesize\centering\color{cozyMuted}Cả hai cùng đúng $\implies$ Mới đúng
+      \end{cozyDef}
+    \end{column}
+    \begin{column}{0.53\textwidth}
+      \begin{cozyMethod}[Đối Chiếu Trực Quan: $\lor$ (OR) vs $\land$ (AND)]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{3pt}
+          \item \textbf{Phép $\lor$ rất ``dễ tính'':} Chỉ cần ít nhất $1$ nhánh đúng là đúng (mạch điện \textit{song song}).
+          \item \textbf{Phép $\land$ rất ``khắt khe'':} Bắt buộc cả hai nhánh phải đúng (mạch điện \textit{nối tiếp}).
+          \item \textit{Ví dụ slide gốc:} ``Trời đã mưa \textbf{VÀ} hôm đó là thứ Sáu.''\\
+          $\to$ Chỉ đúng khi đồng thời cả 2 sự kiện xảy ra; sai 1 sự kiện $\implies$ phát biểu sai.
+        \end{itemize}
+      \end{cozyMethod}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{4. Phép Tuyển Loại (XOR -- $p \oplus q$)}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.44\textwidth}
+      \begin{cozyDef}[Định nghĩa \& Bảng Chân Lý]
+        \small
+        Phép tuyển loại của $p$ và $q$ là mệnh đề \textbf{``$p$ hoặc $q$ nhưng không cả hai''}, ký hiệu $p \oplus q$.\\
+        \vspace{0.05cm}
+        $p \oplus q$ \textbf{\textcolor{cozyTrue}{Đúng}} khi $p, q$ có \textbf{chân trị khác nhau} (chỉ đúng $1$ trong $2$); \textbf{\textcolor{cozyFalse}{Sai}} khi cùng chân trị.
+        \vspace{0.15cm}
+        \begin{center}
+          \renewcommand{\arraystretch}{1.1}
+          \begin{tabular}{cc|c}
+            \toprule
+            $p$ & $q$ & $p \oplus q$ \\
+            \midrule
+            $0$ & $0$ & \textbf{\textcolor{cozyFalse}{0}} \\
+            $0$ & $1$ & \textbf{\textcolor{cozyTrue}{1}} \\
+            $1$ & $0$ & \textbf{\textcolor{cozyTrue}{1}} \\
+            $1$ & $1$ & \textbf{\textcolor{cozyFalse}{0}} \;\textcolor{cozyWarm}{$\leftarrow$ Khác $\lor$} \\
+            \bottomrule
+          \end{tabular}
+        \end{center}
+        \vspace{0.05cm}
+        \par\footnotesize\centering\color{cozyMuted}Cộng nhị phân không nhớ: $1 \oplus 1 = 0$
+      \end{cozyDef}
+    \end{column}
+    \begin{column}{0.53\textwidth}
+      \begin{cozyTrap}[Phân biệt Cốt lõi: Tuyển thường $\lor$ vs Tuyển loại $\oplus$]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{3pt}
+          \item \textbf{$\lor$ (Inclusive OR):} Cho phép chọn cả hai. Ví dụ: ``Biết tiếng Anh hoặc tiếng Nhật''.
+          \item \textbf{$\oplus$ (Exclusive OR):} Bắt buộc chỉ chọn duy nhất 1 trong 2:
+          \begin{itemize}
+            \setlength{\itemsep}{2pt}
+            \item \textit{Thực đơn cơm trưa:} ``Chọn canh chua HOẶC canh rau'' (chỉ được chọn đúng 1 món).
+            \item \textit{Ví dụ slide gốc:} ``Chọn súp miễn phí hoặc salad miễn phí kèm bữa ăn.'' Nếu cố lấy cả hai $\implies$ Phạm quy (\textbf{\textcolor{cozyFalse}{Sai}})!
+          \end{itemize}
+        \end{itemize}
+      \end{cozyTrap}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{5. Phép Kéo Theo (Conditional -- $p \to q$)}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.44\textwidth}
+      \begin{cozyDef}[Định nghĩa \& Bảng Chân Lý]
+        \small
+        Phép kéo theo của $p$ và $q$ là mệnh đề \textbf{``Nếu $p$ thì $q$''}, ký hiệu là $p \to q$.\\
+        \vspace{0.05cm}
+        Trong đó: $p$ là \textbf{Tiền đề} (Giả thiết), $q$ là \textbf{Kết luận} (Hệ quả).
+        \vspace{0.15cm}
+        \begin{center}
+          \renewcommand{\arraystretch}{1.1}
+          \begin{tabular}{cc|c}
+            \toprule
+            $p$ & $q$ & $p \to q$ \\
+            \midrule
+            $0$ & $0$ & \textbf{\textcolor{cozyTrue}{1}} \\
+            $0$ & $1$ & \textbf{\textcolor{cozyTrue}{1}} \\
+            $1$ & $0$ & \textbf{\textcolor{cozyFalse}{0}} \;\textcolor{cozyFalse}{$\leftarrow$ DUY NHẤT SAI} \\
+            $1$ & $1$ & \textbf{\textcolor{cozyTrue}{1}} \\
+            \bottomrule
+          \end{tabular}
+        \end{center}
+        \vspace{0.05cm}
+        \par\footnotesize\centering\color{cozyMuted}Tiền đề sai $\implies$ Luôn luôn Đúng
+      \end{cozyDef}
+    \end{column}
+    \begin{column}{0.53\textwidth}
+      \begin{cozyTrap}[Quy Tắc Vàng Ghi Nhớ $p \to q$]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{3pt}
+          \item Mệnh đề kéo theo $p \to q$ chỉ \textbf{\textcolor{cozyFalse}{Sai}} trong \textbf{duy nhất một trường hợp}:\\
+          \vspace{0.1cm}
+          \centerline{\textbf{\textcolor{cozySlate}{Tiền đề Đúng ($p=1$)}} $\implies$ \textbf{\textcolor{cozyFalse}{Kết luận Sai ($q=0$)}}}
+          \vspace{0.1cm}
+          \item Trong 3 trường hợp còn lại, $p \to q$ luôn \textbf{\textcolor{cozyTrue}{Đúng ($1$)}}.
+          \item \textit{Ví dụ slide gốc:} ``Nếu bạn học chăm chỉ ($p$), thì bạn sẽ qua môn ($q$).''
+        \end{itemize}
+      \end{cozyTrap}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Giải Mã Phép Kéo Theo: Vì sao Tiền đề Sai thì Luôn Đúng?}
+  \begin{cozyInsight}[Mô hình Lời Hứa / Hợp Đồng Thưởng Điểm]
+    \small
+    Thầy giáo hứa với học sinh: \textit{``Nếu em đạt điểm 10 môn Toán ($p$), thầy sẽ tặng em máy tính ($q$).''}\\
+    Trong trường hợp nào thì thầy giáo bị coi là \textbf{nói dối / thất hứa} ($p \to q$ có giá trị Sai)?
+    \begin{itemize}
+      \setlength{\itemsep}{2pt}
+      \item \textbf{Trường hợp 1 ($p=1, q=1$):} Em được 10 điểm, thầy tặng máy $\implies$ Thầy \textbf{giữ lời} (\textbf{\textcolor{cozyTrue}{Đúng}}).
+      \item \textbf{Trường hợp 2 ($p=1, q=0$):} Em được 10 điểm, thầy không tặng $\implies$ Thầy \textbf{thất hứa} (\textbf{\textcolor{cozyFalse}{Sai}}).
+      \item \textbf{Trường hợp 3 \& 4 ($p=0$):} Em \textbf{KHÔNG} được 10 điểm! Lúc này dù thầy có tặng hay không tặng máy tính, thầy đều \textbf{KHÔNG THẤT HỨA} $\implies$ Lời hứa hiển nhiên \textbf{\textcolor{cozyTrue}{Đúng}}!
+    \end{itemize}
+  \end{cozyInsight}
+  \vspace{0.05cm}
+  \begin{cozyDef}[Ghi Nhớ Cốt Lõi: Chân Trị Chân Không (Vacuous Truth)]
+    \small
+    Khi tiền đề $p$ \textbf{Sai ($0$)}, mệnh đề kéo theo $p \to q$ tự động nhận giá trị \textbf{\textcolor{cozyTrue}{Đúng ($1$)}} bất kể $q$ Đúng hay Sai. Trong logic học, hiện tượng này được gọi là \textbf{Vacuous Truth} (Đúng chân không).
+  \end{cozyDef}
+\end{frame}
+
+\begin{frame}{Cạm Bẫy Thuật Ngữ: Điều Kiện Cần vs Điều Kiện Đủ}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \begin{cozyTrap}[Phân biệt Điều kiện Cần và Đủ]
+        \small
+        Trong mệnh đề kéo theo $p \to q$:
+        \begin{itemize}
+          \setlength{\itemsep}{3pt}
+          \item \textbf{$p$ là điều kiện ĐỦ để có $q$}:\\
+          Chỉ cần có $p$ là chắc chắn có $q$. Có $p$ là ``đủ'' để suy ra $q$.
+          \item \textbf{$q$ là điều kiện CẦN để có $p$}:\\
+          Muốn có $p$ thì bắt buộc phải có $q$. Nếu không có $q$ thì chắc chắn không thể có $p$ ($\neg q \to \neg p$).
+        \end{itemize}
+      \end{cozyTrap}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{cozyMethod}[Công Thức Tương Đương Cốt Lõi: $p \to q \equiv \neg p \lor q$]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{3pt}
+          \item \textbf{Ý nghĩa trực giác:}\\
+          ``Để không vi phạm lời hứa, hoặc là không có tiền đề ràng buộc ($\neg p$), hoặc là đã thực hiện kết luận ($q$).''
+          \item \textbf{Ví dụ đời sống:}\\
+          ``Trời mưa ($p$) $\to$ Đường ướt ($q$)''.
+          \begin{itemize}
+            \item Trời mưa là điều kiện \textit{đủ} để làm đường ướt.
+            \item Đường ướt là điều kiện \textit{cần} để khẳng định trời đã mưa.
+          \end{itemize}
+        \end{itemize}
+      \end{cozyMethod}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{6. Phép Tương Đương (Biconditional -- $p \leftrightarrow q$)}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.44\textwidth}
+      \begin{cozyDef}[Định nghĩa \& Bảng Chân Lý]
+        \small
+        Mệnh đề tương đương của $p$ và $q$ là \textbf{``$p$ nếu và chỉ nếu $q$''}, ký hiệu $p \leftrightarrow q$.\\
+        \vspace{0.05cm}
+        $p \leftrightarrow q$ \textbf{\textcolor{cozyTrue}{Đúng}} khi $p, q$ có \textbf{cùng chân trị} ($1 \leftrightarrow 1$ là $1$, $0 \leftrightarrow 0$ là $1$); \textbf{\textcolor{cozyFalse}{Sai}} khi khác chân trị.
+        \vspace{0.15cm}
+        \begin{center}
+          \renewcommand{\arraystretch}{1.1}
+          \begin{tabular}{cc|c}
+            \toprule
+            $p$ & $q$ & $p \leftrightarrow q$ \\
+            \midrule
+            $0$ & $0$ & \textbf{\textcolor{cozyTrue}{1}} \\
+            $0$ & $1$ & \textbf{\textcolor{cozyFalse}{0}} \\
+            $1$ & $0$ & \textbf{\textcolor{cozyFalse}{0}} \\
+            $1$ & $1$ & \textbf{\textcolor{cozyTrue}{1}} \\
+            \bottomrule
+          \end{tabular}
+        \end{center}
+        \vspace{0.05cm}
+        \par\footnotesize\centering\color{cozyMuted}Cùng chân trị $\implies 1$; Khác chân trị $\implies 0$
+      \end{cozyDef}
+    \end{column}
+    \begin{column}{0.53\textwidth}
+      \begin{cozyInsight}[Bản chất Kéo Theo 2 Chiều \& Ví dụ]
+        \small
+        \begin{itemize}
+          \setlength{\itemsep}{3pt}
+          \item \textbf{Bản chất là kéo theo 2 chiều:}
+          $$p \leftrightarrow q \equiv (p \to q) \land (q \to p)$$
+          $p$ vừa là điều kiện cần, vừa là điều kiện đủ của $q$.
+          \item \textit{Ví dụ từ giáo trình:}\\
+          ``Bạn có thể lên chuyến bay nếu và chỉ nếu bạn mua vé.''
+          \begin{itemize}
+            \setlength{\itemsep}{2pt}
+            \item Có vé $\implies$ Được bay ($p \to q$).
+            \item Được bay $\implies$ Đã có vé ($q \to p$).
+          \end{itemize}
+        \end{itemize}
+      \end{cozyInsight}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Kiểm Tra Nhanh Phản Xạ Chân Trị (Phần 1)}
+  \begin{cozyExample}[Bài toán: Cho $p = 1$ (Đúng) và $q = 0$ (Sai). Tính chân trị các biểu thức sau:]
+    \small
+    \begin{columns}[c, onlytextwidth]
+      \begin{column}{0.48\textwidth}
+        \centering\renewcommand{\arraystretch}{1.15}
+        \begin{tabular}{rll}
+          \toprule
+          \textbf{STT} & \textbf{Biểu thức} & \textbf{Chân trị} \\
+          \midrule
+          \textbf{1.} & $\neg p = \neg 1$ & $= \mathbf{\textcolor{cozyFalse}{0}}$ \\
+          \textbf{2.} & $p \lor q = 1 \lor 0$ & $= \mathbf{\textcolor{cozyTrue}{1}}$ \\
+          \textbf{3.} & $p \land q = 1 \land 0$ & $= \mathbf{\textcolor{cozyFalse}{0}}$ \\
+          \textbf{4.} & $p \oplus q = 1 \oplus 0$ & $= \mathbf{\textcolor{cozyTrue}{1}}$ \\
+          \bottomrule
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.48\textwidth}
+        \centering\renewcommand{\arraystretch}{1.15}
+        \begin{tabular}{rll}
+          \toprule
+          \textbf{STT} & \textbf{Biểu thức} & \textbf{Chân trị} \\
+          \midrule
+          \textbf{5.} & $p \to q = 1 \to 0$ & $= \mathbf{\textcolor{cozyFalse}{0}}$ \\
+          \textbf{6.} & $q \to p = 0 \to 1$ & $= \mathbf{\textcolor{cozyTrue}{1}}$ \\
+          \textbf{7.} & $p \leftrightarrow q = 1 \leftrightarrow 0$ & $= \mathbf{\textcolor{cozyFalse}{0}}$ \\
+          \multicolumn{3}{c}{\footnotesize\color{cozyMuted}Khác chân trị $\implies 0$} \\
+          \bottomrule
+        \end{tabular}
+      \end{column}
+    \end{columns}
+  \end{cozyExample}
+  \vspace{0.05cm}
+  \begin{cozyTrap}[Điểm Nhấn Sư Phạm: Vì sao $p \to q \neq q \to p$?]
+    \small
+    \begin{itemize}
+      \setlength{\itemsep}{2pt}
+      \item $p \to q = 1 \to 0$: Tiền đề Đúng nhưng Kết luận Sai $\implies$ Thất hứa $\implies$ \textbf{\textcolor{cozyFalse}{Sai ($0$)}}.
+      \item $q \to p = 0 \to 1$: Tiền đề Sai ($q=0$) $\implies$ Mệnh đề hiển nhiên \textbf{\textcolor{cozyTrue}{Đúng ($1$)}} (Vacuous Truth).
+      \item \textbf{Quy tắc cốt lõi:} Phép kéo theo \textbf{không có tính giao hoán}: $p \to q \not\equiv q \to p$.
+    \end{itemize}
+  \end{cozyTrap}
+\end{frame}
+
+\begin{frame}{Kiểm Tra Nhanh Phản Xạ Chân Trị (Phần 2)}
+  \begin{cozyExample}[Xét tính Đúng / Sai của các phát biểu kéo theo ngôn ngữ tự nhiên:]
+    \small
+    \begin{enumerate}
+      \setlength{\itemsep}{4pt}
+      \item \textbf{Phát biểu 1:} ``Nếu $0 > 2$ thì Paris là thủ đô của Pháp.''
+      \begin{itemize}
+        \setlength{\itemsep}{1pt}
+        \item \textbf{Phân tích:} Tiền đề $p$: ``$0 > 2$'' (\textbf{\textcolor{cozyFalse}{Sai -- 0}}), Kết luận $q$: ``Paris là thủ đô Pháp'' (\textbf{\textcolor{cozyTrue}{Đúng -- 1}}).
+        \item \textbf{Kết luận:} Vì tiền đề Sai $\implies$ Mệnh đề kéo theo \textbf{\textcolor{cozyTrue}{Đúng (1)}}! (Vacuous Truth).
+      \end{itemize}
+
+      \item \textbf{Phát biểu 2:} ``Nếu $2 + 2 = 4$ thì $1 + 1 = 3$.''
+      \begin{itemize}
+        \setlength{\itemsep}{1pt}
+        \item \textbf{Phân tích:} Tiền đề $p$: ``$2 + 2 = 4$'' (\textbf{\textcolor{cozyTrue}{Đúng -- 1}}), Kết luận $q$: ``$1 + 1 = 3$'' (\textbf{\textcolor{cozyFalse}{Sai -- 0}}).
+        \item \textbf{Kết luận:} Rơi vào trường hợp duy nhất $1 \to 0$ $\implies$ Mệnh đề \textbf{\textcolor{cozyFalse}{Sai (0)}}!
+      \end{itemize}
+
+      \item \textbf{Phát biểu 3:} ``Nếu Mặt trời mọc ở hướng Tây thì $1 + 1 = 2$.''
+      \begin{itemize}
+        \setlength{\itemsep}{1pt}
+        \item \textbf{Phân tích:} Tiền đề $p$: ``Mặt trời mọc ở hướng Tây'' (\textbf{\textcolor{cozyFalse}{Sai -- 0}}).
+        \item \textbf{Kết luận:} Tiền đề Sai $\implies$ Bất kể kết luận ra sao, mệnh đề hiển nhiên \textbf{\textcolor{cozyTrue}{Đúng (1)}}!
+      \end{itemize}
+    \end{enumerate}
+  \end{cozyExample}
 \end{frame}
 
 \end{document}
