@@ -1,0 +1,125 @@
+\documentclass[aspectratio=169, 10pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{array, tabularx, booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage[skins,breakable]{tcolorbox}
+
+% Thiết lập giao diện Beamer
+\setbeamertemplate{navigation symbols}{}
+\setbeamercolor{background canvas}{bg=white}
+\setbeamertemplate{itemize item}{\color{cozyWarm}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{cozySlate}$\bullet$}
+
+% Bảng màu Cozy
+\definecolor{cozySlate}{RGB}{44, 62, 80}       % #2C3E50 (Tiêu đề, cấu trúc)
+\definecolor{cozyBg}{RGB}{250, 248, 245}       % #FAF8F5 (Nền hộp ấm)
+\definecolor{cozyWarm}{RGB}{211, 84, 0}        % #D35400 (Cam đất nhấn mạnh)
+\definecolor{cozyAmber}{RGB}{230, 126, 34}      % #E67E22 (Amber phụ)
+\definecolor{cozyTrue}{RGB}{46, 125, 50}       % #2E7D32 (Đúng / 1)
+\definecolor{cozyFalse}{RGB}{192, 57, 43}      % #C0392B (Sai / 0)
+\definecolor{cozyMuted}{RGB}{127, 140, 141}    % #7F8C8D (Ghi chú)
+\definecolor{cozyLightBlue}{RGB}{235, 243, 250}
+\definecolor{cozyLightGreen}{RGB}{235, 247, 238}
+\definecolor{cozyLightRed}{RGB}{253, 237, 236}
+\definecolor{cozyLightAmber}{RGB}{254, 245, 231}
+
+\setbeamercolor{frametitle}{fg=cozySlate}
+\setbeamerfont{frametitle}{series=\bfseries, size=\large}
+
+% Footline 3 khối màu Cozy
+\setbeamercolor{footleftbox}{bg=cozySlate, fg=white}
+\setbeamercolor{footmidbox}{bg=cozyWarm, fg=white}
+\setbeamercolor{footrightbox}{bg=cozySlate!85!black, fg=white}
+
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.3ex,dp=1ex,left]{footleftbox}%
+      \hspace*{2ex}\scriptsize\bfseries Cấu Trúc Rời Rạc -- UIT/CITD%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.3ex,dp=1ex,center]{footmidbox}%
+      \scriptsize\bfseries Chương 1: Logic Mệnh Đề \& Suy Luận%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.333334\paperwidth,ht=2.3ex,dp=1ex,right]{footrightbox}%
+      \scriptsize \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}%
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+
+% 5 Môi trường tcolorbox chuyên biệt
+\newtcolorbox{cozyDef}[1][]{
+  enhanced, colback=white, colframe=cozySlate, coltitle=white,
+  fonttitle=\bfseries\small, title={#1}, arc=2mm, boxrule=0.8pt,
+  left=2mm, right=2mm, top=1.5mm, bottom=1.5mm
+}
+
+\newtcolorbox{cozyInsight}[1][]{
+  enhanced, colback=cozyLightGreen, colframe=cozyTrue, coltitle=white,
+  fonttitle=\bfseries\small, title={#1}, arc=2mm, boxrule=0.8pt,
+  left=2mm, right=2mm, top=1.5mm, bottom=1.5mm
+}
+
+\newtcolorbox{cozyTrap}[1][]{
+  enhanced, colback=cozyLightRed, colframe=cozyFalse, coltitle=white,
+  fonttitle=\bfseries\small, title={#1}, arc=2mm, boxrule=0.8pt,
+  left=2mm, right=2mm, top=1.5mm, bottom=1.5mm
+}
+
+\newtcolorbox{cozyMethod}[1][]{
+  enhanced, colback=cozyLightAmber, colframe=cozyWarm, coltitle=white,
+  fonttitle=\bfseries\small, title={#1}, arc=2mm, boxrule=0.8pt,
+  left=2mm, right=2mm, top=1.5mm, bottom=1.5mm
+}
+
+\newtcolorbox{cozyExample}[1][]{
+  enhanced, colback=cozyBg, colframe=cozyMuted, coltitle=cozySlate,
+  fonttitle=\bfseries\small, title={#1}, arc=2mm, boxrule=0.6pt,
+  left=2mm, right=2mm, top=1.5mm, bottom=1.5mm
+}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \centering
+  \vspace*{1.2cm}
+  {\Huge\textbf{\color{cozySlate}CẤU TRÚC RỜI RẠC}}
+  \par\vspace{0.3cm}
+  {\color{cozyWarm}\rule{0.65\textwidth}{1.8pt}}
+  \par\vspace{0.4cm}
+  {\LARGE\textbf{\color{cozyWarm}Chương 1: Logic Mệnh Đề \& Phương Pháp Suy Luận}}
+  \par\vspace{0.6cm}
+  {\normalsize\textbf{\color{cozySlate}Tài liệu học tập trực quan -- Tương tác -- Dễ hiểu}}
+  \par\vspace{0.3cm}
+  {\scriptsize\color{cozyMuted}Khoa Công nghệ Thông tin -- Đại học Quốc gia TP.HCM}
+\end{frame}
+
+\begin{frame}{Mục tiêu \& Lộ trình Học tập Chương 1}
+  \begin{columns}[t, onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \begin{cozyDef}[1. Mệnh đề \& Phân loại]
+        Hiểu bản chất nhị phân của chân lý ($1/0$), phân biệt mệnh đề sơ cấp vs phức hợp.
+      \end{cozyDef}
+      \vspace{0.2cm}
+      \begin{cozyInsight}[2. Các Toán tử Logic]
+        Làm chủ 6 phép toán logic, giải mã phép kéo theo $p \to q$ qua mô hình lời hứa.
+      \end{cozyInsight}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{cozyMethod}[3. Tương đương Logic]
+        Hệ thống 11 luật theo 3 cụm nhớ lâu, quy trình biến đổi đại số mệnh đề 3 bước.
+      \end{cozyMethod}
+      \vspace{0.2cm}
+      \begin{cozyTrap}[4. Quy tắc Suy luận \& Thực tế]
+        8 quy tắc suy luận, phân biệt ngụy biện bài thi, giải mã bài toán dã ngoại 8 bước.
+      \end{cozyTrap}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\end{document}
