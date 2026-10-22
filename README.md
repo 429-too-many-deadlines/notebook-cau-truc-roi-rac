@@ -38,9 +38,9 @@ CauTrucRoiRac/
 Tài liệu học tập trực quan Beamer 16:9 phối màu **Cozy**, tích hợp **hệ thống 5 khối nhận thức `tcolorbox`** cô đọng thành **42 slide hoàn chỉnh**:
 - **Khái niệm & Định nghĩa cơ bản (`cozyDef` - Xanh Slate):** Nhận diện mệnh đề nhị phân, 6 toán tử logic cơ bản, hệ thống 11 luật tương đương, 8 quy tắc suy luận kinh điển.
 - **Trực giác & Mô hình hóa (`cozyInsight` - Xanh Forest):** Mô hình lời hứa giải mã bản chất phép kéo theo ($p \to q$), nguyên lý đối ngẫu (Duality), phân tích ngữ nghĩa thực tế chuỗi suy luận.
-- **Phương pháp & Thuật toán (`cozyMethod` - Đỏ Đất/Rust):** Mẹo nhị phân lập bảng chân trị $2^n$ dòng (Binary Trick), quy trình 3 bước biến đổi đại số mệnh đề không kẻ bảng.
-- **Cảnh báo & Cạm bẫy thi cử (`cozyTrap` - Vàng Đất/Amber):** Phân biệt điều kiện cần vs đủ, bẫy phân phối số học vs logic Boole, nhận diện 2 ngụy biện diễn dịch phổ biến (Khẳng định kết luận & Phủ định tiền đề).
-- **Ví dụ mẫu & Thực hành chi tiết (`cozyExample` - Cam Đất/Warm):** Lập bảng chân lý 8 dòng cho 3 biến, chứng minh tương đương và hằng đúng 2 cột, giải toán ông Minh và bài toán dã ngoại 8 bước.
+- **Phương pháp & Thuật toán (`cozyMethod` - Cam Đất / Amber):** Mẹo nhị phân lập bảng chân trị $2^n$ dòng (Binary Trick), quy trình 3 bước biến đổi đại số mệnh đề không kẻ bảng.
+- **Cảnh báo & Cạm bẫy thi cử (`cozyTrap` - Đỏ Gạch / Crimson Red):** Phân biệt điều kiện cần vs đủ, bẫy phân phối số học vs logic Boole, nhận diện 2 ngụy biện diễn dịch phổ biến (Khẳng định kết luận & Phủ định tiền đề).
+- **Ví dụ mẫu & Thực hành chi tiết (`cozyExample` - Xám Tro / Muted):** Lập bảng chân lý 8 dòng cho 3 biến, chứng minh tương đương và hằng đúng 2 cột, giải toán ông Minh và bài toán dã ngoại 8 bước.
 
 ### Chương 1 (Bản Cô đọng Gốc -- `Hoc/BaiGiang.tex/Chuong1`): Logic Mệnh đề và Suy luận
 Chuyển đổi từ slide bài giảng gốc sang [Chuong1.tex](file:///home/fullstuck_developer/Workspace/CITD/HocHanh/CauTrucRoiRac/Hoc/BaiGiang.tex/Chuong1/Chuong1.tex), cô đọng thành **35 slide chuẩn tỉ lệ 16:9**:
