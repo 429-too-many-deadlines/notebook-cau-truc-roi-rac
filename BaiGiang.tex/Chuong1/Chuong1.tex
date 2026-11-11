@@ -1,0 +1,1253 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- Mã hóa & Tiếng Việt ---
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+
+% --- Font Times New Roman (chuẩn Times cho cả văn bản và công thức toán) ---
+\usepackage{mathptmx}
+
+% --- Bố cục trang A4 sạch sẽ, bỏ qua header/footer ---
+\usepackage[a4paper, top=2cm, bottom=2cm, left=2.2cm, right=2cm]{geometry}
+\pagestyle{plain}
+
+% --- Toán học, bảng biểu, danh sách, màu sắc & đồ họa ---
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{needspace}
+\usepackage{parskip}
+\usepackage[hidelinks]{hyperref}
+
+% --- Định nghĩa màu & kiểu trình bày ---
+\definecolor{PrimaryBlue}{RGB}{0, 51, 153}
+\definecolor{SoftBg}{RGB}{246, 248, 252}
+\definecolor{AccentRed}{RGB}{210, 20, 20}
+\definecolor{AccentGreen}{RGB}{0, 128, 0}
+
+\titleformat{\section}
+  {\Needspace{8\baselineskip}\Large\bfseries\color{PrimaryBlue}}
+  {\thesection.}{0.5em}{}
+  [\vspace{2pt}\titlerule]
+
+\titleformat{\subsection}
+  {\Needspace{4\baselineskip}\large\bfseries\color{PrimaryBlue!85!black}}
+  {\thesubsection.}{0.5em}{}
+
+\setlist[itemize]{leftmargin=1.5em, itemsep=3pt, topsep=4pt}
+\setlist[enumerate]{leftmargin=1.5em, itemsep=3pt, topsep=4pt}
+
+% --- Hộp bài tập & ví dụ ---
+\newtcolorbox{baitap}[1]{
+  enhanced,
+  colback=SoftBg,
+  colframe=PrimaryBlue!65!black,
+  colbacktitle=PrimaryBlue!10!white,
+  coltitle=PrimaryBlue!90!black,
+  fonttitle=\bfseries,
+  title={#1},
+  boxrule=0.6pt,
+  arc=3pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  before skip=10pt, after skip=10pt
+}
+
+% --- Macro quy tắc suy luận ---
+\newcommand{\suyluan}[2]{%
+  \begin{array}{@{}l@{}}
+    #1 \\ \hline
+    \therefore\; #2
+  \end{array}%
+}
+
+\begin{document}
+
+% --- Tiêu đề chương ---
+\begin{center}
+  {\LARGE\bfseries\color{PrimaryBlue} CHƯƠNG 1}\\[4pt]
+  {\large\bfseries LOGIC MỆNH ĐỀ, SUY LUẬN VÀ LOGIC VỊ TỪ}
+\end{center}
+\vspace{4pt}
+
+% ==============================================================================
+\section{Mệnh đề}
+% ==============================================================================
+
+\subsection{Mệnh đề là gì?}
+
+Một \textbf{mệnh đề} là một câu khẳng định một sự kiện: nó phải có giá trị \textbf{Đúng} hoặc \textbf{Sai}, nhưng không thể vừa đúng vừa sai.
+
+\textit{Câu hỏi: Các câu sau có phải là mệnh đề không?}
+
+\textbf{Ví dụ về Mệnh đề:}
+\begin{itemize}
+  \item ``Hà Nội là thủ đô của Việt Nam.'' $\rightarrow$ \textcolor{AccentGreen}{\textbf{Mệnh đề Đúng.}}
+  \item ``$0 > e$'' hoặc ``$0 > 2$.'' $\rightarrow$ \textcolor{AccentRed}{\textbf{Mệnh đề Sai.}}
+  \item ``$3$ là một số nguyên tố.'' $\rightarrow$ \textcolor{AccentGreen}{\textbf{Mệnh đề Đúng.}}
+\end{itemize}
+
+\textbf{Không phải Mệnh đề:}
+\begin{itemize}
+  \item ``Một ngày đẹp trời làm sao!'' (Câu cảm thán).
+  \item ``Thầy Hợi rất đẹp trai!'' (Chủ quan/Cảm thán).
+  \item ``$3 + x = 2$.'' $\rightarrow$ Không phải mệnh đề (Chưa xác định được Đúng/Sai).
+\end{itemize}
+
+\subsection{Ký hiệu và Phân loại}
+
+\begin{itemize}
+  \item \textbf{Ký hiệu:} $p, q, r, \dots$
+  \item \textbf{Giá trị chân lý:} Đ (Đúng/$1$) hoặc S (Sai/$0$).
+\end{itemize}
+
+\textbf{Phân loại:}
+\begin{enumerate}
+  \item \textbf{Mệnh đề sơ cấp (Đơn giản):} Chỉ chứa một sự kiện duy nhất. Không thể chia nhỏ hơn.
+  \begin{itemize}
+    \item ``$3$ là một số nguyên tố.''
+  \end{itemize}
+  \item \textbf{Mệnh đề phức hợp:} Được tạo ra bằng cách kết hợp các mệnh đề sơ cấp bằng các \textbf{liên từ/toán tử logic} (không, và, hoặc, nếu\dots thì, nếu và chỉ nếu).
+  \begin{itemize}
+    \item ``$2$ là số nguyên tố \textbf{và} là một số chẵn.''
+    \item ``Thầy Hợi đang dạy học \textbf{hoặc} đang xem phim.''
+  \end{itemize}
+  Về mặt toán học, mệnh đề phức hợp được hình thành từ các mệnh đề hiện có bằng các toán tử logic.
+\end{enumerate}
+
+% ==============================================================================
+\section{Các toán tử Logic}
+% ==============================================================================
+
+\subsection{Phép phủ định (NOT)}
+
+Phép \textbf{phủ định} của $p$ được ký hiệu là $\neg p$ hoặc $\bar{p}$, là mệnh đề: ``Không phải trường hợp $p$''. Giá trị chân lý của nó ngược lại với $p$.
+
+\noindent
+\begin{minipage}[c]{0.30\textwidth}
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|}
+\hline
+$p$ & $\bar{p}$ \\ \hline
+0 & 1 \\ \hline
+1 & 0 \\ \hline
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.66\textwidth}
+\textbf{Ví dụ:}
+\begin{itemize}
+  \item $p$: ``Paris là thủ đô của Pháp.''
+  \item $\bar{p}$: ``Paris \textbf{không phải} là thủ đô của Pháp.''
+  \item $q$: ``$9$ là một số chính phương.''
+  \item $\bar{q}$: ``$9$ \textbf{không phải} là một số chính phương.''
+\end{itemize}
+\end{minipage}
+
+\subsection{Phép hoặc (OR) và Phép giao (AND)}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Phép tuyển ($p \lor q$)} là mệnh đề: ``$p$ hoặc $q$''.\\
+``Đúng nếu \textit{có ít nhất} một mệnh đề đúng.''
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c|}
+\hline
+$p$ & $q$ & $p \lor q$ \\ \hline
+0 & 0 & 0 \\ \hline
+0 & 1 & 1 \\ \hline
+1 & 0 & 1 \\ \hline
+1 & 1 & 1 \\ \hline
+\end{tabular}
+\end{center}
+
+\textit{VD: ``$3$ là số nguyên tố \textbf{hoặc} $3$ là số chẵn.'' (Đúng)}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Phép hội ($p \land q$)} là mệnh đề: ``$p$ và $q$''.\\
+``Đúng \textit{chỉ khi cả hai} đều đúng.''
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c|}
+\hline
+$p$ & $q$ & $p \land q$ \\ \hline
+0 & 0 & 0 \\ \hline
+0 & 1 & 0 \\ \hline
+1 & 0 & 0 \\ \hline
+1 & 1 & 1 \\ \hline
+\end{tabular}
+\end{center}
+
+\textit{VD: ``Trời đã mưa \textbf{và} hôm đó là thứ Sáu.''}
+\end{minipage}
+
+\subsection{Phép tuyển loại (XOR)}
+
+\textbf{Phép tuyển loại} của $p$ và $q$, ký hiệu là $p \oplus q$, là mệnh đề đúng khi \textbf{chỉ duy nhất một} trong hai mệnh đề $p$ hoặc $q$ đúng, và sai trong các trường hợp còn lại.
+
+\noindent
+\begin{minipage}[t]{0.38\textwidth}
+\textbf{Bảng chân lý:}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c|}
+\hline
+$p$ & $q$ & $p \oplus q$ \\ \hline
+0 & 0 & 0 \\ \hline
+0 & 1 & 1 \\ \hline
+1 & 0 & 1 \\ \hline
+1 & 1 & 0 \\ \hline
+\end{tabular}
+\end{center}
+\textit{Khác với OR ở dòng cuối!}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.58\textwidth}
+\textbf{Ví dụ:} \textit{``Sinh viên có thể chọn súp miễn phí hoặc salad miễn phí kèm bữa ăn.''}
+\begin{itemize}
+  \item $p$: ``Bạn chọn súp.''
+  \item $q$: ``Bạn chọn salad.''
+\end{itemize}
+\textbf{Logic ($p \oplus q$):}
+\begin{itemize}
+  \item \textbf{Đúng} nếu bạn chỉ lấy một thứ.
+  \item \textbf{Sai} nếu bạn cố lấy \textbf{cả hai} hoặc không lấy thứ nào.
+\end{itemize}
+\end{minipage}
+
+\subsection{Phép kéo theo và Phép tương đương}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Phép kéo theo ($p \to q$)}\\
+``Nếu $p$, thì $q$.''
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c|}
+\hline
+$p$ & $q$ & $p \to q$ \\ \hline
+0 & 0 & 1 \\ \hline
+0 & 1 & 1 \\ \hline
+1 & 0 & 0 \\ \hline
+1 & 1 & 1 \\ \hline
+\end{tabular}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Phép tương đương ($p \leftrightarrow q$)}\\
+``$p$ nếu và chỉ nếu $q$.''
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c|}
+\hline
+$p$ & $q$ & $p \leftrightarrow q$ \\ \hline
+0 & 0 & 1 \\ \hline
+0 & 1 & 0 \\ \hline
+1 & 0 & 0 \\ \hline
+1 & 1 & 1 \\ \hline
+\end{tabular}
+\end{center}
+\end{minipage}
+
+\vspace{4pt}
+\textit{Ví dụ $p \to q$: ``Nếu bạn học chăm chỉ, bạn sẽ qua môn.''}\\
+\textit{Ví dụ $p \leftrightarrow q$: ``Bạn có thể đi chuyến bay nếu và chỉ nếu bạn mua vé.''}
+
+\needspace{12\baselineskip}
+\textbf{Hiểu phép kéo theo qua một lời hứa:}
+
+Thầy hứa: \textit{``Nếu em học chăm chỉ ($p$) thì em sẽ qua môn ($q$).''}\\
+\textbf{Câu hỏi:} Trong trường hợp nào thầy đã \textbf{nói sai}?
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{cclc}
+\toprule
+$p$ & $q$ & \textbf{Tình huống} & $p \to q$ \\
+\midrule
+1 & 1 & Học chăm, qua môn $\Rightarrow$ thầy giữ lời & 1 \\
+1 & 0 & Học chăm, vẫn trượt $\Rightarrow$ \textcolor{AccentRed}{\textbf{thầy thất hứa}} & \textcolor{AccentRed}{0} \\
+0 & 1 & Không học, vẫn qua $\Rightarrow$ thầy không nói sai & 1 \\
+0 & 0 & Không học, trượt $\Rightarrow$ thầy không nói sai & 1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{\textcolor{AccentRed}{Ghi nhớ:}} $p \to q$ chỉ \textbf{Sai} khi $p$ \textbf{Đúng} mà $q$ \textbf{Sai}. Giả thiết sai thì phép kéo theo luôn đúng.
+
+\begin{baitap}{Kiểm tra nhanh}
+Cho $p$ là \textbf{Đúng} ($1$) và $q$ là \textbf{Sai} ($0$). Tính giá trị chân lý:
+
+\noindent
+\begin{minipage}[t]{0.45\textwidth}
+\begin{enumerate}
+  \item $\neg p = \textcolor{AccentRed}{\mathbf{0}}$
+  \item $p \lor q = \textcolor{AccentRed}{\mathbf{1}}$
+  \item $p \land q = \textcolor{AccentRed}{\mathbf{0}}$
+  \item $p \oplus q = \textcolor{AccentRed}{\mathbf{1}}$
+\end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+\begin{enumerate}[start=5]
+  \item $p \to q = \textcolor{AccentRed}{\mathbf{0}}$
+  \item $q \to p = \textcolor{AccentRed}{\mathbf{1}}$
+  \item $p \leftrightarrow q = \textcolor{AccentRed}{\mathbf{0}}$
+\end{enumerate}
+\end{minipage}
+
+\vspace{4pt}
+\centering
+\textit{Nhận xét: $p \to q$ và $q \to p$ \textbf{không} tương đương!}
+\end{baitap}
+
+% ==============================================================================
+\section{Biểu thức phức hợp}
+% ==============================================================================
+
+\subsection{Bảng chân lý của các mệnh đề phức hợp}
+
+Chúng ta có thể xây dựng các mệnh đề phức tạp chứa bất kỳ số lượng biến mệnh đề nào: $E(p, q, r\dots)$.\\
+\textbf{Ví dụ 1:} $E(p, q) = \neg(\bar{p} \lor q)$\\
+\textit{Cách làm: tính lần lượt từng cột, từ biểu thức con trong cùng ra ngoài.}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$p$ & $q$ & $\bar{p}$ & $\bar{p} \lor q$ & $\neg(\bar{p} \lor q)\;(E)$ \\ \hline
+0 & 0 & 1 & 1 & 0 \\ \hline
+0 & 1 & 1 & 1 & 0 \\ \hline
+1 & 0 & 0 & 0 & \textcolor{AccentRed}{1} \\ \hline
+1 & 1 & 0 & 1 & 0 \\ \hline
+\end{tabular}
+\end{center}
+
+\textit{Lưu ý: Hai biểu thức được gọi là \textbf{Tương đương Logic} nếu chúng có cột kết quả bảng chân lý giống hệt nhau.}
+
+\subsection{Kiểm tra tương đương logic và Biểu thức nhiều biến}
+
+\textbf{Ví dụ 2 (Kiểm tra tương đương logic):} Chứng minh $p \to q$ và $\neg p \lor q$ tương đương logic.\\
+\textit{Cách làm: lập bảng chân lý cho cả hai biểu thức rồi so sánh hai cột kết quả.}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$p$ & $q$ & $p \to q$ & $\bar{p}$ & $\bar{p} \lor q$ \\ \hline
+0 & 0 & \textcolor{AccentRed}{1} & 1 & \textcolor{AccentRed}{1} \\ \hline
+0 & 1 & \textcolor{AccentRed}{1} & 1 & \textcolor{AccentRed}{1} \\ \hline
+1 & 0 & \textcolor{AccentRed}{0} & 0 & \textcolor{AccentRed}{0} \\ \hline
+1 & 1 & \textcolor{AccentRed}{1} & 0 & \textcolor{AccentRed}{1} \\ \hline
+\end{tabular}
+\end{center}
+
+Cột 3 và cột 5 \textbf{giống hệt nhau}. $\Rightarrow p \to q \equiv \neg p \lor q$ (đây chính là \textbf{luật kéo theo}).
+
+\vspace{6pt}
+\textbf{Ví dụ 3 (Biểu thức có 3 biến):} $E(p, q, r) = (p \to q) \land (q \to r)$.\\
+\textit{Có 3 biến nên bảng có $2^3 = 8$ dòng.}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$p$ & $q$ & $r$ & $p \to q$ & $q \to r$ & $E$ \\ \hline
+0 & 0 & 0 & 1 & 1 & \textcolor{AccentRed}{1} \\ \hline
+0 & 0 & 1 & 1 & 1 & \textcolor{AccentRed}{1} \\ \hline
+0 & 1 & 0 & 1 & 0 & 0 \\ \hline
+0 & 1 & 1 & 1 & 1 & \textcolor{AccentRed}{1} \\ \hline
+1 & 0 & 0 & 0 & 1 & 0 \\ \hline
+1 & 0 & 1 & 0 & 1 & 0 \\ \hline
+1 & 1 & 0 & 1 & 0 & 0 \\ \hline
+1 & 1 & 1 & 1 & 1 & \textcolor{AccentRed}{1} \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Câu hỏi:} $E$ đúng trong những trường hợp nào? $\rightarrow$ 4 trường hợp được tô đỏ.
+
+\begin{baitap}{Bài tập: Chứng minh tương đương logic qua bảng chân lý}
+Chứng minh các tương đương logic sau bằng bảng chân lý:
+\begin{enumerate}[label=\textbf{\alph*)}]
+  \setcounter{enumi}{1}
+  \item $p \to (q \lor r) \Leftrightarrow \bar{r} \to (\bar{q} \to \bar{p})$
+  \item $\overline{(p \land q) \lor r} \Leftrightarrow (p \to \bar{q}) \land \bar{r}$
+  \item $p \land \overline{q \land r} \Leftrightarrow \overline{p \to q} \lor (p \land \bar{r})$
+  \item $(p \to q) \land \bar{q} \land (q \to r) \Leftrightarrow \bar{q} \land \bar{p}$
+  \item $(p \to q) \land (p \to r) \Leftrightarrow p \to (q \land r)$
+  \item $((p \to r) \lor (q \to r)) \to (p \to r) \Leftrightarrow p \to (q \lor r)$
+\end{enumerate}
+\end{baitap}
+
+\begin{baitap}{Lời giải mẫu: Câu (b)}
+\textbf{Chứng minh:} $p \to (q \lor r) \Leftrightarrow \bar{r} \to (\bar{q} \to \bar{p})$\\
+\textit{Có 3 biến nên bảng có $2^3 = 8$ dòng. Tính vế trái trước, rồi đến vế phải.}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c||c|c||c|c|}
+\hline
+$p$ & $q$ & $r$ & $q \lor r$ & $p \to (q \lor r)$ & $\bar{q} \to \bar{p}$ & $\bar{r} \to (\bar{q} \to \bar{p})$ \\ \hline
+0 & 0 & 0 & 0 & \textcolor{AccentRed}{1} & 1 & \textcolor{AccentRed}{1} \\ \hline
+0 & 0 & 1 & 1 & \textcolor{AccentRed}{1} & 1 & \textcolor{AccentRed}{1} \\ \hline
+0 & 1 & 0 & 1 & \textcolor{AccentRed}{1} & 1 & \textcolor{AccentRed}{1} \\ \hline
+0 & 1 & 1 & 1 & \textcolor{AccentRed}{1} & 1 & \textcolor{AccentRed}{1} \\ \hline
+1 & 0 & 0 & 0 & \textcolor{AccentRed}{0} & 0 & \textcolor{AccentRed}{0} \\ \hline
+1 & 0 & 1 & 1 & \textcolor{AccentRed}{1} & 0 & \textcolor{AccentRed}{1} \\ \hline
+1 & 1 & 0 & 1 & \textcolor{AccentRed}{1} & 1 & \textcolor{AccentRed}{1} \\ \hline
+1 & 1 & 1 & 1 & \textcolor{AccentRed}{1} & 1 & \textcolor{AccentRed}{1} \\ \hline
+\end{tabular}
+\end{center}
+
+Hai cột kết quả \textbf{giống hệt nhau} (chỉ sai khi $p = 1, q = 0, r = 0$).\\
+$\Rightarrow$ Hai biểu thức \textbf{tương đương logic}.
+\end{baitap}
+
+\begin{baitap}{Lời giải mẫu: Câu (c)}
+\textbf{Chứng minh:} $\overline{(p \land q) \lor r} \Leftrightarrow (p \to \bar{q}) \land \bar{r}$\\
+\textit{Tính vế trái trước, rồi đến vế phải.}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c||c|c|c||c|c|c|}
+\hline
+$p$ & $q$ & $r$ & $p \land q$ & $(p \land q) \lor r$ & $\overline{(p \land q) \lor r}$ & $p \to \bar{q}$ & $\bar{r}$ & $(p \to \bar{q}) \land \bar{r}$ \\ \hline
+0 & 0 & 0 & 0 & 0 & \textcolor{AccentRed}{1} & 1 & 1 & \textcolor{AccentRed}{1} \\ \hline
+0 & 0 & 1 & 0 & 1 & \textcolor{AccentRed}{0} & 1 & 0 & \textcolor{AccentRed}{0} \\ \hline
+0 & 1 & 0 & 0 & 0 & \textcolor{AccentRed}{1} & 1 & 1 & \textcolor{AccentRed}{1} \\ \hline
+0 & 1 & 1 & 0 & 1 & \textcolor{AccentRed}{0} & 1 & 0 & \textcolor{AccentRed}{0} \\ \hline
+1 & 0 & 0 & 0 & 0 & \textcolor{AccentRed}{1} & 1 & 1 & \textcolor{AccentRed}{1} \\ \hline
+1 & 0 & 1 & 0 & 1 & \textcolor{AccentRed}{0} & 1 & 0 & \textcolor{AccentRed}{0} \\ \hline
+1 & 1 & 0 & 1 & 1 & \textcolor{AccentRed}{0} & 0 & 1 & \textcolor{AccentRed}{0} \\ \hline
+1 & 1 & 1 & 1 & 1 & \textcolor{AccentRed}{0} & 0 & 0 & \textcolor{AccentRed}{0} \\ \hline
+\end{tabular}
+\end{center}
+
+Hai cột kết quả \textbf{giống hệt nhau}. $\Rightarrow$ Hai biểu thức \textbf{tương đương logic}.
+\end{baitap}
+
+% ==============================================================================
+\Needspace{22\baselineskip}
+\section{Các tương đương Logic}
+% ==============================================================================
+
+\subsection{Bảng các tương đương Logic}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.28}
+\begin{tabular}{ll}
+\toprule
+\textbf{Luật} & \textbf{Tương đương} \\
+\midrule
+\textbf{Đồng nhất} & $p \land 1 \equiv p;\quad p \lor 0 \equiv p$ \\
+ & $p \lor 1 \equiv 1;\quad p \land 0 \equiv 0$ \\
+\textbf{Lũy đẳng} & $p \lor p \equiv p;\quad p \land p \equiv p$ \\
+\textbf{Phủ định kép} & $\neg(\neg p) \equiv p$ \\
+\textbf{Phủ định} & $p \lor \neg p \equiv 1$ (Hằng đúng) \\
+ & $p \land \neg p \equiv 0$ (Hằng sai) \\
+\textbf{Giao hoán} & $p \lor q \equiv q \lor p$ \\
+ & $p \land q \equiv q \land p$ \\
+\textbf{Kết hợp} & $(p \lor q) \lor r \equiv p \lor (q \lor r)$ \\
+ & $(p \land q) \land r \equiv p \land (q \land r)$ \\
+\midrule
+\textbf{Phân phối} & $p \lor (q \land r) \equiv (p \lor q) \land (p \lor r)$ \\
+ & $p \land (q \lor r) \equiv (p \land q) \lor (p \land r)$ \\
+\textbf{De Morgan} & $\neg(p \land q) \equiv \neg p \lor \neg q$ \\
+ & $\neg(p \lor q) \equiv \neg p \land \neg q$ \\
+\textbf{Hấp thụ} & $p \lor (p \land q) \equiv p$ \\
+ & $p \land (p \lor q) \equiv p$ \\
+\textbf{Kéo theo} & $p \to q \equiv \neg p \lor q$ \\
+ & $p \to q \equiv \neg q \to \neg p$ (Phản đảo) \\
+\textbf{Tương đương} & $p \leftrightarrow q \equiv (p \to q) \land (q \to p)$ \\
+ & $p \leftrightarrow q \equiv \neg p \leftrightarrow \neg q$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{baitap}{Ví dụ: Chứng minh tương đương Logic}
+\textbf{Yêu cầu:} Chứng minh $\neg(p \lor (\neg p \land q))$ và $\neg p \land \neg q$ tương đương logic bằng cách sử dụng các quy luật.
+
+\begin{align*}
+  \neg(p \lor (\neg p \land q)) &\equiv \neg p \land \neg(\neg p \land q) && \text{\textcolor{PrimaryBlue}{De Morgan}} \\
+  &\equiv \neg p \land [\neg(\neg p) \lor \neg q] && \text{\textcolor{PrimaryBlue}{De Morgan}} \\
+  &\equiv \neg p \land (p \lor \neg q) && \text{\textcolor{PrimaryBlue}{phủ định kép}} \\
+  &\equiv (\neg p \land p) \lor (\neg p \land \neg q) && \text{\textcolor{PrimaryBlue}{luật phân phối}} \\
+  &\equiv 0 \lor (\neg p \land \neg q) && \text{\textcolor{PrimaryBlue}{vì $\neg p \land p \equiv 0$}} \\
+  &\equiv (\neg p \land \neg q) \lor 0 && \text{\textcolor{PrimaryBlue}{giao hoán}} \\
+  &\equiv \textcolor{AccentRed}{\neg p \land \neg q} && \text{\textcolor{PrimaryBlue}{đồng nhất}}
+\end{align*}
+\end{baitap}
+
+\begin{baitap}{Ví dụ: Chứng minh một hằng đúng}
+\textbf{Yêu cầu:} Chứng minh $(p \land q) \to (p \lor q)$ là một hằng đúng (tautology).
+
+\textbf{Lời giải:} Chúng ta sẽ sử dụng các tương đương logic để đưa biểu thức về giá trị $1$.
+\begin{align*}
+  (p \land q) \to (p \lor q) &\equiv \neg(p \land q) \lor (p \lor q) && \text{\textcolor{PrimaryBlue}{Kéo theo}} \\
+  &\equiv (\neg p \lor \neg q) \lor (p \lor q) && \text{\textcolor{PrimaryBlue}{De Morgan thứ nhất}} \\
+  &\equiv (\neg p \lor p) \lor (\neg q \lor q) && \text{\textcolor{PrimaryBlue}{Kết hợp và giao hoán}} \\
+  &\equiv \mathbf{1} \lor \mathbf{1} && \text{\textcolor{PrimaryBlue}{Phủ định}} \\
+  &\equiv \textcolor{AccentRed}{\mathbf{1}} && \text{\textcolor{PrimaryBlue}{Lũy đẳng}}
+\end{align*}
+Biểu thức luôn nhận giá trị $\mathbf{1} \Rightarrow$ là \textbf{hằng đúng}.
+\end{baitap}
+
+\begin{baitap}{Bài tập: Áp dụng các luật logic}
+\textbf{Yêu cầu:} Không dùng bảng chân lý, hãy dùng các \textbf{luật logic} để chứng minh:
+\begin{enumerate}
+  \item $\neg(p \to q) \equiv p \land \neg q$
+  \item $(p \to q) \land (p \to r) \equiv p \to (q \land r)$
+  \item $(p \land q) \to p$ là một hằng đúng.
+  \item $\neg(p \lor \neg q) \lor (\neg p \land \neg q) \equiv \neg p$
+  \item $[(p \to q) \land p] \to q$ là một hằng đúng.
+\end{enumerate}
+\textbf{\textcolor{PrimaryBlue}{Gợi ý:}} Thường bắt đầu bằng \textbf{luật kéo theo} để khử dấu $\to$, rồi dùng \textbf{De Morgan} để đưa dấu phủ định vào trong.
+\end{baitap}
+
+\begin{baitap}{Lời giải mẫu: Bài 2}
+\textbf{Chứng minh:} $(p \to q) \land (p \to r) \equiv p \to (q \land r)$\\
+\textit{Gợi mở: Khử dấu $\to$ ở vế trái trước. Ta thấy $\neg p$ xuất hiện ở cả hai vế của phép $\land$.}
+
+\begin{align*}
+  (p \to q) \land (p \to r) &\equiv (\neg p \lor q) \land (\neg p \lor r) && \text{\textcolor{PrimaryBlue}{Kéo theo}} \\
+  &\equiv \neg p \lor (q \land r) && \text{\textcolor{PrimaryBlue}{Phân phối}} \\
+  &\equiv \textcolor{AccentRed}{p \to (q \land r)} && \text{\textcolor{PrimaryBlue}{Kéo theo}}
+\end{align*}
+
+\textbf{\textcolor{AccentRed}{Kết luận:}} Hai biểu thức \textbf{tương đương logic}. Ý nghĩa: ``Nếu $p$ thì $q$, và nếu $p$ thì $r$'' cũng chính là ``Nếu $p$ thì cả $q$ và $r$''.
+\end{baitap}
+
+\begin{baitap}{Lời giải mẫu: Bài 5}
+\textbf{Chứng minh:} $[(p \to q) \land p] \to q$ là một hằng đúng.\\
+\textit{Mục tiêu: biến đổi biểu thức về giá trị $1$.}
+
+\begin{align*}
+  [(p \to q) \land p] \to q &\equiv [(\neg p \lor q) \land p] \to q && \text{\textcolor{PrimaryBlue}{Kéo theo}} \\
+  &\equiv [(p \land \neg p) \lor (p \land q)] \to q && \text{\textcolor{PrimaryBlue}{Giao hoán, phân phối}} \\
+  &\equiv [\mathbf{0} \lor (p \land q)] \to q && \text{\textcolor{PrimaryBlue}{Phủ định}} \\
+  &\equiv (p \land q) \to q && \text{\textcolor{PrimaryBlue}{Đồng nhất}} \\
+  &\equiv \neg(p \land q) \lor q && \text{\textcolor{PrimaryBlue}{Kéo theo}} \\
+  &\equiv (\neg p \lor \neg q) \lor q && \text{\textcolor{PrimaryBlue}{De Morgan}} \\
+  &\equiv \neg p \lor (\neg q \lor q) && \text{\textcolor{PrimaryBlue}{Kết hợp}} \\
+  &\equiv \neg p \lor \mathbf{1} && \text{\textcolor{PrimaryBlue}{Phủ định}} \\
+  &\equiv \textcolor{AccentRed}{\mathbf{1}} && \text{\textcolor{PrimaryBlue}{Đồng nhất}}
+\end{align*}
+$\Rightarrow$ Đây là hằng đúng. Nó chính là cơ sở của quy tắc \textbf{Modus Ponens}.
+\end{baitap}
+
+% ==============================================================================
+\section{Suy luận và Chứng minh}
+% ==============================================================================
+
+\subsection{Các quy tắc suy luận}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.23\textwidth}p{0.23\textwidth}p{0.23\textwidth}p{0.23\textwidth}@{}}
+\parbox[t][2.3\baselineskip][t]{\linewidth}{\centering\textbf{\textcolor{PrimaryBlue}{Modus Ponens}}} &
+\parbox[t][2.3\baselineskip][t]{\linewidth}{\centering\textbf{\textcolor{PrimaryBlue}{Modus Tollens}}} &
+\parbox[t][2.3\baselineskip][t]{\linewidth}{\centering\textbf{\textcolor{PrimaryBlue}{Tam đoạn luận giả định}}} &
+\parbox[t][2.3\baselineskip][t]{\linewidth}{\centering\textbf{\textcolor{PrimaryBlue}{Tam đoạn luận tuyển}}} \\[4pt]
+\centering $\suyluan{p \\ p \to q}{q}$ &
+\centering $\suyluan{p \to q \\ \bar{q}}{\bar{p}}$ &
+\centering $\suyluan{p \to q \\ q \to r}{p \to r}$ &
+\centering\arraybackslash $\suyluan{p \lor q \\ \bar{p}}{q}$ \\[18pt]
+\centering\small\itshape Trời mưa. Nếu mưa thì đường ướt. $\Rightarrow$ Đường ướt. &
+\centering\small\itshape Nếu mưa thì đường ướt. Đường không ướt. $\Rightarrow$ Không mưa. &
+\centering\small\itshape Học thì hiểu bài; hiểu bài thì qua môn. $\Rightarrow$ Học thì qua môn. &
+\centering\small\itshape\arraybackslash Đi xe buýt hoặc đi bộ. Không đi xe buýt. $\Rightarrow$ Đi bộ. \\
+\end{tabular}
+\end{center}
+
+\vspace{8pt}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.23\textwidth}p{0.23\textwidth}p{0.23\textwidth}p{0.23\textwidth}@{}}
+\centering\textbf{\textcolor{PrimaryBlue}{Quy tắc cộng}} &
+\centering\textbf{\textcolor{PrimaryBlue}{Quy tắc rút gọn}} &
+\centering\textbf{\textcolor{PrimaryBlue}{Quy tắc hội}} &
+\centering\arraybackslash\textbf{\textcolor{PrimaryBlue}{Quy tắc phân giải}} \\[4pt]
+\centering $\suyluan{p}{p \lor q}$ &
+\centering $\suyluan{p \land q}{p}$ &
+\centering $\suyluan{p \\ q}{p \land q}$ &
+\centering\arraybackslash $\suyluan{p \lor q \\ \bar{p} \lor r}{q \lor r}$ \\[16pt]
+\centering\small\itshape $3$ là số nguyên tố. $\Rightarrow$ $3$ là số nguyên tố hoặc $3$ là số chẵn. &
+\centering\small\itshape Trời mưa và lạnh. $\Rightarrow$ Trời mưa. &
+\centering\small\itshape Trời mưa. Trời lạnh. $\Rightarrow$ Trời mưa và lạnh. &
+\centering\small\itshape\arraybackslash Mưa hoặc nắng. Không mưa hoặc lạnh. $\Rightarrow$ Nắng hoặc lạnh. \\
+\end{tabular}
+\end{center}
+
+\begin{baitap}{Bài tập: Kiểm tra tính hợp lệ của các lập luận}
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{@{}p{0.31\textwidth}p{0.31\textwidth}p{0.31\textwidth}@{}}
+\textbf{a)}\; $\suyluan{p \\ q \to r \\ p \to \bar{r}}{\bar{q}}$ &
+\textbf{b)}\; $\suyluan{p \to q \\ \bar{q} \\ \bar{r}}{\overline{p \lor r}}$ &
+\textbf{c)}\; $\suyluan{p \to (q \to r) \\ \bar{q} \to \bar{p} \\ p}{r}$ \\[24pt]
+\textbf{d)}\; $\suyluan{p \to r \\ \bar{p} \to q \\ q \to s}{\bar{r} \to s}$ &
+\textbf{e)}\; $\suyluan{p \leftrightarrow q \\ q \to r \\ r \lor \bar{s} \\ \bar{s} \to \bar{q}}{s}$ &
+\textbf{f)}\; $\suyluan{p \land q \\ p \to (r \land q) \\ r \to (s \lor t) \\ \bar{s}}{t}$ \\[28pt]
+\textbf{g)}\; $\suyluan{p \\ p \to q \\ \bar{s} \to r \\ r \to \bar{q}}{s \lor t}$ &
+\textbf{h)}\; $\suyluan{p \to q \\ r \to s \\ (s \land q) \to (p \land t) \\ t \to \bar{p}}{\overline{p \land r}}$ &
+\textbf{i)}\; $\suyluan{t \to u \\ r \to (s \lor t) \\ (\bar{p} \lor q) \to r \\ \overline{s \lor u}}{p}$
+\end{tabular}
+\end{center}
+\end{baitap}
+
+\begin{baitap}{Lời giải chi tiết: Bài (a)}
+\textbf{Lập luận:} $p,\quad q \to r,\quad p \to \bar{r}\quad \therefore \bar{q}$\\
+\textit{Gợi mở: Từ $p$ và $p \to \bar{r}$, ta suy ra được gì?}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}ll@{\hspace{3cm}}r@{}}
+1. & $p$ & (Tiền đề) \\
+2. & $p \to \bar{r}$ & (Tiền đề) \\
+3. & $\bar{r}$ & (Modus Ponens từ 1, 2) \\
+4. & $q \to r$ & (Tiền đề) \\
+5. & \textcolor{AccentRed}{$\bar{q}$} & (\textbf{Modus Tollens} từ 3, 4)
+\end{tabular}
+\end{center}
+
+\textbf{\textcolor{AccentRed}{Kết luận:}} Lập luận \textbf{hợp lệ}.
+\end{baitap}
+
+\begin{baitap}{Lời giải chi tiết: Bài (b)}
+\textbf{Lập luận:} $p \to q,\quad \bar{q},\quad \bar{r}\quad \therefore \overline{p \lor r}$\\
+\textit{Gợi mở: Theo De Morgan, $\overline{p \lor r} \equiv \bar{p} \land \bar{r}$. Ta đã có $\bar{r}$, cần tìm $\bar{p}$.}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}ll@{\hspace{3cm}}r@{}}
+1. & $p \to q$ & (Tiền đề) \\
+2. & $\bar{q}$ & (Tiền đề) \\
+3. & $\bar{p}$ & (\textbf{Modus Tollens} từ 1, 2) \\
+4. & $\bar{r}$ & (Tiền đề) \\
+5. & $\bar{p} \land \bar{r}$ & (Phép hội từ 3, 4) \\
+6. & \textcolor{AccentRed}{$\overline{p \lor r}$} & (\textbf{De Morgan} từ 5)
+\end{tabular}
+\end{center}
+
+\textbf{\textcolor{AccentRed}{Kết luận:}} Lập luận \textbf{hợp lệ}.
+\end{baitap}
+
+\begin{baitap}{Lời giải chi tiết: Bài (c)}
+\textbf{Lập luận:} $p \to (q \to r),\quad \bar{q} \to \bar{p},\quad p\quad \therefore r$\\
+\textit{Gợi mở: Để có $r$ từ $q \to r$, ta cần chứng minh được $q$.}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}ll@{\hspace{3cm}}r@{}}
+1. & $p$ & (Tiền đề) \\
+2. & $p \to (q \to r)$ & (Tiền đề) \\
+3. & $q \to r$ & (Modus Ponens từ 1, 2) \\
+4. & $\bar{q} \to \bar{p}$ & (Tiền đề) \\
+5. & $p \to q$ & (\textbf{Phản đảo} của 4) \\
+6. & $q$ & (Modus Ponens từ 1, 5) \\
+7. & \textcolor{AccentRed}{$r$} & (\textbf{Modus Ponens} từ 3, 6)
+\end{tabular}
+\end{center}
+
+\textbf{Kết luận:} Lập luận \textbf{hợp lệ}.
+\end{baitap}
+
+\begin{baitap}{Bài toán thực tế}
+\textbf{Đọc đề và tìm các mệnh đề sơ cấp:}
+
+Ông Minh nói rằng nếu ông không được tăng lương, ông sẽ nghỉ việc. Mặt khác, nếu ông nghỉ việc và vợ ông mất việc, ông sẽ phải bán xe. Biết rằng nếu vợ ông đi làm muộn, bà ấy sớm muộn cũng sẽ mất việc và \textcolor{AccentRed}{ông Minh đã được tăng lương}. Nếu ông không bán xe, thì vợ ông đã không đi làm muộn!
+
+\begin{itemize}
+  \item $p$: ``Ông Minh được tăng lương'' \textit{(câu gốc là $\neg p$)}
+  \item $q$: ``Ông nghỉ việc''
+  \item $r$: ``Vợ ông mất việc''
+  \item $s$: ``Ông bán xe''
+  \item $t$: ``Vợ ông đi làm muộn''
+\end{itemize}
+
+\textbf{Tiền đề:}
+\begin{enumerate}
+  \item Không tăng lương ($\neg p$) $\to$ nghỉ việc ($q$): $\neg p \to q$
+  \item Nghỉ việc ($q$) VÀ vợ mất việc ($r$) $\to$ bán xe ($s$): $(q \land r) \to s$
+  \item Vợ đi muộn ($t$) $\to$ mất việc ($r$): $t \to r$
+  \item Sự kiện: Ông Minh được tăng lương ($p$ đúng).
+\end{enumerate}
+
+\textbf{Yêu cầu:} Chứng minh ``Nếu không bán xe ($\neg s$), thì vợ không đi muộn ($\neg t$).''
+\end{baitap}
+
+\begin{baitap}{Bài toán: Đi bơi hay đi canô? (Đề bài)}
+\textbf{Yêu cầu:} Chứng minh các tiền đề sau dẫn đến kết luận: \textit{``Chúng ta sẽ về nhà trước khi mặt trời lặn.''}
+\begin{enumerate}
+  \item ``Chiều nay trời không nắng và trời lạnh hơn hôm qua.''
+  \item ``Chúng ta sẽ đi bơi chỉ khi trời nắng.''
+  \item ``Nếu chúng ta không đi bơi, chúng ta sẽ đi tham quan bằng canô.''
+  \item ``Nếu đi tham quan bằng canô, chúng ta sẽ về nhà trước khi mặt trời lặn.''
+\end{enumerate}
+\textit{Câu hỏi: Có bao nhiêu mệnh đề sơ cấp trong bài toán này?}
+\end{baitap}
+
+\begin{baitap}{Bài toán: Đi bơi hay đi canô? (Hình thức hóa và Lời giải)}
+\noindent
+\begin{minipage}[t]{0.55\textwidth}
+\textbf{Đặt các mệnh đề:}
+\begin{itemize}
+  \item $p$: ``Chiều nay trời nắng.''
+  \item $q$: ``Trời lạnh hơn hôm qua.''
+  \item $r$: ``Chúng ta sẽ đi bơi.''
+  \item $s$: ``Chúng ta sẽ đi tham quan bằng canô.''
+  \item $t$: ``Chúng ta sẽ về nhà trước khi mặt trời lặn.''
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.42\textwidth}
+\textbf{Hình thức hóa:}
+\begin{enumerate}
+  \item $\neg p \land q$
+  \item $r \to p$ (\textit{``$r$ chỉ khi $p$''})
+  \item $\neg r \to s$
+  \item $s \to t$
+\end{enumerate}
+\textbf{Kết luận:} $t$
+\end{minipage}
+
+\vspace{6pt}
+\textbf{Lời giải:} Tiền đề: $\neg p \land q,\; r \to p,\; \neg r \to s,\; s \to t$. Kết luận: $t$.
+\vspace{3pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{cll}
+\toprule
+\textbf{Bước} & \textbf{Mệnh đề} & \textbf{Lý do} \\
+\midrule
+1. & $\neg p \land q$ & Tiền đề \\
+2. & $\neg p$ & Luật rút gọn từ (1) \\
+3. & $r \to p$ & Tiền đề \\
+4. & $\neg r$ & Modus tollens từ (2) và (3) \\
+5. & $\neg r \to s$ & Tiền đề \\
+6. & $s$ & Modus ponens từ (4) và (5) \\
+7. & $s \to t$ & Tiền đề \\
+8. & \textcolor{AccentRed}{$t$} & Modus ponens từ (6) và (7) \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{2pt}
+$\therefore$ Kết luận ``Chúng ta sẽ về nhà trước khi mặt trời lặn'' là hợp lệ.
+\end{baitap}
+
+\subsection{Quy tắc phản ví dụ và phản chứng}
+
+\textbf{Câu hỏi:} Lập luận $p_1, p_2, \dots, p_n \;\therefore q$ có hợp lệ không?\\
+\textbf{Cách làm (truy ngược):}
+\begin{enumerate}
+  \item Lập bảng: tiền đề $= 1$, kết luận $= 1$?
+  \item Cột ``Gán'': \textbf{gán kết luận $= 0$}, mọi tiền đề $= 1$.
+  \item \textbf{Truy ngược} từ dòng kết luận đi lên: mỗi bước (B1, B2, \dots) suy ra giá trị bắt buộc của một biến, ghi vào dòng của mệnh đề đã dùng.
+  \item Tiếp tục cho đến khi kiểm tra hết các tiền đề.
+\end{enumerate}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Không gặp mâu thuẫn:} Bộ giá trị tìm được là \textbf{phản ví dụ}\\
+$\Rightarrow$ lập luận \textcolor{AccentRed}{\textbf{không hợp lệ}}.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Gặp mâu thuẫn:} Kết luận không thể bằng $0$ (\textbf{phản chứng})\\
+$\Rightarrow$ lập luận \textcolor{AccentGreen}{\textbf{hợp lệ}}.
+\end{minipage}
+
+\begin{baitap}{Lời giải bằng truy ngược: Bài (d)}
+\textbf{Kiểm tra lập luận:} $p \to r,\quad \neg p \to q,\quad q \to s\quad \therefore \neg r \to s$
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|>{\columncolor{green!16}}c|c|c|c|c|}
+\hline
+\textbf{Mệnh đề} & \textbf{Cần} & \cellcolor{green!16}\textbf{Gán} & \textbf{B1} & \textbf{B2} & \textbf{B3} & \textbf{B4} \\ \hline
+$p \to r$ & 1 & 1 & & & & \textcolor{AccentRed}{$1 \to 0 = 0$} \\ \hline
+$\neg p \to q$ & 1 & 1 & & & $\neg p: 0 \Rightarrow p: 1$ & \\ \hline
+$q \to s$ & 1 & 1 & & $q: 0$ & & \\ \hline
+\cellcolor{orange!20}$\therefore \neg r \to s$ & \cellcolor{orange!20}1? & \textcolor{AccentRed}{0} & $s: 0,\; r: 0$ & & & \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Mâu thuẫn} $\Rightarrow$ lập luận \textcolor{AccentGreen}{\textbf{hợp lệ}}.\\
+\textit{Kết luận $\neg r \to s = 0$ khi và chỉ khi $\neg r = 1$ và $s = 0$, tức $r = 0, s = 0$.}
+\end{baitap}
+
+\begin{baitap}{Lời giải bằng truy ngược: Bài (e)}
+\textbf{Kiểm tra lập luận:} $p \leftrightarrow q,\quad q \to r,\quad r \lor \neg s,\quad \neg s \to \neg q\quad \therefore s$
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|>{\columncolor{green!16}}c|c|c|c|c|c|}
+\hline
+\textbf{Mệnh đề} & \textbf{Cần} & \cellcolor{green!16}\textbf{Gán} & \textbf{B1} & \textbf{B2} & \textbf{B3} & \textbf{B4} & \textbf{B5} \\ \hline
+$p \leftrightarrow q$ & 1 & 1 & & & $p: 0$ & & \\ \hline
+$q \to r$ & 1 & 1 & & & & $r$ tùy ý & \\ \hline
+$r \lor \neg s$ & 1 & 1 & & & & & \textcolor{AccentGreen}{\textbf{$r$ tùy ý}} \\ \hline
+$\neg s \to \neg q$ & 1 & 1 & & $\neg q: 1 \Rightarrow q: 0$ & & & \\ \hline
+\cellcolor{orange!20}$\therefore s$ & \cellcolor{orange!20}1? & \textcolor{AccentRed}{0} & $s: 0$ & & & & \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Không mâu thuẫn} $\Rightarrow$ phản ví dụ: $p = 0, q = 0, r = 0, s = 0 \Rightarrow$ lập luận \textcolor{AccentRed}{\textbf{không hợp lệ}}.\\
+\textit{$r$ có thể bằng $0$ hoặc $1$, chọn một giá trị bất kỳ là được phản ví dụ.}
+\end{baitap}
+
+\begin{baitap}{Lời giải bằng truy ngược: Bài (f)}
+\textbf{Kiểm tra lập luận:} $p \land q,\quad p \to (r \land q),\quad r \to (s \lor t),\quad \neg s\quad \therefore t$
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|>{\columncolor{green!16}}c|c|c|c|c|c|}
+\hline
+\textbf{Mệnh đề} & \textbf{Cần} & \cellcolor{green!16}\textbf{Gán} & \textbf{B1} & \textbf{B2} & \textbf{B3} & \textbf{B4} & \textbf{B5} \\ \hline
+$p \land q$ & 1 & 1 & & & & & \textcolor{AccentRed}{$0 \land q = 0$} \\ \hline
+$p \to (r \land q)$ & 1 & 1 & & & & $r \land q: 0 \Rightarrow p: 0$ & \\ \hline
+$r \to (s \lor t)$ & 1 & 1 & & & $s \lor t: 0 \Rightarrow r: 0$ & & \\ \hline
+$\neg s$ & 1 & 1 & & $s: 0$ & & & \\ \hline
+\cellcolor{orange!20}$\therefore t$ & \cellcolor{orange!20}1? & \textcolor{AccentRed}{0} & $t: 0$ & & & & \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Mâu thuẫn} $\Rightarrow$ lập luận \textcolor{AccentGreen}{\textbf{hợp lệ}}.
+\end{baitap}
+
+\begin{baitap}{Bài tập: Quy tắc phản ví dụ}
+\noindent
+\begin{minipage}[t]{0.64\textwidth}
+\begin{enumerate}[label=\textbf{\alph*)}, leftmargin=1.2em]
+  \setcounter{enumi}{6}
+  \item $p,\; p \to q,\; \neg s \to r,\; r \to \neg q\;\; \therefore s \lor t$
+  \item $p \to q,\; r \to s,\; (s \land q) \to (p \land t),\; t \to \neg p\;\; \therefore \neg(p \land r)$
+  \item $t \to u,\; r \to (s \lor t),\; (\neg p \lor q) \to r,\; \neg(s \lor u)\;\; \therefore p$
+\end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.34\textwidth}
+\begin{enumerate}[label=\textbf{\arabic*)}, leftmargin=1.2em]
+  \item $p \to q,\; r \to q\;\; \therefore p \to r$
+  \item $p \to q,\; q \lor r\;\; \therefore p \lor r$
+  \item $p \to q,\; \neg p\;\; \therefore \neg q$
+  \item $(p \land q) \to r,\; \neg r,\; p\;\; \therefore \neg q$
+\end{enumerate}
+\end{minipage}
+\end{baitap}
+
+% ==============================================================================
+\section{Vị từ và lượng từ}
+% ==============================================================================
+
+\subsection{Vì sao cần vị từ?}
+
+\textbf{Câu hỏi:} Câu ``$x > 3$'' có phải là mệnh đề không? $\rightarrow$ \textbf{Không}: chưa biết $x$ là bao nhiêu nên chưa xác định được đúng hay sai.
+
+\textbf{Câu hỏi:} Lập luận sau có hợp lệ không?
+\begin{itemize}
+  \item ``\textbf{Mọi} sinh viên UIT đều học Cấu trúc rời rạc.''
+  \item ``An là sinh viên UIT.''
+  \item $\therefore$ ``An học Cấu trúc rời rạc.''
+\end{itemize}
+Rõ ràng là hợp lệ, nhưng logic mệnh đề \textbf{không diễn tả được}: ba câu là ba mệnh đề $p, q, r$ khác nhau, không liên quan.
+
+\subsection{Vị từ (Predicates)}
+
+\textbf{Định nghĩa:} Một \textbf{vị từ} (hay hàm mệnh đề) là một câu khẳng định có chứa biến. Nó chỉ trở thành một mệnh đề khi các biến được gán giá trị cụ thể.
+\begin{itemize}
+  \item \textbf{Ví dụ 1:} $P(n) : 2n + 1 > 5 \rightarrow$ chưa phải mệnh đề.
+  \begin{itemize}
+    \item $P(2) : 2 \cdot 2 + 1 > 5$, tức $5 > 5 \rightarrow$ mệnh đề \textcolor{AccentRed}{\textbf{Sai}}.
+    \item $P(3) : 7 > 5 \rightarrow$ mệnh đề \textcolor{AccentGreen}{\textbf{Đúng}}.
+  \end{itemize}
+  \item \textbf{Ví dụ 2:} $Q(x)$: ``$x$ là số nguyên tố''. $Q(7)$ \textcolor{AccentGreen}{\textbf{Đúng}}, $Q(9)$ \textcolor{AccentRed}{\textbf{Sai}}.
+  \item \textbf{Ví dụ 3:} $P(x, y) : 2x + 3y = 1$ (vị từ $2$ biến). $P(2, -1): 4 - 3 = 1$ \textcolor{AccentGreen}{\textbf{Đúng}}; $P(0, 0)$ \textcolor{AccentRed}{\textbf{Sai}}.
+\end{itemize}
+
+Tập hợp các giá trị làm vị từ đúng được gọi là \textbf{tập chân lý}. Ví dụ 1 trên $\mathbb{N}$: tập chân lý của $P(n)$ là $\{3, 4, 5, \dots\}$.
+
+\subsection{Lượng từ (Quantifiers)}
+
+Cách thứ hai biến vị từ thành mệnh đề: dùng \textbf{lượng từ}.
+\begin{itemize}
+  \item \textbf{Lượng từ phổ quát ($\forall$):} $\forall x \in A,\; P(x)$
+  \begin{itemize}
+    \item Đọc là: ``Với mọi $x$ thuộc $A$, $P(x)$''.
+    \item \textcolor{AccentGreen}{\textbf{Đúng}} nếu $P(x)$ đúng với \textbf{mọi} $x \in A$. \textcolor{AccentRed}{\textbf{Sai}} nếu có \textbf{một} $x$ làm $P(x)$ sai.
+  \end{itemize}
+  \item \textbf{Lượng từ tồn tại ($\exists$):} $\exists x \in A,\; P(x)$
+  \begin{itemize}
+    \item Đọc là: ``Tồn tại ít nhất một $x$ thuộc $A$ sao cho $P(x)$''.
+    \item \textcolor{AccentGreen}{\textbf{Đúng}} nếu có \textbf{ít nhất một} $x \in A$ làm $P(x)$ đúng. \textcolor{AccentRed}{\textbf{Sai}} nếu $P(x)$ sai với \textbf{mọi} $x$.
+  \end{itemize}
+\end{itemize}
+
+\textit{Trên tập hữu hạn $A = \{a_1, \dots, a_n\}$:} $\forall x\, P(x) \equiv P(a_1) \land \cdots \land P(a_n)$, $\quad \exists x\, P(x) \equiv P(a_1) \lor \cdots \lor P(a_n)$.
+
+\subsection{Ví dụ áp dụng lượng từ}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Xác định giá trị chân lý (trên $\mathbb{R}$):}
+\begin{itemize}
+  \item $\forall x,\; x^2 \ge 0$ \quad \textcolor{AccentGreen}{\textbf{Đúng.}}
+  \item $\forall x,\; x^2 > 0$ \quad \textcolor{AccentRed}{\textbf{Sai:}} phản ví dụ $x = 0$.
+  \item $\exists x,\; x^2 = 2$ \quad \textcolor{AccentGreen}{\textbf{Đúng:}} $x = \sqrt{2}$.
+  \item $\exists x,\; x^2 < 0$ \quad \textcolor{AccentRed}{\textbf{Sai:}} mọi $x^2 \ge 0$.
+\end{itemize}
+\textit{Cùng vị từ, đổi tập xét có thể đổi kết quả: $\exists x \in \mathbb{Q},\; x^2 = 2$ là \textcolor{AccentRed}{\textbf{Sai}}.}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Dịch câu sang ký hiệu:}
+\begin{itemize}
+  \item ``Mọi sinh viên đều có máy tính.''\\
+  $\forall x\;\big(S(x) \to M(x)\big)$
+  \item ``Có sinh viên đạt điểm 10.''\\
+  $\exists x\;\big(S(x) \land D(x)\big)$
+\end{itemize}
+\vspace{4pt}
+\textbf{\textcolor{AccentRed}{Ghi nhớ:}}\\
+$\forall$ thường đi với $\to$.\\
+$\exists$ thường đi với $\land$.
+\end{minipage}
+
+\subsection{Lượng từ lồng nhau (Nested Quantifiers)}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{lll}
+\toprule
+\textbf{Mệnh đề} & \textbf{Đúng khi} & \textbf{Cách chứng minh} \\
+\midrule
+$\forall x\,\forall y\, P(x, y)$ & mọi cặp $(x, y)$ đều thỏa & \textbf{lấy $x, y$ tùy ý} \\
+$\forall x\,\exists y\, P(x, y)$ & với mỗi $x$ có một $y$ (phụ thuộc $x$) & lấy $x$ tùy ý, \textbf{tìm $y$ theo $x$} \\
+$\exists x\,\forall y\, P(x, y)$ & có một $x$ dùng được cho mọi $y$ & \textbf{tìm $x$}, rồi lấy $y$ tùy ý \\
+$\exists x\,\exists y\, P(x, y)$ & có ít nhất một cặp thỏa & \textbf{tìm một cặp cụ thể} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Ví dụ: Thứ tự lượng từ rất quan trọng!} $P(x, y) : x + y = 0$ trên $\mathbb{R}$.
+\begin{itemize}
+  \item $\forall x\,\exists y\;(x + y = 0)$: \textcolor{AccentGreen}{\textbf{Đúng}} (với mỗi $x$, chọn $y = -x$).
+  \item $\exists y\,\forall x\;(x + y = 0)$: \textcolor{AccentRed}{\textbf{Sai}} (không có số $y$ nào làm $x + y = 0$ với \textbf{mọi} $x$).
+\end{itemize}
+
+\begin{baitap}{Ví dụ: Xác định giá trị chân lý của lượng từ lồng nhau (trên $\mathbb{R}$)}
+\begin{itemize}
+  \item $E: \forall x \neq 0,\; \exists y,\; xy = 1 \;\rightarrow$ \textcolor{AccentGreen}{\textbf{Đúng:}} chọn $y = 1/x$ (nghịch đảo).
+  \item $G: \forall x,\; \exists y,\; x + y = 1 \;\rightarrow$ \textcolor{AccentGreen}{\textbf{Đúng:}} chọn $y = 1 - x$.
+  \item $H: \exists x,\; \exists y,\; (x + y = 2 \land 2x - y = 1) \;\rightarrow$ \textcolor{AccentGreen}{\textbf{Đúng:}} cặp $(x, y) = (1, 1)$ thỏa cả hai phương trình.
+  \item $I: \forall x,\; \exists y,\; (x + y = 2 \land 2x - y = 1) \;\rightarrow$ \textcolor{AccentRed}{\textbf{Sai:}} với $x = 0$ cần $y = 2$ và $y = -1$ cùng lúc, vô lý.
+  \item $K: \exists x,\; \forall y,\; xy = y \;\rightarrow$ \textcolor{AccentGreen}{\textbf{Đúng:}} chọn $x = 1$, khi đó $1 \cdot y = y$ với mọi $y$.
+\end{itemize}
+\textit{So sánh $H$ và $I$: cùng vị từ, đổi $\exists x$ thành $\forall x$ thì kết quả đổi từ Đúng sang Sai.}
+\end{baitap}
+
+% ==============================================================================
+\section{Phủ định lượng từ}
+% ==============================================================================
+
+\subsection{Quy tắc De Morgan cho lượng từ}
+
+\textbf{Quy tắc:}
+\[
+  \neg\big(\forall x\, P(x)\big) \equiv \exists x\,\neg P(x) \qquad\qquad \neg\big(\exists x\, P(x)\big) \equiv \forall x\,\neg P(x)
+\]
+\begin{itemize}
+  \item Đổi $\forall \longleftrightarrow \exists$, rồi \textbf{phủ định vị từ}.
+  \item Với nhiều lượng từ: đổi \textbf{từng} lượng từ, đưa $\neg$ vào trong cùng.
+\end{itemize}
+\textit{Ví dụ: ``Không phải \textbf{mọi} sinh viên đều đi học'' $\equiv$ ``\textbf{Có} sinh viên không đi học''.}
+
+\vspace{6pt}
+\noindent
+\begin{minipage}[c]{0.55\textwidth}
+Khẳng định $A : \forall x \in \mathbb{R},\; x^2 + 6x + 5 \le 0$.
+
+\textbf{Phủ định:} $\neg A : \exists x \in \mathbb{R},\; x^2 + 6x + 5 > 0$.
+
+\textbf{Câu hỏi:} $A$ hay $\neg A$ đúng?\\
+\textit{Lời giải:} Chọn $x = 0$: $0 + 0 + 5 = 5 > 0$.\\
+$\Rightarrow \neg A$ \textcolor{AccentGreen}{\textbf{Đúng}}, do đó $A$ \textcolor{AccentRed}{\textbf{Sai}}.
+
+\vspace{4pt}
+\textit{Nhận xét: chứng minh $A$ sai = tìm \textbf{một phản ví dụ}, chính là chứng minh $\neg A$ đúng.}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.42\textwidth}
+\centering
+\begin{tikzpicture}[x=0.62cm, y=0.33cm]
+  \fill[red!14] (-5,-4.4) rectangle (-1,0);
+  \draw[->] (-6.2,0) -- (1.4,0) node[right, font=\footnotesize] {$x$};
+  \draw[->] (0,-4.6) -- (0,8.2) node[above, font=\footnotesize] {$y$};
+  \draw[blue, thick, domain=-5.9:0.45, samples=80] plot (\x, {\x*\x + 6*\x + 5});
+  \node[font=\footnotesize, anchor=east, fill=white, fill opacity=0.85, text opacity=1, inner sep=1pt] at (-5.12, 0.55) {$-5$};
+  \node[font=\footnotesize, anchor=south east, inner sep=1.5pt] at (-1.05, 0.15) {$-1$};
+  \fill[AccentRed] (0,5) circle (2.2pt);
+  \node[right=2pt, font=\footnotesize, text=AccentRed] at (0,5) {$x = 0:\; 5 > 0$};
+\end{tikzpicture}\\[2pt]
+{\footnotesize $y = x^2 + 6x + 5 \le 0$ chỉ khi $-5 \le x \le -1$.}
+\end{minipage}
+
+\subsection{Phủ định lượng từ lồng nhau}
+
+\noindent
+\begin{minipage}[t]{0.47\textwidth}
+\textbf{Ví dụ B:} $\forall x\,\forall y,\; 2x + y < 1$ (trên $\mathbb{R}$)\\
+$\neg B : \exists x\,\exists y,\; 2x + y \ge 1$.
+
+\textit{Chứng minh $\neg B$:} chọn $x = 1, y = 1$:\\
+$2 \cdot 1 + 1 = 3 \ge 1$.\\
+$\Rightarrow \neg B$ \textcolor{AccentGreen}{\textbf{Đúng}}, $B$ \textcolor{AccentRed}{\textbf{Sai}}.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\textbf{Ví dụ C:} $\forall x\,\exists y,\; 2x + y < 1$\\
+$\neg C : \exists x\,\forall y,\; 2x + y \ge 1$.
+
+\textit{Chứng minh $C$:} với $x$ tùy ý, cần \textbf{tìm $y$} (theo $x$) sao cho $2x + y < 1$.\\
+Chọn $y = -2x$: $2x + (-2x) = 0 < 1\;\checkmark$\\
+$\Rightarrow C$ \textcolor{AccentGreen}{\textbf{Đúng}}, $\neg C$ \textcolor{AccentRed}{\textbf{Sai}}.
+\end{minipage}
+
+\vspace{6pt}
+\textbf{\textcolor{AccentRed}{Chiến lược!}} Xét cả mệnh đề và phủ định của nó. Mệnh đề nào \textbf{bắt đầu bằng $\exists$} thường dễ chứng minh hơn: chỉ cần \textbf{tìm} giá trị.
+
+\subsection{Phủ định phép kéo theo}
+
+Nhắc lại: $(p \to q) \equiv \neg p \lor q \;\Rightarrow\; \textcolor{AccentRed}{\neg(p \to q) \equiv p \land \neg q}$.
+
+\textbf{Ví dụ D:} $\forall x \in \mathbb{R}\;\exists y \in \mathbb{R},\; (x^2 = y^2) \to (x = y)$\\
+$\neg D : \exists x \in \mathbb{R}\;\forall y \in \mathbb{R},\; (x^2 = y^2) \land (x \neq y)$.
+
+\textit{Chứng minh $D$:} Với $x$ tùy ý, tìm $y$ sao cho phép kéo theo đúng.\\
+Chọn $y = x$: $(x^2 = x^2) \to (x = x)$ là $1 \to 1$, Đúng. Vậy $D$ \textbf{Đúng}.
+
+\textbf{Mẹo với phép kéo theo:} $(\text{giả thiết}) \to (\text{kết luận})$ đúng khi
+\begin{itemize}
+  \item \textbf{giả thiết sai} (khi đó luôn đúng), hoặc
+  \item giả thiết và kết luận cùng \textbf{đúng}.
+\end{itemize}
+\textit{Ví dụ:} $\forall x\,\exists y,\; (x^2 \ge y^2) \to (x > y)$ \textbf{Đúng}: chọn $y = |x| + 1$ thì $x^2 < y^2$, giả thiết sai.
+
+% ==============================================================================
+\section{Suy luận với lượng từ}
+% ==============================================================================
+
+\subsection{Các quy tắc suy luận với lượng từ}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{lcl}
+\toprule
+\textbf{Quy tắc} & \textbf{Dạng} & \textbf{Ý nghĩa} \\
+\midrule
+\addlinespace[4pt]
+Cụ thể hóa phổ quát & $\suyluan{\forall x\, P(x)}{P(c)}$ & Đúng với mọi $x$ thì đúng với $c$ \textbf{bất kỳ}. \\
+\addlinespace[8pt]
+Tổng quát hóa phổ quát & $\suyluan{P(c),\; c \text{ tùy ý}}{\forall x\, P(x)}$ & $c$ phải là phần tử \textbf{tùy ý}. \\
+\addlinespace[8pt]
+Cụ thể hóa tồn tại & $\suyluan{\exists x\, P(x)}{P(c),\; c \text{ nào đó}}$ & Đặt tên \textbf{mới} $c$ cho phần tử đó. \\
+\addlinespace[8pt]
+Tổng quát hóa tồn tại & $\suyluan{P(c)}{\exists x\, P(x)}$ & Có một ví dụ thì ``tồn tại''. \\
+\addlinespace[4pt]
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Kết hợp với Modus Ponens:} $\forall x\,\big(P(x) \to Q(x)\big),\; P(a)\; \therefore Q(a)$.
+
+\begin{baitap}{Ví dụ 1: Suy luận với lượng từ}
+\textbf{Tiền đề:} ``Mọi người trong lớp đều đã học Tin học cơ sở'' và ``An ở trong lớp này.''\\
+\textbf{Kết luận:} ``An đã học Tin học cơ sở.''\\
+Đặt $D(x)$: $x$ ở trong lớp; $\quad C(x)$: $x$ đã học Tin học cơ sở.
+
+\vspace{3pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{ll}
+\toprule
+\textbf{Bước} & \textbf{Căn cứ} \\
+\midrule
+1. $\forall x\,\big(D(x) \to C(x)\big)$ & \textcolor{PrimaryBlue}{Tiền đề} \\
+2. $D(\text{An}) \to C(\text{An})$ & \textcolor{PrimaryBlue}{Cụ thể hóa phổ quát từ (1)} \\
+3. $D(\text{An})$ & \textcolor{PrimaryBlue}{Tiền đề} \\
+4. \textcolor{AccentRed}{$C(\text{An})$} & \textcolor{PrimaryBlue}{Modus Ponens từ (2) và (3)} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{2pt}
+$\therefore$ An đã học Tin học cơ sở. \textit{(Đây chính là lập luận ở mục ``Vì sao cần vị từ?'')}
+\end{baitap}
+
+\begin{baitap}{Ví dụ 2: Suy luận với lượng từ}
+\textbf{Tiền đề:} $\exists x\,\big(C(x) \land \neg B(x)\big)$ và $\forall x\,\big(C(x) \to P(x)\big)$. \quad \textbf{Kết luận:} $\exists x\,\big(P(x) \land \neg B(x)\big)$.\\
+\textit{($C(x)$: $x$ học lớp này, $B(x)$: $x$ đã đọc sách, $P(x)$: $x$ đậu kỳ thi.)}
+
+\vspace{3pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{ll}
+\toprule
+\textbf{Bước} & \textbf{Căn cứ} \\
+\midrule
+1. $\exists x\,\big(C(x) \land \neg B(x)\big)$ & \textcolor{PrimaryBlue}{Tiền đề} \\
+2. $C(a) \land \neg B(a)$ & \textcolor{PrimaryBlue}{Cụ thể hóa tồn tại từ (1)} \\
+3. $C(a)$ & \textcolor{PrimaryBlue}{Rút gọn từ (2)} \\
+4. $\forall x\,\big(C(x) \to P(x)\big)$ & \textcolor{PrimaryBlue}{Tiền đề} \\
+5. $C(a) \to P(a)$ & \textcolor{PrimaryBlue}{Cụ thể hóa phổ quát từ (4)} \\
+6. $P(a)$ & \textcolor{PrimaryBlue}{Modus Ponens từ (3) và (5)} \\
+7. $\neg B(a)$ & \textcolor{PrimaryBlue}{Rút gọn từ (2)} \\
+8. $P(a) \land \neg B(a)$ & \textcolor{PrimaryBlue}{Quy tắc hội từ (6) và (7)} \\
+9. \textcolor{AccentRed}{$\exists x\,\big(P(x) \land \neg B(x)\big)$} & \textcolor{PrimaryBlue}{Tổng quát hóa tồn tại từ (8)} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{baitap}
+
+\begin{baitap}{Ví dụ 3: Tìm lỗi sai trong suy luận}
+\textbf{Khẳng định:} Nếu $\exists x\, P(x) \land \exists x\, Q(x)$ đúng thì $\exists x\,\big(P(x) \land Q(x)\big)$ đúng.
+
+\textbf{``Chứng minh'' sai:}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}ll@{\hspace{1.8cm}}r@{}}
+1. & $\exists x\, P(x) \land \exists x\, Q(x)$ & \textcolor{PrimaryBlue}{Tiền đề} \\
+2. & $\exists x\, P(x)$ và $\exists x\, Q(x)$ & \textcolor{PrimaryBlue}{Rút gọn} \\
+3. & $P(c)$ & \textcolor{PrimaryBlue}{Cụ thể hóa tồn tại} \\
+4. & \textcolor{AccentRed}{$Q(c)$} & \textcolor{AccentRed}{Cụ thể hóa tồn tại (sai!)} \\
+5. & $P(c) \land Q(c)$, do đó $\exists x\,\big(P(x) \land Q(x)\big)$ & \\
+\end{tabular}
+\end{center}
+
+\textbf{\textcolor{AccentRed}{Lỗi sai!}} Mỗi lần cụ thể hóa tồn tại phải dùng một \textbf{tên mới}. Có $x$ thỏa $P$, có $x$ thỏa $Q$, nhưng \textbf{không chắc là cùng một $x$}.\\
+\textbf{Phản ví dụ:} trên $\mathbb{Z}$, $P(x)$: ``$x$ chẵn'', $Q(x)$: ``$x$ lẻ''. Có số chẵn, có số lẻ, nhưng không có số nào vừa chẵn vừa lẻ.
+\end{baitap}
+
+\subsection{Bài tập tổng hợp: Vị từ và lượng từ}
+
+\begin{baitap}{Bài tập: Vị từ và lượng từ (Bài 1 -- Bài 4)}
+\textbf{Bài 1:} Xác định giá trị chân lý của các mệnh đề sau trên $\mathbb{R}$. Nếu sai, đưa ra phản ví dụ:
+\begin{enumerate}[label=\textbf{\alph*)}, itemsep=1pt]
+  \item $\forall x,\; x^2 + 1 \ge 1$ \qquad
+  \textbf{b)} $\exists x,\; x^2 - 2 = 0$ \qquad
+  \textbf{c)} $\forall x,\; \dfrac{1}{x} > 0$ \qquad
+  \textbf{d)} $\exists x,\; x^2 < 0$
+\end{enumerate}
+
+\textbf{Bài 2:} Xác định giá trị chân lý trên tập số nguyên $\mathbb{Z}$:
+\begin{enumerate}[label=\textbf{\alph*)}, itemsep=1pt]
+  \item $\forall n,\; n^2 \ge n$ \qquad
+  \textbf{b)} $\exists n,\; n^2 = 2$ \qquad
+  \textbf{c)} $\forall n,\; n + 1 > n$ \qquad
+  \textbf{d)} $\exists n,\; n + n = n$
+\end{enumerate}
+
+\textbf{Bài 3:} Xác định giá trị chân lý trên $\mathbb{R}$:
+\begin{enumerate}[label=\textbf{\alph*)}, itemsep=1pt]
+  \item $\forall x\,\exists y,\; x + y = 10$ \qquad
+  \textbf{b)} $\exists y\,\forall x,\; x + y = 10$ \qquad
+  \textbf{c)} $\forall x\,\forall y,\; (x < y \lor y < x \lor x = y)$
+  \item[\textbf{d)}] $\forall x \neq 0\;\exists y,\; xy = 1$ \qquad
+  \textbf{e)} $\exists x\,\forall y,\; xy = y$
+\end{enumerate}
+
+\textbf{Bài 4:} Viết mệnh đề phủ định (không để $\neg$ đứng trực tiếp trước lượng từ):
+\begin{enumerate}[label=\textbf{\alph*)}, itemsep=1pt]
+  \item $\forall x\,\big(P(x) \land Q(x)\big)$ \qquad
+  \textbf{b)} $\exists x\,\big(P(x) \to Q(x)\big)$ \qquad
+  \textbf{c)} $\forall x\,\exists y\;(x^2 < y)$
+  \item[\textbf{d)}] $\forall x\,\exists y\,\forall z\;(xy = z)$ \qquad
+  \textbf{e)} $\exists x \in \mathbb{R}\;(x > 0 \land \sqrt{x} < 0)$
+\end{enumerate}
+\end{baitap}
+
+\begin{baitap}{Bài tập: Vị từ và lượng từ (Bài 5 -- Bài 10)}
+\textbf{Bài 5:} Dùng vị từ, lượng từ và các phép toán logic để biểu diễn các câu:
+\begin{enumerate}[label=\textbf{\alph*)}, itemsep=1pt]
+  \item ``Mọi sinh viên trong lớp này đều có máy tính xách tay.''
+  \item ``Có một số nguyên là số nguyên tố và là số chẵn.''
+  \item ``Mọi số thực dương đều có một căn bậc hai thực.''
+  \item ``Không có ai là hoàn hảo.'' (dùng $P(x)$: $x$ là hoàn hảo)
+  \item ``Mọi người đều có ít nhất một người bạn.'' (dùng $F(x, y)$: $x$ là bạn của $y$)
+\end{enumerate}
+
+\textbf{Bài 6:} Cho $S : \forall x \in \mathbb{R}\;\exists y \in \mathbb{R},\; (x + y = 0)$.
+\begin{enumerate}[label=\textbf{\alph*)}, itemsep=1pt]
+  \item Phát biểu $S$ bằng lời. \qquad
+  \textbf{b)} Xác định giá trị chân lý của $S$.
+  \item[\textbf{c)}] Viết $\neg S$ dưới dạng ký hiệu. \qquad
+  \textbf{d)} Xác định giá trị chân lý của $\neg S$.
+\end{enumerate}
+
+\textbf{Bài 7:} Xác định giá trị chân lý, viết phủ định (trên $\mathbb{R}$):
+\begin{enumerate}[label=\textbf{\alph*)}, itemsep=1pt]
+  \item $\forall x\,\exists y,\; (xy \ge 0) \to (x - 3y \neq 2)$ \qquad
+  \textbf{b)} $\exists x\,\forall y,\; (xy < 0) \to (x - 4y = 5)$
+\end{enumerate}
+
+\textbf{Bài 8:} Xác định giá trị chân lý và viết phủ định (trên $\mathbb{N}$):
+\begin{enumerate}[label=\textbf{\alph*)}, itemsep=1pt]
+  \item $\forall x\,\exists y,\; (2x + y) \mathrel{\vdots} 2$
+  \item $\exists x\,\forall y,\; (y \neq 0 \to xy = 1)$
+  \item $\forall x\,\exists y,\; (x + y = 2 \land 2x - y = 1)$
+  \item $\forall x,\; (x \neq 0 \to \exists y,\; xy = 1)$
+  \item $\forall x\,\forall y\,\exists z,\; z = (x + y)/2$
+\end{enumerate}
+
+\textbf{Bài 9:} Chứng minh lập luận sau hợp lệ, chỉ rõ quy tắc suy luận ở mỗi bước:\\
+``Mọi số chia hết cho $6$ đều chia hết cho $3$. Mọi số chia hết cho $3$ có tổng các chữ số chia hết cho $3$. $42$ chia hết cho $6$. Vậy tổng các chữ số của $42$ chia hết cho $3$.''
+
+\textbf{Bài 10:} Chỉ ra rằng các tiền đề $(p \land t) \to (r \lor s),\; q \to (u \land t),\; u \to p,\; \neg s$ dẫn đến kết luận $q \to r$.
+\end{baitap}
+
+\begin{baitap}{Lời giải mẫu: Bài 3}
+\begin{itemize}
+  \item \textbf{a)} $\forall x\,\exists y,\; x + y = 10$: \textcolor{AccentGreen}{\textbf{Đúng.}} Với $x$ tùy ý, chọn $y = 10 - x$.
+  \item \textbf{b)} $\exists y\,\forall x,\; x + y = 10$: \textcolor{AccentRed}{\textbf{Sai.}}\\
+  Phủ định $\forall y\,\exists x,\; x + y \neq 10$ đúng: với $y$ tùy ý, chọn $x = 11 - y$ thì $x + y = 11 \neq 10$.
+  \item \textbf{c)} $\forall x\,\forall y,\; (x < y \lor y < x \lor x = y)$: \textcolor{AccentGreen}{\textbf{Đúng}} (hai số thực bất kỳ luôn so sánh được).
+  \item \textbf{d)} $\forall x \neq 0\;\exists y,\; xy = 1$: \textcolor{AccentGreen}{\textbf{Đúng.}} Chọn $y = 1/x$.
+  \item \textbf{e)} $\exists x\,\forall y,\; xy = y$: \textcolor{AccentGreen}{\textbf{Đúng.}} Chọn $x = 1$: $1 \cdot y = y$ với mọi $y$.
+\end{itemize}
+
+\textbf{\textcolor{PrimaryBlue}{Nhận xét (so sánh a và b):}} Trong a), $y$ được chọn \textbf{sau} $x$ nên có thể phụ thuộc $x$. Trong b), $y$ phải chọn \textbf{trước} và dùng chung cho mọi $x$, điều đó không thể.
+\end{baitap}
+
+\begin{baitap}{Lời giải mẫu: Bài 7}
+\textbf{a)} $A : \forall x\,\exists y,\; (xy \ge 0) \to (x - 3y \neq 2)$
+\begin{itemize}
+  \item Với $x \neq 0$: chọn $y = -x \Rightarrow xy = -x^2 < 0$, giả thiết \textbf{sai} $\Rightarrow$ phép kéo theo đúng.
+  \item Với $x = 0$: chọn $y = 0 \Rightarrow 0 \ge 0$ và $0 - 0 = 0 \neq 2 \Rightarrow 1 \to 1$ đúng.
+  \item $\Rightarrow A$ \textbf{Đúng}. Phủ định: $\neg A : \exists x\,\forall y,\; (xy \ge 0) \land (x - 3y = 2)$.
+\end{itemize}
+
+\textbf{b)} $C : \exists x\,\forall y,\; (xy < 0) \to (x - 4y = 5)$
+\begin{itemize}
+  \item Chọn $x = 0$: với mọi $y$, $xy = 0$, nên giả thiết $xy < 0$ luôn \textbf{sai}.
+  \item $\Rightarrow$ phép kéo theo đúng với mọi $y \Rightarrow C$ \textbf{Đúng}.
+  \item Phủ định: $\neg C : \forall x\,\exists y,\; (xy < 0) \land (x - 4y \neq 5)$ \textcolor{AccentRed}{\textbf{Sai}} (với $x = 0$ không có $y$ nào làm $xy < 0$).
+\end{itemize}
+
+\textbf{\textcolor{AccentRed}{Bẫy thường gặp!}} Phép kéo theo có giả thiết \textbf{luôn sai} thì luôn đúng. Hãy thử các giá trị đặc biệt như $x = 0$!
+\end{baitap}
+
+\end{document}

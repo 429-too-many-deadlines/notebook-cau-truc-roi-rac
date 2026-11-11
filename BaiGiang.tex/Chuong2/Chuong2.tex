@@ -1,0 +1,728 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- Mã hóa & Tiếng Việt ---
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+
+% --- Font Times New Roman (chuẩn Times cho cả văn bản và công thức toán) ---
+\usepackage{mathptmx}
+
+% --- Bố cục trang A4 sạch sẽ, bỏ qua header/footer ---
+\usepackage[a4paper, top=2cm, bottom=2cm, left=2.2cm, right=2cm]{geometry}
+\pagestyle{plain}
+
+% --- Toán học, bảng biểu, danh sách, màu sắc & đồ họa ---
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{needspace}
+\usepackage{parskip}
+\usepackage[hidelinks]{hyperref}
+
+% --- Định nghĩa màu & kiểu trình bày ---
+\definecolor{PrimaryBlue}{RGB}{0, 51, 153}
+\definecolor{SoftBg}{RGB}{246, 248, 252}
+\definecolor{AccentRed}{RGB}{210, 20, 20}
+
+\titleformat{\section}
+  {\needspace{9\baselineskip}\Large\bfseries\color{PrimaryBlue}}
+  {\thesection.}{0.5em}{}
+  [\vspace{2pt}\titlerule]
+
+\titleformat{\subsection}
+  {\needspace{4\baselineskip}\large\bfseries\color{PrimaryBlue!85!black}}
+  {\thesubsection.}{0.5em}{}
+
+\setlist[itemize]{leftmargin=1.5em, itemsep=3pt, topsep=4pt}
+\setlist[enumerate]{leftmargin=1.5em, itemsep=3pt, topsep=4pt}
+
+% --- Hộp bài tập ---
+\newtcolorbox{baitap}[1]{
+  enhanced,
+  colback=SoftBg,
+  colframe=PrimaryBlue!65!black,
+  colbacktitle=PrimaryBlue!10!white,
+  coltitle=PrimaryBlue!90!black,
+  fonttitle=\bfseries,
+  title={#1},
+  boxrule=0.6pt,
+  arc=3pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  before skip=10pt, after skip=10pt
+}
+
+% --- Ký hiệu kẹo và vách ngăn ---
+\newcommand{\keo}{\tikz[baseline=-0.6ex]\fill[orange!90!brown] (0,0) circle (0.65ex);}
+\newcommand{\vach}{\tikz[baseline=-0.4ex]\draw[blue!80!black, line width=1.6pt] (0,-0.8ex) -- (0,1.2ex);}
+
+\begin{document}
+
+% --- Tiêu đề chương ---
+\begin{center}
+  {\LARGE\bfseries\color{PrimaryBlue} CHƯƠNG 2}\\[4pt]
+  {\large\bfseries TẬP HỢP, CÁC NGUYÊN LÝ ĐẾM VÀ TỔ HỢP}
+\end{center}
+\vspace{4pt}
+
+% ==============================================================================
+\section{Tập hợp và các phép toán}
+% ==============================================================================
+
+\subsection{Toán tử tập hợp: Phép giao và Phép hợp}
+
+\noindent
+\begin{minipage}[t]{0.60\textwidth}
+\textbf{Phép giao (Intersection):}\\
+Giao của hai tập hợp $A$ và $B$ ($A \cap B$) chứa các phần tử thuộc \textbf{cả} $A$ và $B$.
+\[
+  A \cap B = \{x \mid x \in A \land x \in B\}
+\]
+
+\vspace{6pt}
+\textbf{Phép hợp (Union):}\\
+Hợp của hai tập hợp $A$ và $B$ ($A \cup B$) chứa các phần tử thuộc $A$, hoặc $B$, hoặc cả hai.
+\[
+  A \cup B = \{x \mid x \in A \lor x \in B\}
+\]
+
+\vspace{6pt}
+\textit{Lưu ý:} Hai tập rời nhau nếu $A \cap B = \emptyset$.\\
+\textit{Nhận xét:} phép giao ứng với phép hội $\land$, phép hợp ứng với phép tuyển $\lor$.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.36\textwidth}
+\centering
+\vspace{0pt}
+\begin{tikzpicture}[scale=0.85]
+  \begin{scope}
+    \clip (0,0) circle (0.95);
+    \fill[blue!28] (1.1,0) circle (0.95);
+  \end{scope}
+  \draw[thick] (0,0) circle (0.95) (1.1,0) circle (0.95);
+  \node at (-0.38,0) {$A$};
+  \node at (1.48,0) {$B$};
+  \node at (0.55,-1.28) {$A \cap B$};
+\end{tikzpicture}
+
+\vspace{10pt}
+\begin{tikzpicture}[scale=0.85]
+  \fill[blue!28] (0,0) circle (0.95) (1.1,0) circle (0.95);
+  \draw[thick] (0,0) circle (0.95) (1.1,0) circle (0.95);
+  \node at (-0.38,0) {$A$};
+  \node at (1.48,0) {$B$};
+  \node at (0.55,-1.28) {$A \cup B$};
+\end{tikzpicture}
+\end{minipage}
+
+\subsection{Hiệu tập hợp và Phần bù}
+
+\noindent
+\begin{minipage}[t]{0.60\textwidth}
+\begin{itemize}
+  \item \textbf{Hiệu tập hợp ($A - B$):} Chứa các phần tử thuộc $A$ nhưng \textbf{không} thuộc $B$.
+  \[
+    A - B = \{x \mid x \in A \land x \notin B\}
+  \]
+
+  \item \textbf{Phần bù ($\overline{A}$):} Nếu $U$ là tập vũ trụ, $\overline{A} = U - A$.
+  \[
+    \overline{A} = \{x \in U \mid x \notin A\}
+  \]
+\end{itemize}
+
+\vspace{6pt}
+\textbf{Câu hỏi:} $A - B$ có bằng $B - A$ không?\\
+$\rightarrow$ \textbf{Không.} Ví dụ: $A = \{1, 2\}$, $B = \{2, 3\}$:
+\[
+  A - B = \{1\}, \qquad B - A = \{3\}.
+\]
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.36\textwidth}
+\centering
+\vspace{0pt}
+\begin{tikzpicture}[scale=0.85]
+  \begin{scope}
+    \clip (0,0) circle (0.95);
+    \fill[blue!28] (0,0) circle (0.95);
+    \fill[white] (1.1,0) circle (0.95);
+  \end{scope}
+  \draw[thick] (0,0) circle (0.95) (1.1,0) circle (0.95);
+  \node at (-0.38,0) {$A$};
+  \node at (1.48,0) {$B$};
+  \node at (0.55,-1.28) {$A - B$};
+\end{tikzpicture}
+
+\vspace{10pt}
+\begin{tikzpicture}[scale=0.85]
+  \fill[blue!28] (-1.35,-1.05) rectangle (1.65,1.05);
+  \fill[white] (-0.25,0) circle (0.78);
+  \draw[thick] (-1.35,-1.05) rectangle (1.65,1.05);
+  \draw[thick] (-0.25,0) circle (0.78);
+  \node at (-0.25,0) {$A$};
+  \node at (1.35,0.78) {$U$};
+  \node at (0.15,-1.38) {$\overline{A}$};
+\end{tikzpicture}
+\end{minipage}
+
+\needspace{12\baselineskip}
+\subsection{Các luật của tập hợp}
+
+\textit{Các luật này tương ứng với các luật logic: thay $\cap \leftrightarrow \land$, $\cup \leftrightarrow \lor$, phần bù $\leftrightarrow \neg$.}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{ll}
+\toprule
+\textbf{Luật} & \textbf{Đẳng thức} \\
+\midrule
+\textbf{Đồng nhất} & $A \cap U = A$; \qquad $A \cup \emptyset = A$ \\
+\textbf{Phủ định kép} & $\overline{(\overline{A})} = A$ \\
+\textbf{Giao hoán} & $A \cup B = B \cup A$; \qquad $A \cap B = B \cap A$ \\
+\textbf{De Morgan} & $\overline{A \cap B} = \overline{A} \cup \overline{B}$; \qquad $\overline{A \cup B} = \overline{A} \cap \overline{B}$ \\
+\textbf{Phân phối} & $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$ \\
+ & $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textit{Làm sao chứng minh các luật này?} $\rightarrow$ \textit{Dùng \textbf{bảng thuộc tính}.}
+
+\subsection{Bảng thuộc tính}
+
+Dùng để chứng minh các hằng đẳng thức tập hợp ($1$: Thuộc, $0$: Không thuộc).
+
+\textbf{Ví dụ:} Chứng minh luật phân phối $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c||c|c||c|c|c|}
+\hline
+$A$ & $B$ & $C$ & $B \cup C$ & $A \cap (B \cup C)$ & $A \cap B$ & $A \cap C$ & $(A \cap B) \cup (A \cap C)$ \\
+\hline
+1 & 1 & 1 & 1 & \textcolor{AccentRed}{1} & 1 & 1 & \textcolor{AccentRed}{1} \\ \hline
+1 & 1 & 0 & 1 & \textcolor{AccentRed}{1} & 1 & 0 & \textcolor{AccentRed}{1} \\ \hline
+1 & 0 & 1 & 1 & \textcolor{AccentRed}{1} & 0 & 1 & \textcolor{AccentRed}{1} \\ \hline
+1 & 0 & 0 & 0 & \textcolor{AccentRed}{0} & 0 & 0 & \textcolor{AccentRed}{0} \\ \hline
+0 & 1 & 1 & 1 & \textcolor{AccentRed}{0} & 0 & 0 & \textcolor{AccentRed}{0} \\ \hline
+0 & 1 & 0 & 1 & \textcolor{AccentRed}{0} & 0 & 0 & \textcolor{AccentRed}{0} \\ \hline
+0 & 0 & 1 & 1 & \textcolor{AccentRed}{0} & 0 & 0 & \textcolor{AccentRed}{0} \\ \hline
+0 & 0 & 0 & 0 & \textcolor{AccentRed}{0} & 0 & 0 & \textcolor{AccentRed}{0} \\ \hline
+\end{tabular}
+\end{center}
+
+Hai cột kết quả \textbf{giống hệt nhau} $\Rightarrow$ đẳng thức được chứng minh.
+
+\subsection{Biểu diễn tập hợp bằng Chuỗi Bit}
+
+Giả sử $U = \{1, 2, 3, 4, 5, 6, 7, 8, 9, 10\}$. Bit thứ $i$ bằng \textbf{1} nếu $i$ thuộc tập hợp, bằng \textbf{0} nếu không thuộc.
+\begin{itemize}
+  \item Tập $A = \{1, 2, 3, 4, 5\} \rightarrow$ Chuỗi bit: \texttt{11 1110 0000}
+  \item Tập $B = \{1, 3, 5, 7, 9\} \rightarrow$ Chuỗi bit: \texttt{10 1010 1010}
+\end{itemize}
+
+\textbf{Phép toán Bitwise:}
+\begin{itemize}
+  \item \textbf{Hợp ($A \cup B$):} \texttt{11 1110 0000} OR \texttt{10 1010 1010} $=$ \textcolor{AccentRed}{\texttt{11 1110 1010}} $= \{1, 2, 3, 4, 5, 7, 9\}$
+  \item \textbf{Giao ($A \cap B$):} \texttt{11 1110 0000} AND \texttt{10 1010 1010} $=$ \textcolor{AccentRed}{\texttt{10 1010 0000}} $= \{1, 3, 5\}$
+  \item \textbf{Phần bù ($\overline{A}$):} đảo từng bit của \texttt{11 1110 0000} $=$ \textcolor{AccentRed}{\texttt{00 0001 1111}} $= \{6, \dots, 10\}$
+  \item \textbf{Hiệu ($A - B = A \cap \overline{B}$):} \texttt{11 1110 0000} AND \texttt{01 0101 0101} $=$ \textcolor{AccentRed}{\texttt{01 0100 0000}} $= \{2, 4\}$
+\end{itemize}
+
+% ==============================================================================
+\section{Các nguyên lý đếm cơ bản}
+% ==============================================================================
+
+\subsection{Quy tắc cộng và Quy tắc nhân}
+
+\begin{itemize}
+  \item \textbf{Quy tắc cộng (Rule of Sum):} Nếu một công việc có thể thực hiện theo $n_1$ cách hoặc $n_2$ cách (hai phương án \textbf{rời nhau}), thì có tổng cộng $n_1 + n_2$ cách thực hiện.\\
+  \textit{VD: Chọn 1 lớp trưởng từ 5 nữ hoặc 10 nam $\rightarrow 5 + 10 = 15$ cách.}
+
+  \item \textbf{Quy tắc nhân (Rule of Product):} Nếu một công việc được thực hiện qua hai \textbf{giai đoạn} liên tiếp, giai đoạn 1 có $n_1$ cách và giai đoạn 2 có $n_2$ cách, thì có tổng cộng $n_1 \times n_2$ cách thực hiện.\\
+  \textit{VD: Mật khẩu gồm 2 chữ cái rồi đến 1 chữ số $\rightarrow 26 \times 26 \times 10 = 6760$ cách.}
+\end{itemize}
+
+\subsection{Nguyên lý Bao hàm và Loại trừ}
+
+Dùng để đếm số phần tử của hợp hai hoặc nhiều tập hợp \textbf{không rời nhau}.
+
+\noindent
+\begin{minipage}[t]{0.60\textwidth}
+\begin{itemize}
+  \item \textbf{Với 2 tập hợp:} $|A \cup B| = |A| + |B| - |A \cap B|$
+  \item \textbf{Với 3 tập hợp:}
+  \begin{align*}
+    |A \cup B \cup C| &= |A| + |B| + |C| \\
+    &\quad - (|A \cap B| + |A \cap C| + |B \cap C|) \\
+    &\quad + |A \cap B \cap C|
+  \end{align*}
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.36\textwidth}
+\centering
+\vspace{4pt}
+\begin{tikzpicture}[scale=0.85]
+  \begin{scope}
+    \clip (0,0) circle (0.95);
+    \fill[red!35] (1.1,0) circle (0.95);
+  \end{scope}
+  \draw[thick] (0,0) circle (0.95) (1.1,0) circle (0.95);
+  \node at (-0.38,0) {$A$};
+  \node at (1.48,0) {$B$};
+  \node[align=center, font=\small\itshape] at (0.55,-1.55) {Phần giao bị đếm 2 lần\\$\Rightarrow$ phải trừ đi 1 lần.};
+\end{tikzpicture}
+\end{minipage}
+
+\vspace{4pt}
+\textit{Quy luật: cộng các tập đơn, trừ các giao đôi, cộng các giao ba, $\dots$ (dấu xen kẽ).}
+
+\begin{baitap}{Bài tập: Số lẻ hoặc số chính phương}
+\textbf{Đề:} Trong đoạn từ $1$ đến $1000$ có bao nhiêu số là số lẻ hoặc là số chính phương?
+
+\textit{Gợi mở: Từ ``hoặc'' gợi ý ta dùng phép hợp. Hai tập này có rời nhau không?}
+\begin{itemize}
+  \item $A$: tập các số lẻ, $A = \{1, 3, 5, \dots, 999\}$. Suy ra $|A| = 500$.
+  \item $B$: tập các số chính phương, $B = \{n^2 \mid n^2 \le 1000\}$. Vì $31^2 = 961 \le 1000 < 32^2$, nên $|B| = 31$.
+  \item $A \cap B$: các số vừa lẻ vừa chính phương. $n^2$ lẻ $\Leftrightarrow n$ lẻ, với $n \in \{1, 3, \dots, 31\}$: $|A \cap B| = 16$ (số).
+\end{itemize}
+Theo nguyên lý bao hàm - loại trừ:
+\[
+  |A \cup B| = |A| + |B| - |A \cap B| = 500 + 31 - 16 = \textcolor{AccentRed}{\mathbf{515}}
+\]
+\end{baitap}
+
+\begin{baitap}{Bài tập: Xâu nhị phân bắt đầu bởi 00 hoặc 11}
+\textbf{Đề bài:} Đếm số xâu nhị phân độ dài $8$ có hai bit đầu là $00$ hoặc $11$.
+
+Xâu nhị phân độ dài $8$ có dạng $b_1 b_2 b_3 b_4 b_5 b_6 b_7 b_8$ với $b_i \in \{0, 1\}$.
+\begin{itemize}
+  \item \textbf{Trường hợp 1:} Dạng $00b_3 b_4 b_5 b_6 b_7 b_8$. Còn $6$ vị trí tự do, mỗi vị trí có $2$ cách. Số xâu: $2^6 = 64$.
+  \item \textbf{Trường hợp 2:} Dạng $11b_3 b_4 b_5 b_6 b_7 b_8$. Số xâu: $2^6 = 64$.
+\end{itemize}
+\textbf{Câu hỏi:} Hai trường hợp có rời nhau không? $\rightarrow$ \textbf{Có}: một xâu không thể vừa bắt đầu bằng $00$ vừa bắt đầu bằng $11$.
+
+Theo quy tắc cộng:
+\[
+  \text{Tổng số xâu} = 64 + 64 = \textcolor{AccentRed}{\mathbf{128}}\text{ (xâu)}
+\]
+\end{baitap}
+
+\begin{baitap}{Bài tập: Xâu không chứa 6 số 0 liền nhau}
+\textbf{Đề bài:} Có bao nhiêu xâu nhị phân độ dài $8$ không chứa $6$ số $0$ liền nhau?
+
+Tổng số xâu nhị phân độ dài $8$ là $2^8 = 256$. Ta dùng phương pháp \textbf{phần bù}: đếm số xâu \textbf{có chứa} ít nhất $6$ số $0$ liền nhau.
+
+Các cụm $6$ số $0$ có thể ở vị trí:
+\begin{enumerate}
+  \item \texttt{000000xx}: Có $2^2 = 4$ xâu (\texttt{00000000}, \texttt{00000001}, \texttt{00000010}, \texttt{00000011})
+  \item \texttt{x000000x}: Có $2^2 = 4$ xâu (\textcolor{AccentRed}{\texttt{00000000}}, \textcolor{AccentRed}{\texttt{00000001}}, \texttt{10000000}, \texttt{10000001})
+  \item \texttt{xx000000}: Có $2^2 = 4$ xâu (\textcolor{AccentRed}{\texttt{00000000}}, \textcolor{AccentRed}{\texttt{10000000}}, \texttt{01000000}, \texttt{11000000})
+\end{enumerate}
+
+\textbf{Chú ý:} $4 + 4 + 4 = 12$ là \textbf{sai}, vì có các xâu bị đếm lặp (tô đỏ).\\
+Liệt kê các xâu phân biệt: \texttt{00000000}, \texttt{00000001}, \texttt{00000010}, \texttt{00000011}, \texttt{10000000}, \texttt{10000001}, \texttt{01000000}, \texttt{11000000}. Tổng cộng có \textbf{8} xâu vi phạm.
+\[
+  \text{Số xâu thỏa mãn} = 256 - 8 = \textcolor{AccentRed}{\mathbf{248}}\text{ (xâu)}
+\]
+\end{baitap}
+
+\begin{baitap}{Bài tập: Bắt đầu bởi 111 hoặc kết thúc bởi 0000}
+\textbf{Đề bài:} Có bao nhiêu xâu nhị phân độ dài $10$ bắt đầu bởi $3$ số $1$ hoặc kết thúc bởi $4$ số $0$?
+
+\textit{Gợi mở: Hai điều kiện có thể xảy ra cùng lúc không? $\rightarrow$ Dùng bao hàm - loại trừ.}
+\begin{itemize}
+  \item Gọi $A$ là tập xâu bắt đầu bởi $111$: Dạng $111b_4 b_5 b_6 b_7 b_8 b_9 b_{10} \implies |A| = 2^7 = 128$.
+  \item Gọi $B$ là tập xâu kết thúc bởi $0000$: Dạng $b_1 b_2 b_3 b_4 b_5 b_6 0000 \implies |B| = 2^6 = 64$.
+  \item $A \cap B$ là tập xâu thỏa mãn cả hai: Dạng $111b_4 b_5 b_6 0000 \implies |A \cap B| = 2^3 = 8$.
+\end{itemize}
+Theo nguyên lý bao hàm - loại trừ:
+\[
+  |A \cup B| = |A| + |B| - |A \cap B| = 128 + 64 - 8 = \textcolor{AccentRed}{\mathbf{184}}\text{ (xâu)}
+\]
+\end{baitap}
+
+\begin{baitap}{Bài tập: Chọn 1 nam và 1 nữ}
+\textbf{Đề bài:} Một lớp có $5$ nữ, $10$ nam. Có bao nhiêu cách chọn ra $2$ sinh viên gồm $1$ nam và $1$ nữ?
+
+\textbf{Câu hỏi:} Dùng quy tắc cộng hay quy tắc nhân? $\rightarrow$ \textbf{Nhân}, vì phải chọn nam \textbf{rồi} chọn nữ.
+
+Việc chọn có thể chia làm $2$ công đoạn liên tiếp:
+\begin{itemize}
+  \item \textbf{Công đoạn 1:} Chọn $1$ sinh viên nam từ $10$ sinh viên nam: $C_{10}^1 = 10$ cách.
+  \item \textbf{Công đoạn 2:} Chọn $1$ sinh viên nữ từ $5$ sinh viên nữ: $C_5^1 = 5$ cách.
+\end{itemize}
+Theo quy tắc nhân, tổng số cách chọn là:
+\[
+  10 \times 5 = \textcolor{AccentRed}{\mathbf{50}}\text{ (cách)}
+\]
+\end{baitap}
+
+% ==============================================================================
+\section{Nguyên lý Chuồng bồ câu}
+% ==============================================================================
+
+\subsection{Nguyên lý Chuồng bồ câu (Dirichlet)}
+
+\begin{itemize}
+  \item \textbf{Phát biểu:} Nếu xếp $n$ con chim vào $k$ cái chuồng ($n > k$), thì ít nhất một chuồng chứa từ $2$ con chim trở lên.
+  \item \textbf{Nguyên lý tổng quát:} Nếu xếp $N$ đồ vật vào $k$ cái hộp, thì có ít nhất một hộp chứa ít nhất $\lceil N/k \rceil$ đồ vật.\\
+  \textit{($\lceil x \rceil$: số nguyên nhỏ nhất $\ge x$. Ví dụ: $\lceil 2.1 \rceil = 3$, $\lceil 3 \rceil = 3$.)}
+\end{itemize}
+
+\textbf{Ví dụ:}
+\begin{itemize}
+  \item Trong một nhóm $367$ người, chắc chắn có ít nhất $2$ người cùng ngày sinh nhật. \textit{(Có tối đa $366$ ngày sinh khác nhau, mà $367 > 366$.)}
+  \item Trong $100$ người, có ít nhất $\lceil 100/12 \rceil = 9$ người sinh cùng tháng.
+\end{itemize}
+
+\textbf{Mấu chốt khi làm bài:} xác định đâu là ``chim'' và đâu là ``chuồng''.
+
+\begin{baitap}{Bài tập: Tên bắt đầu bằng cùng một chữ cái}
+\textbf{Đề bài:} Chứng tỏ rằng trong một lớp có $30$ sinh viên thì ít nhất có $2$ sinh viên có tên bắt đầu bằng cùng một chữ cái.
+
+\textbf{Câu hỏi:} Đâu là ``chim'', đâu là ``chuồng''?
+\begin{itemize}
+  \item Bảng chữ cái tiếng Việt có \textbf{29} chữ cái. Ta coi mỗi chữ cái là một ``cái lồng'' ($k = 29$).
+  \item Ta coi mỗi sinh viên là một ``con bồ câu'' ($N = 30$).
+\end{itemize}
+Theo nguyên lý chuồng bồ câu, có ít nhất một chữ cái là chữ đầu tên của
+\[
+  \left\lceil \frac{30}{29} \right\rceil = \textcolor{AccentRed}{2}\text{ (sinh viên)}
+\]
+\end{baitap}
+
+\begin{baitap}{Bài tập: 6 học sinh có điểm bằng nhau}
+\textbf{Đề bài:} Trong $45$ học sinh làm bài kiểm tra: không ai dưới $2$ điểm, chỉ có $2$ học sinh điểm $10$. CMR: Ít nhất tìm được $6$ học sinh có điểm bằng nhau.
+
+\textit{Gợi mở: $2$ học sinh điểm $10$ không giúp ích gì. Hãy tách riêng họ ra.}
+\begin{itemize}
+  \item Tổng số học sinh: $45$.
+  \item Số học sinh đạt điểm $10$: $2$ học sinh.
+  \item Số học sinh còn lại (``chim''): $45 - 2 = 43$ học sinh.
+  \item Các mức điểm còn lại (``chuồng''): $\{2, 3, 4, 5, 6, 7, 8, 9\}$, tức là $8$ mức.
+\end{itemize}
+Số học sinh ít nhất cùng điểm là:
+\[
+  \left\lceil \frac{43}{8} \right\rceil = \lceil 5.375 \rceil = \textcolor{AccentRed}{6}
+\]
+\end{baitap}
+
+\begin{baitap}{Bài tập: Bài toán ngược của nguyên lý Dirichlet}
+\textbf{Đề bài:} Có $5$ loại học bổng. Phải có ít nhất bao nhiêu sinh viên để chắc chắn rằng có ít ra là $6$ sinh viên cùng nhận một loại học bổng?
+
+Đây là bài toán \textbf{ngược} của nguyên lý Dirichlet: biết số chuồng và kết quả, tìm số chim.
+\begin{itemize}
+  \item $5$ là số loại học bổng (số chuồng, $k = 5$).
+  \item Gọi $N$ là tổng số sinh viên cần tìm (số chim).
+  \item Cần: $\lceil N/5 \rceil \ge 6$.
+\end{itemize}
+\[
+  \lceil N/5 \rceil \ge 6 \iff \frac{N}{5} > 5 \iff N > 25 \implies N_{\min} = \textcolor{AccentRed}{26}.
+\]
+\textit{Kiểm tra trực quan: $25$ sinh viên có thể chia đều $5$ người mỗi loại (chưa đủ $6$). Thêm $1$ người nữa thì chắc chắn có một loại có $6$ người.}
+\end{baitap}
+
+% ==============================================================================
+\section{Hoán vị, Tổ hợp và Nhị thức Newton}
+% ==============================================================================
+
+\subsection{Hoán vị và Tổ hợp}
+
+\begin{itemize}
+  \item \textbf{Hoán vị ($P_n$):} Sắp xếp $n$ phần tử theo thứ tự.
+  \[
+    P_n = n! = n(n-1)\dots 1
+  \]
+
+  \item \textbf{Chỉnh hợp ($A_n^k$):} Chọn $k$ phần tử từ $n$ phần tử và có \textbf{sắp xếp thứ tự}.
+  \[
+    A_n^k = \frac{n!}{(n-k)!}
+  \]
+
+  \item \textbf{Tổ hợp ($C_n^k$):} Chọn $k$ phần tử từ $n$ phần tử và \textbf{không quan tâm thứ tự}.
+  \[
+    C_n^k = \binom{n}{k} = \frac{n!}{k!(n-k)!}
+  \]
+\end{itemize}
+
+\textbf{Câu hỏi:} Chọn $3$ bạn làm lớp trưởng, lớp phó, thủ quỹ từ $10$ bạn: $A_{10}^3 = 720$ (có thứ tự). Chọn $3$ bạn đi trực nhật: $C_{10}^3 = 120$ (không thứ tự).
+
+\subsection{Nhị thức Newton}
+
+Khai triển biểu thức lũy thừa của một tổng:
+\[
+  (x + y)^n = \sum_{k=0}^{n} \binom{n}{k} x^{n-k} y^k
+\]
+
+\textbf{Ví dụ khai triển $(x + y)^3$:}
+\begin{align*}
+  (x + y)^3 &= \binom{3}{0} x^3 y^0 + \binom{3}{1} x^2 y^1 + \binom{3}{2} x^1 y^2 + \binom{3}{3} x^0 y^3 \\
+            &= x^3 + 3x^2 y + 3xy^2 + y^3
+\end{align*}
+
+\textbf{Hệ quả:} Cho $x = y = 1$, ta được tổng các hệ số $\sum_{k=0}^{n} \binom{n}{k} = 2^n$.
+
+\textit{Kiểm tra với $n = 3$: $1 + 3 + 3 + 1 = 8 = 2^3$.}
+
+\begin{baitap}{Bài tập: Xếp chỗ quanh bàn tròn (a)}
+\textbf{Đề bài:} $4$ nữ (Huệ, Hồng, Lan, Hương) và $4$ nam (An, Bình, Hạnh, Phúc) ngồi vào bàn tròn $8$ chỗ.
+
+\noindent
+\begin{minipage}[t]{0.60\textwidth}
+\textbf{a) Có bao nhiêu cách xếp để nam nữ ngồi xen kẽ?}
+
+\textit{Lưu ý: Với bàn tròn, các cách xếp chỉ khác nhau bởi phép xoay được coi là như nhau.}
+\begin{enumerate}
+  \item Cố định $1$ bạn nữ (ví dụ Huệ) để loại bỏ các cách xoay: có $1$ cách.
+  \item Xếp $3$ nữ còn lại vào $3$ vị trí nữ: $3! = 6$ cách.
+  \item Xếp $4$ nam vào $4$ vị trí xen kẽ giữa các bạn nữ: $4! = 24$ cách.
+\end{enumerate}
+$\implies$ Theo quy tắc nhân, số cách: $6 \times 24 = \textcolor{AccentRed}{\mathbf{144}}$ cách.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.36\textwidth}
+\centering
+\vspace{0pt}
+\begin{tikzpicture}[scale=0.82]
+  \fill[brown!18] (0,0) circle (1.08);
+  \draw[thick] (0,0) circle (1.08);
+  \node[font=\small] at (0,0) {Bàn tròn};
+  \node[circle, draw, thick, fill=red!68, text=white, minimum size=0.82cm, inner sep=1pt, font=\footnotesize\bfseries] at (90:1.9) {Huệ};
+  \foreach \ang in {45,-45,-135,135} {
+    \node[circle, draw, thick, fill=cyan!20, minimum size=0.82cm, inner sep=1pt, font=\footnotesize] at (\ang:1.9) {Nam};
+  }
+  \foreach \ang in {0,-90,180} {
+    \node[circle, draw, thick, fill=red!12, minimum size=0.82cm, inner sep=1pt, font=\footnotesize] at (\ang:1.9) {Nữ};
+  }
+\end{tikzpicture}
+\end{minipage}
+\end{baitap}
+
+\begin{baitap}{Bài tập: Xếp chỗ quanh bàn tròn (b)}
+\noindent
+\begin{minipage}[t]{0.60\textwidth}
+\textbf{b) Nam nữ xen kẽ nhưng Hồng và An không ngồi cạnh nhau?}
+
+\textit{Gợi mở: Đếm trực tiếp ``không cạnh nhau'' rất khó. Hãy đếm phần bù!}
+\begin{enumerate}
+  \item Phần bù:\\
+  {\raggedright $N = (\text{Tổng xen kẽ}) - (\text{Hồng, An cạnh nhau})$.\par}
+  \item Đếm số cách Hồng và An cạnh nhau. Cố định chỗ của Hồng:
+  \begin{itemize}
+    \item An ngồi ở $1$ trong $2$ ghế hai bên Hồng: $2$.
+    \item Xếp $3$ nữ còn lại vào các vị trí nữ: $3! = 6$.
+    \item Xếp $3$ nam còn lại vào các vị trí nam: $3! = 6$.
+  \end{itemize}
+\end{enumerate}
+$\implies$ Số cách cạnh nhau: $2 \times 6 \times 6 = 72$ cách.\\
+$\implies$ Kết quả: $144 - 72 = \textcolor{AccentRed}{\mathbf{72}}$ cách.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.36\textwidth}
+\centering
+\vspace{0pt}
+\begin{tikzpicture}[scale=0.82]
+  \fill[brown!18] (0,0) circle (1.08);
+  \draw[thick] (0,0) circle (1.08);
+  \node[font=\small] at (0,0) {Bàn tròn};
+  \node[circle, draw, thick, fill=red!68, text=white, minimum size=0.82cm, inner sep=1pt, font=\footnotesize\bfseries] at (90:1.9) {Hồng};
+  \foreach \ang in {45,135} {
+    \node[circle, draw, thick, fill=yellow!80, minimum size=0.82cm, inner sep=1pt, font=\footnotesize\bfseries] at (\ang:1.9) {An?};
+  }
+  \foreach \ang in {0,-90,180} {
+    \node[circle, draw, thick, fill=red!12, minimum size=0.82cm, inner sep=1pt, font=\footnotesize] at (\ang:1.9) {Nữ};
+  }
+  \foreach \ang in {-45,-135} {
+    \node[circle, draw, thick, fill=cyan!20, minimum size=0.82cm, inner sep=1pt, font=\footnotesize] at (\ang:1.9) {Nam};
+  }
+  \node[font=\footnotesize\itshape] at (0,-2.7) {An ngồi một trong hai ghế vàng.};
+\end{tikzpicture}
+\end{minipage}
+\end{baitap}
+
+\begin{baitap}{Bài tập: Xếp chỗ trên hàng ghế dài (c)}
+\textbf{c) Nếu $8$ bạn ngồi trên một hàng ghế dài ($8$ ghế thẳng hàng), có bao nhiêu cách xếp nam nữ xen kẽ?}
+
+\textbf{Câu hỏi:} Khác gì bàn tròn? $\rightarrow$ Hàng ghế có \textbf{đầu} và \textbf{cuối}: xoay không còn cho cùng một cách xếp, nên \textbf{không} cố định ai cả.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  \node[anchor=east, font=\small] at (-0.6, 1.1) {Kiểu 1:};
+  \foreach \i/\lbl/\clr in {0/Nữ/red!12, 1/Nam/cyan!20, 2/Nữ/red!12, 3/Nam/cyan!20, 4/Nữ/red!12, 5/Nam/cyan!20, 6/Nữ/red!12, 7/Nam/cyan!20} {
+    \node[circle, draw, thick, fill=\clr, minimum size=0.82cm, inner sep=1pt, font=\footnotesize] at (\i*0.98, 1.1) {\lbl};
+  }
+  \node[anchor=east, font=\small] at (-0.6, 0) {Kiểu 2:};
+  \foreach \i/\lbl/\clr in {0/Nam/cyan!20, 1/Nữ/red!12, 2/Nam/cyan!20, 3/Nữ/red!12, 4/Nam/cyan!20, 5/Nữ/red!12, 6/Nam/cyan!20, 7/Nữ/red!12} {
+    \node[circle, draw, thick, fill=\clr, minimum size=0.82cm, inner sep=1pt, font=\footnotesize] at (\i*0.98, 0) {\lbl};
+  }
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+  \item Chọn kiểu xen kẽ (Nữ đứng đầu hoặc Nam đứng đầu): $2$ cách.
+  \item Xếp $4$ nữ vào $4$ vị trí nữ: $4! = 24$ cách. Xếp $4$ nam vào $4$ vị trí nam: $4! = 24$ cách.
+\end{enumerate}
+$\implies$ Số cách: $2 \times 24 \times 24 = \textcolor{AccentRed}{\mathbf{1152}}$ cách.\\
+\textit{Nhận xét: $1152 = 8 \times 144$. Vì sao? (mỗi cách xếp bàn tròn ứng với $8$ cách xoay).}
+\end{baitap}
+
+\begin{baitap}{Bài tập: Xếp chỗ trên hàng ghế dài (d)}
+\textbf{d) Hàng ghế dài, nam nữ xen kẽ, nhưng Hồng và An không ngồi cạnh nhau?}
+
+\textit{Gợi mở: Vẫn dùng phần bù. Nhưng khác bàn tròn: Hồng ngồi ở \textbf{đầu hàng} thì chỉ có \textbf{1} ghế bên cạnh!}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  \foreach \i in {1,...,8} {
+    \pgfmathparse{int(mod(\i,2)==1)}
+    \ifnum\pgfmathresult=1
+      \def\clr{red!12}
+    \else
+      \def\clr{cyan!20}
+    \fi
+    \node[circle, draw, thick, fill=\clr, minimum size=0.82cm] at ({\i*0.98}, 0) {};
+    \node[font=\footnotesize] at ({\i*0.98}, 0.62) {\i};
+  }
+  \foreach \i in {1,...,7} {
+    \draw[<->, AccentRed, thick] ({\i*0.98+0.16}, -0.62) -- ({(\i+1)*0.98-0.16}, -0.62);
+  }
+  \node[AccentRed, font=\small] at (4.5*0.98, -1.05) {7 cặp ghế cạnh nhau, mỗi cặp gồm 1 ghế nữ và 1 ghế nam};
+\end{tikzpicture}
+\end{center}
+
+Đếm số cách Hồng và An ngồi cạnh nhau (với mỗi kiểu xen kẽ):
+\begin{itemize}
+  \item Chọn $1$ trong $7$ cặp ghế cạnh nhau cho Hồng (ghế nữ) và An (ghế nam): $7$ cách.
+  \item Xếp $3$ nữ và $3$ nam còn lại: $3! \times 3! = 36$ cách.
+\end{itemize}
+$\implies$ Cạnh nhau: $2 \times 7 \times 36 = 504$ cách. \qquad
+$\implies$ Kết quả: $1152 - 504 = \textcolor{AccentRed}{\mathbf{648}}$ cách.
+\end{baitap}
+
+\begin{baitap}{Bài tập: Hoán vị lặp}
+\textbf{Đề bài:} Có bao nhiêu chuỗi ký tự khác nhau lập được từ tất cả các ký tự trong từ \textbf{MISSISSIPPI}?
+
+\textbf{Câu hỏi:} Tại sao không phải là $11!$? $\rightarrow$ Vì đổi chỗ hai chữ S cho nhau không tạo ra chuỗi mới.
+
+Từ \textbf{MISSISSIPPI} có tổng cộng $11$ ký tự. Ta đếm tần suất xuất hiện của mỗi chữ cái. Đây là bài toán \textbf{hoán vị lặp} của $11$ phần tử:
+
+\noindent
+\begin{minipage}[c]{0.30\textwidth}
+\begin{itemize}
+  \item M: $1$ lần
+  \item I: $4$ lần
+  \item S: $4$ lần
+  \item P: $2$ lần
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.66\textwidth}
+\begin{align*}
+  P &= \frac{n!}{n_1!\,n_2!\,n_3!\,n_4!} = \frac{11!}{1! \times 4! \times 4! \times 2!} \\
+    &= \frac{39\,916\,800}{1152} = \textcolor{AccentRed}{\mathbf{34\,650}}\text{ (chuỗi)}
+\end{align*}
+\end{minipage}
+\end{baitap}
+
+\begin{baitap}{Bài tập: Nghiệm nguyên không âm}
+\textbf{Đề bài:} Phương trình $x_1 + x_2 + x_3 + x_4 = 20$ có bao nhiêu bộ nghiệm nguyên không âm?
+
+Bài toán tìm số nghiệm nguyên không âm của phương trình $x_1 + x_2 + \dots + x_n = k$ tương ứng với bài toán \textbf{``Chia $k$ cái kẹo cho $n$ đứa trẻ''}.
+\begin{itemize}
+  \item Số biến (số đứa trẻ): $n = 4$
+  \item Tổng (số kẹo): $k = 20$
+  \item $x_i$ là số kẹo bạn thứ $i$ nhận được. Nghiệm không âm: có bạn được \textbf{0} kẹo cũng được.
+\end{itemize}
+\textbf{Câu hỏi:} Làm sao đếm số cách chia mà không phải liệt kê?
+\end{baitap}
+
+\subsection{Ý tưởng: Chia kẹo bằng vách ngăn}
+
+Xếp \textbf{20 cái kẹo}~\keo~và \textbf{3 vách ngăn}~\vach~thành một hàng $20 + 3 = 23$ vị trí. Các vách chia kẹo thành $4$ phần cho $4$ bạn.
+
+\begin{center}
+\begin{tikzpicture}[x=0.50cm, y=1cm]
+  % VD 1
+  \node[anchor=east, font=\small] at (-0.6, 1.5) {VD 1:};
+  \foreach \i in {0,...,4}   {\fill[orange!90!brown] (\i, 1.5) circle (0.15);}
+  \foreach \i in {6,...,12}  {\fill[orange!90!brown] (\i, 1.5) circle (0.15);}
+  \foreach \i in {14,...,16} {\fill[orange!90!brown] (\i, 1.5) circle (0.15);}
+  \foreach \i in {18,...,22} {\fill[orange!90!brown] (\i, 1.5) circle (0.15);}
+  \foreach \i in {5, 13, 17} {
+    \draw[blue!80!black, line width=2pt] (\i, 1.22) -- (\i, 1.78);
+  }
+  \node[AccentRed, font=\small] at (2, 0.92) {$x_1 = 5$};
+  \node[AccentRed, font=\small] at (9, 0.92) {$x_2 = 7$};
+  \node[AccentRed, font=\small] at (15, 0.92) {$x_3 = 3$};
+  \node[AccentRed, font=\small] at (20, 0.92) {$x_4 = 5$};
+
+  % VD 2
+  \node[anchor=east, font=\small] at (-0.6, 0) {VD 2:};
+  \foreach \i in {1,...,8}   {\fill[orange!90!brown] (\i, 0) circle (0.15);}
+  \foreach \i in {10,...,21} {\fill[orange!90!brown] (\i, 0) circle (0.15);}
+  \foreach \i in {0, 9, 22} {
+    \draw[blue!80!black, line width=2pt] (\i, -0.28) -- (\i, 0.28);
+  }
+  \node[AccentRed, font=\small] at (0, -0.58) {$x_1 = 0$};
+  \node[AccentRed, font=\small] at (4.5, -0.58) {$x_2 = 8$};
+  \node[AccentRed, font=\small] at (15.5, -0.58) {$x_3 = 12$};
+  \node[AccentRed, font=\small] at (22, -0.58) {$x_4 = 0$};
+\end{tikzpicture}
+\end{center}
+
+\textit{Vách đứng ở đầu hàng, cuối hàng, hoặc hai vách sát nhau $\Rightarrow$ có bạn nhận 0 kẹo.}\\
+\textbf{Mỗi nghiệm $\longleftrightarrow$ một cách chọn 3 vị trí} (trong $23$ vị trí) để đặt vách.
+
+\begin{baitap}{Bài tập: Nghiệm nguyên không âm (tiếp theo)}
+\textbf{Từ ý tưởng vách ngăn:} số nghiệm $=$ số cách chọn $3$ vị trí đặt vách trong $23$ vị trí.
+
+Tổng quát: chia $k$ kẹo cho $n$ bạn cần $n - 1$ vách, tổng cộng $n + k - 1$ vị trí. Công thức tính số nghiệm là tổ hợp lặp:
+\[
+  C_{n+k-1}^{n-1} = C_{n+k-1}^{k}
+\]
+Áp dụng với $n = 4$, $k = 20$:
+\[
+  C_{23}^{20} = C_{23}^{3} = \frac{23 \times 22 \times 21}{3!} = \textcolor{AccentRed}{\mathbf{1771}}\text{ (nghiệm)}
+\]
+\end{baitap}
+
+\begin{baitap}{Bài tập: Nghiệm nguyên có điều kiện}
+\textbf{Đề bài:} Tìm số nghiệm nguyên không âm của $x + y + z + t = 20$ thỏa mãn: \mbox{$x \ge 1$}, \mbox{$y > 2$}, \mbox{$z > 3$}, \mbox{$t > 4$}.
+
+\textit{Gợi mở: Đưa về bài toán ``nghiệm $\ge 0$'' như bài trước bằng cách đổi biến.}
+
+Đầu tiên, ta viết lại các điều kiện dưới dạng $\ge$: $x \ge 1,\; y \ge 3,\; z \ge 4,\; t \ge 5$.
+
+\noindent
+\begin{minipage}[t]{0.42\textwidth}
+Đặt biến mới:
+\begin{itemize}
+  \item $x' = x - 1 \ge 0 \implies x = x' + 1$
+  \item $y' = y - 3 \ge 0 \implies y = y' + 3$
+  \item $z' = z - 4 \ge 0 \implies z = z' + 4$
+  \item $t' = t - 5 \ge 0 \implies t = t' + 5$
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.55\textwidth}
+Thay vào phương trình:
+\[
+  x' + y' + z' + t' = 20 - (1 + 3 + 4 + 5) = 7
+\]
+Số nghiệm là $C_{n+k'-1}^{k'}$ với $n = 4$, $k' = 7$:
+\[
+  C_{10}^{7} = \frac{10 \times 9 \times 8}{3!} = \textcolor{AccentRed}{\mathbf{120}}\text{ (nghiệm)}
+\]
+\end{minipage}
+\end{baitap}
+
+\end{document}

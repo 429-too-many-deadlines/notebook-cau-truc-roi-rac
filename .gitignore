@@ -1,0 +1,98 @@
+# ==============================================================================
+# LaTeX build & auxiliary files
+# ==============================================================================
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+# Output formats (dvi/ps/xdv)
+*.dvi
+*.xdv
+*.ps
+*-converted-to.*
+
+# Bibliography & index
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+*.idx
+*.ilg
+*.ind
+*.ist
+
+# Glossaries & nomenclature
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.lzo
+*.lzs
+*.slg
+*.syg
+*.syi
+*.nlo
+*.nls
+
+# Latexmk & SyncTeX
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+# Beamer, tcolorbox, listings, minted & misc LaTeX temp files
+*.nav
+*.snm
+*.vrb
+*.tdo
+*.thm
+*.brf
+*.lol
+*.loa
+*.mw
+*.xdy
+*.upa
+*.upb
+*.listing
+*.pyg
+*.pytxcode
+_minted*/
+pythontex-files-*/
+
+# Build output directories
+build/
+out/
+dist/
+
+# Bỏ comment dòng dưới nếu bạn không muốn track các file PDF biên dịch từ LaTeX
+# BaiGiang.tex/**/*.pdf
+
+# ==============================================================================
+# Editors, IDEs & OS files
+# ==============================================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+*~
+
+.DS_Store
+Thumbs.db
+desktop.ini
