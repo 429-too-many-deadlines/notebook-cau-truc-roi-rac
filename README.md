@@ -17,9 +17,12 @@ notebook-cau-truc-roi-rac/
 │   ├── Chuong1/
 │   │   ├── Chuong1.tex
 │   │   └── Chuong1.pdf
-│   └── Chuong2/
-│       ├── Chuong2.tex
-│       └── Chuong2.pdf
+│   ├── Chuong2/
+│   │   ├── Chuong2.tex
+│   │   └── Chuong2.pdf
+│   └── Chuong3/
+│       ├── Chuong3.tex
+│       └── Chuong3.pdf
 ├── .gitignore
 └── README.md
 ```
@@ -30,7 +33,7 @@ notebook-cau-truc-roi-rac/
 | :---: | :--- | :---: | :---: | :---: | :---: |
 | 1 | Logic mệnh đề, suy luận và logic vị từ | [Chương 1.pdf](BaiGiang/Ch%C6%B0%C6%A1ng%201.pdf) | [Chuong1.tex](BaiGiang.tex/Chuong1/Chuong1.tex) | [Chuong1.pdf](BaiGiang.tex/Chuong1/Chuong1.pdf) | Đã soạn |
 | 2 | Tập hợp, các nguyên lý đếm và tổ hợp | [Chương 2.pdf](BaiGiang/Ch%C6%B0%C6%A1ng%202.pdf) | [Chuong2.tex](BaiGiang.tex/Chuong2/Chuong2.tex) | [Chuong2.pdf](BaiGiang.tex/Chuong2/Chuong2.pdf) | Đã soạn |
-| 3 | Quan hệ | [Chương 3.pdf](BaiGiang/Ch%C6%B0%C6%A1ng%203.pdf) | — | — | Chưa soạn |
+| 3 | Quan hệ | [Chương 3.pdf](BaiGiang/Ch%C6%B0%C6%A1ng%203.pdf) | [Chuong3.tex](BaiGiang.tex/Chuong3/Chuong3.tex) | [Chuong3.pdf](BaiGiang.tex/Chuong3/Chuong3.pdf) | Đã soạn |
 | 4 | Đại số Bool | [Chương 4.pdf](BaiGiang/Ch%C6%B0%C6%A1ng%204.pdf) | — | — | Chưa soạn |
 | 5 | Các khái niệm cơ bản của lý thuyết đồ thị | [Chương 5.pdf](BaiGiang/Ch%C6%B0%C6%A1ng%205.pdf) | — | — | Chưa soạn |
 | 6 | Cây | [Chương 6.pdf](BaiGiang/Ch%C6%B0%C6%A1ng%206.pdf) | — | — | Chưa soạn |
@@ -39,6 +42,7 @@ notebook-cau-truc-roi-rac/
 
 - **Chương 1 (`Chuong1.tex`)**: Mệnh đề, Các toán tử Logic, Biểu thức phức hợp, Các tương đương Logic, Suy luận và Chứng minh, Vị từ và lượng từ, Phủ định lượng từ, Suy luận với lượng từ.
 - **Chương 2 (`Chuong2.tex`)**: Tập hợp và các phép toán, Các nguyên lý đếm cơ bản, Nguyên lý Chuồng bồ câu, Hoán vị, Tổ hợp và Nhị thức Newton.
+- **Chương 3 (`Chuong3.tex`)**: Quan hệ hai ngôi và các tính chất, Biểu diễn quan hệ bằng ma trận và các phép toán trên quan hệ, Quan hệ tương đương (lớp tương đương, tập thương), Quan hệ thứ tự (Poset, thứ tự toàn phần/bán phần, biểu đồ Hasse, phần tử tối tiểu/tối đại).
 
 ## Hướng dẫn biên dịch LaTeX
 
