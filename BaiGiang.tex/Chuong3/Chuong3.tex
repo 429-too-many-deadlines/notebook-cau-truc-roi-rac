@@ -1,0 +1,1422 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- Mã hóa & Tiếng Việt ---
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+
+% --- Font Times New Roman (chuẩn Times cho cả văn bản và công thức toán) ---
+\usepackage{mathptmx}
+
+% --- Bố cục trang A4 sạch sẽ, bỏ qua header/footer ---
+\usepackage[a4paper, top=2cm, bottom=2cm, left=2.2cm, right=2cm]{geometry}
+\pagestyle{plain}
+
+% --- Toán học, bảng biểu, danh sách, màu sắc & đồ họa ---
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,positioning,shapes.geometric}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{needspace}
+\usepackage{parskip}
+\usepackage[hidelinks]{hyperref}
+
+% --- Định nghĩa màu & kiểu trình bày ---
+\definecolor{PrimaryBlue}{RGB}{0, 51, 153}
+\definecolor{SoftBg}{RGB}{246, 248, 252}
+\definecolor{AccentRed}{RGB}{210, 20, 20}
+\definecolor{AccentGreen}{RGB}{0, 128, 0}
+
+\titleformat{\section}
+  {\Needspace{10\baselineskip}\Large\bfseries\color{PrimaryBlue}}
+  {\thesection.}{0.5em}{}
+  [\vspace{2pt}\titlerule]
+
+\titleformat{\subsection}
+  {\needspace{4\baselineskip}\large\bfseries\color{PrimaryBlue!85!black}}
+  {\thesubsection.}{0.5em}{}
+
+\setlist[itemize]{leftmargin=1.5em, itemsep=3pt, topsep=4pt}
+\setlist[enumerate]{leftmargin=1.5em, itemsep=3pt, topsep=4pt}
+
+% --- Hộp bài tập & lời giải ---
+\newtcolorbox{baitap}[1]{
+  enhanced,
+  colback=SoftBg,
+  colframe=PrimaryBlue!65!black,
+  colbacktitle=PrimaryBlue!10!white,
+  coltitle=PrimaryBlue!90!black,
+  fonttitle=\bfseries,
+  title={#1},
+  boxrule=0.6pt,
+  arc=3pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  before skip=10pt, after skip=10pt
+}
+
+% --- Macro toán học & kiểu TikZ dùng chung ---
+\newcommand{\notrel}[1]{\mathrel{\ooalign{$#1$\cr\hidewidth$/$\hidewidth}}}
+\newcommand{\chiahet}{\mathrel{\raisebox{-0.15ex}{\scalebox{0.85}{$\vdots$}}}}
+\newcommand{\yes}{\textcolor{AccentGreen}{\textbf{Có}}}
+\newcommand{\no}{\textcolor{AccentRed}{\textbf{Không}}}
+
+\tikzset{
+  vnode/.style={circle, draw=black, thick, fill=orange!20, minimum size=20pt, inner sep=1pt, font=\normalsize},
+  vnodeRed/.style={circle, draw=AccentRed, very thick, fill=orange!20, minimum size=20pt, inner sep=1pt, font=\normalsize},
+  relarr/.style={-{Stealth[length=5.5pt, width=4.2pt]}, blue!75!black, thick},
+  missarr/.style={-{Stealth[length=5.5pt, width=4.2pt]}, AccentRed, thick, dashed},
+  elembox/.style={rectangle, draw=black, fill=white, minimum width=18pt, minimum height=15pt, inner sep=2pt, font=\small},
+  setframe/.style={rectangle, draw=black, rounded corners=6pt, inner sep=6pt},
+  hdot/.style={circle, draw=black, fill=white, inner sep=2pt},
+  hmax/.style={circle, draw=AccentRed!80!white, fill=AccentRed!70!white, inner sep=2.5pt},
+  hmin/.style={circle, draw=blue!70!white, fill=blue!65!white, inner sep=2.5pt}
+}
+
+\begin{document}
+
+% --- Tiêu đề chương ---
+\begin{center}
+  {\LARGE\bfseries\color{PrimaryBlue} CHƯƠNG 3}\\[4pt]
+  {\large\bfseries QUAN HỆ}
+\end{center}
+\vspace{4pt}
+
+% ==============================================================================
+\section{Quan hệ hai ngôi và các tính chất}
+% ==============================================================================
+
+\subsection{Định nghĩa Quan hệ hai ngôi}
+
+\textbf{\textcolor{AccentRed}{Nhắc lại:}} Tích Đề-các $A \times B = \{(a, b) \mid a \in A,\; b \in B\}$ là tập \textbf{tất cả} các cặp có thứ tự.
+
+\textbf{\textcolor{AccentRed}{Định nghĩa:}} Cho hai tập $A, B$. Ta gọi tập $R$ là một \textcolor{AccentRed}{quan hệ hai ngôi} từ $A$ đến $B$ nếu
+\[
+  R \subseteq A \times B.
+\]
+\textit{Hiểu đơn giản: quan hệ là việc \textbf{chọn ra một số cặp} trong $A \times B$.}
+
+\begin{itemize}
+  \item Nếu $(a, b) \in R$ thì ta nói $a$ có quan hệ $R$ với $b$ và ký hiệu $aRb$.
+  \item Ngược lại nếu $(a, b) \notin R$ thì ta ký hiệu $a \notrel{R} b$.
+  \item Khi $A = B$, ta gọi $R$ là một quan hệ hai ngôi \textbf{trên} $A$.
+\end{itemize}
+
+\textbf{Câu hỏi:} Nếu $|A| = 3,\; |B| = 3$ thì có bao nhiêu quan hệ từ $A$ đến $B$?\\
+$\rightarrow$ $|A \times B| = 9$ cặp, mỗi cặp được chọn hoặc không: $2^9 = 512$ quan hệ.
+
+\subsection{Ví dụ về Quan hệ hai ngôi}
+
+\textbf{1. Quan hệ từ $A$ đến $B$}
+
+\noindent
+\begin{minipage}[t]{0.47\textwidth}
+\textbf{\textcolor{AccentRed}{Ví dụ 1:}} $A = \{a_1, a_2, a_3\}$, $B = \{b_1, b_2, b_3\}$.\\
+$R = \{(a_1, b_1), (a_1, b_3), (a_3, b_3)\}$.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  \node at (0, 2.35) {$A$};
+  \node at (2.8, 2.35) {$B$};
+  \draw[rounded corners=5pt] (-0.52, -0.45) rectangle (0.52, 1.95);
+  \draw[rounded corners=5pt] (2.28, -0.45) rectangle (3.32, 1.95);
+  \node[elembox] (a1) at (0, 1.5) {$a_1$};
+  \node[elembox] (a2) at (0, 0.75) {$a_2$};
+  \node[elembox] (a3) at (0, 0) {$a_3$};
+  \node[elembox] (b1) at (2.8, 1.5) {$b_1$};
+  \node[elembox] (b2) at (2.8, 0.75) {$b_2$};
+  \node[elembox] (b3) at (2.8, 0) {$b_3$};
+  \draw[relarr] (a1.east) -- (b1.west);
+  \draw[relarr] (a1.south east) -- (b3.north west);
+  \draw[relarr] (a3.east) -- (b3.west);
+\end{tikzpicture}
+\end{center}
+$a_1 R b_1,\; a_1 \notrel{R} b_2$, $a_2$ không có quan hệ với phần tử nào.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\textbf{\textcolor{AccentRed}{Ví dụ 2:}} $A = \{\text{An}, \text{Vũ}, \text{Hân}\}$ (sinh viên),\\
+$B = \{\text{Toán}, \text{Lý}\}$ (môn học).\\
+$aRb \iff$ ``$a$ đăng ký học môn $b$''.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  \node at (0, 2.35) {$A$};
+  \node at (3.0, 2.35) {$B$};
+  \draw[rounded corners=5pt] (-0.65, -0.45) rectangle (0.65, 1.95);
+  \draw[rounded corners=5pt] (2.25, -0.45) rectangle (3.75, 1.95);
+  \node[elembox] (an) at (0, 1.5) {An};
+  \node[elembox] (vu) at (0, 0.75) {Vũ};
+  \node[elembox] (han) at (0, 0) {Hân};
+  \node[elembox] (toan) at (3.0, 1.2) {Toán};
+  \node[elembox] (ly) at (3.0, 0.3) {Lý};
+  \draw[relarr] (an.east) -- (toan.west);
+  \draw[relarr] (vu.east) -- (toan.south west);
+  \draw[relarr] (vu.east) -- (ly.north west);
+  \draw[relarr] (han.east) -- (ly.west);
+\end{tikzpicture}
+\end{center}
+{\small $R = \{(\text{An}, \text{Toán}), (\text{Vũ}, \text{Toán}), (\text{Vũ}, \text{Lý}), (\text{Hân}, \text{Lý})\}$.}
+\end{minipage}
+
+\vspace{8pt}
+\textbf{2. Quan hệ trên một tập hợp}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{\textcolor{AccentRed}{Ví dụ 1:}} $A = \{1, 2, 3, 4\}$,\\
+$aRb \iff a$ là ước của $b$.\\
+$R = \{(1,1), (1,2), (1,3), (1,4),$\\
+\hspace*{2.2em}$(2,2), (2,4), (3,3), (4,4)\}$.
+
+\begin{center}
+\begin{tikzpicture}[x=1.1cm, y=1.3cm]
+  \foreach \i in {1,2,3,4} {
+    \node[circle, fill=orange!90!brown, inner sep=2.4pt, label=above:{\small $\i$}] (u\i) at (\i, 1) {};
+    \node[circle, fill=orange!90!brown, inner sep=2.4pt, label=below:{\small $\i$}] (d\i) at (\i, 0) {};
+  }
+  \foreach \a/\b in {1/1, 1/2, 1/3, 1/4, 2/2, 2/4, 3/3, 4/4} {
+    \draw[-{Stealth[length=4.5pt]}, semithick] (u\a) -- (d\b);
+  }
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{\textcolor{AccentRed}{Ví dụ 2:}} $A = \{1, 2, 3, 4\}$,\\
+$aSb \iff a < b$.\\
+$S = \{(1,2), (1,3), (1,4), (2,3), (2,4), (3,4)\}$.\\
+\phantom{$S =$}
+
+\begin{center}
+\begin{tikzpicture}[x=1.1cm, y=1.3cm]
+  \foreach \i in {1,2,3,4} {
+    \node[circle, fill=orange!90!brown, inner sep=2.4pt, label=above:{\small $\i$}] (u\i) at (\i, 1) {};
+    \node[circle, fill=orange!90!brown, inner sep=2.4pt, label=below:{\small $\i$}] (d\i) at (\i, 0) {};
+  }
+  \foreach \a/\b in {1/2, 1/3, 1/4, 2/3, 2/4, 3/4} {
+    \draw[-{Stealth[length=4.5pt]}, semithick] (u\a) -- (d\b);
+  }
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\textit{Nhận xét: $|R| = 8,\; |S| = 6$. Cả hai đều là tập con của $A \times A$ (có $16$ cặp).}
+
+\subsection{Biểu diễn quan hệ trên một tập bằng đồ thị có hướng}
+
+Với quan hệ $R$ trên tập $A$, ta có thể vẽ gọn hơn:
+\begin{itemize}
+  \item Mỗi phần tử của $A$ là một \textbf{đỉnh}.
+  \item Nếu $aRb$ thì vẽ \textbf{mũi tên} từ $a$ đến $b$.
+  \item Nếu $aRa$ thì vẽ một \textbf{vòng} tại $a$.
+\end{itemize}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\textbf{Ví dụ 1:} ``ước của'' trên $\{1, 2, 3, 4\}$\\[6pt]
+\begin{tikzpicture}[scale=1]
+  \node[vnode] (1) at (0, 1.5) {$1$};
+  \node[vnode] (2) at (2.1, 1.5) {$2$};
+  \node[vnode] (3) at (0, 0) {$3$};
+  \node[vnode] (4) at (2.1, 0) {$4$};
+  \draw[relarr] (1) -- (2);
+  \draw[relarr] (1) -- (3);
+  \draw[relarr] (1) -- (4);
+  \draw[relarr] (2) -- (4);
+  \draw[relarr] (1) to[out=205, in=155, looseness=5] (1);
+  \draw[relarr] (2) to[out=25, in=335, looseness=5] (2);
+  \draw[relarr] (3) to[out=205, in=155, looseness=5] (3);
+  \draw[relarr] (4) to[out=25, in=335, looseness=5] (4);
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\textbf{Ví dụ 2:} ``nhỏ hơn'' trên $\{1, 2, 3, 4\}$\\[6pt]
+\begin{tikzpicture}[scale=1]
+  \node[vnode] (1) at (0, 1.5) {$1$};
+  \node[vnode] (2) at (2.1, 1.5) {$2$};
+  \node[vnode] (3) at (0, 0) {$3$};
+  \node[vnode] (4) at (2.1, 0) {$4$};
+  \draw[relarr] (1) -- (2);
+  \draw[relarr] (1) -- (3);
+  \draw[relarr] (1) -- (4);
+  \draw[relarr] (2) -- (3);
+  \draw[relarr] (2) -- (4);
+  \draw[relarr] (3) -- (4);
+\end{tikzpicture}
+\end{minipage}
+
+\vspace{4pt}
+\textit{Đồ thị giúp ta ``nhìn thấy'' các tính chất của quan hệ.}
+
+\subsection{Các tính chất của quan hệ}
+
+\needspace{10\baselineskip}
+\textbf{(a) Tính phản xạ}
+
+\textbf{\textcolor{AccentRed}{Định nghĩa:}} Giả sử $R$ là một quan hệ hai ngôi trên tập $A$.
+\[
+  R \text{ có tính \textbf{phản xạ}} \iff \forall a \in A,\; aRa.
+\]
+\textit{Trên đồ thị: \textbf{mọi đỉnh đều có vòng}.}
+
+\noindent
+\begin{minipage}[t]{0.60\textwidth}
+\textbf{\textcolor{AccentRed}{Ví dụ 1:}} Trên $A = \{1, 2, 3, 4\}$:
+\begin{itemize}
+  \item $R_1 = \{(1,1), (1,2), (2,1), (2,2), (3,4), (4,1), (4,4)\}$ $\rightarrow$ \textbf{không phản xạ} vì $(3, 3) \notin R_1$.
+  \item $R_2 = \{(1,1), (1,2), (1,4), (2,2), (3,3), (4,1), (4,4)\}$ $\rightarrow$ \textbf{phản xạ} vì có đủ $(1,1), (2,2), (3,3), (4,4)$.
+\end{itemize}
+\textbf{\textcolor{AccentRed}{Ví dụ 2:}} Trong $\mathbb{Z}$: quan hệ $\le$ là \textbf{phản xạ} ($a \le a$ với mọi $a$), quan hệ $>$ \textbf{không phản xạ} ($1 \ngtr 1$).
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.36\textwidth}
+\centering
+\vspace{0pt}
+\begin{tikzpicture}[scale=0.9]
+  \node[vnode] (1) at (0, 1.4) {$1$};
+  \node[vnode] (2) at (1.7, 1.4) {$2$};
+  \node[vnode] (4) at (0, 0) {$4$};
+  \node[vnodeRed] (3) at (1.7, 0) {$3$};
+  \node[AccentRed, right=3pt of 3, font=\small] {thiếu vòng!};
+  \draw[relarr] (1) to[bend left=18] (2);
+  \draw[relarr] (2) to[bend left=18] (1);
+  \draw[relarr] (3) -- (4);
+  \draw[relarr] (4) -- (1);
+  \draw[relarr] (1) to[out=205, in=155, looseness=5] (1);
+  \draw[relarr] (2) to[out=25, in=335, looseness=5] (2);
+  \draw[relarr] (4) to[out=205, in=155, looseness=5] (4);
+  \node[font=\small] at (0.85, -0.75) {Đồ thị của $R_1$};
+\end{tikzpicture}
+\end{minipage}
+
+\vspace{8pt}
+\needspace{10\baselineskip}
+\textbf{(b) Tính đối xứng}
+
+\textbf{\textcolor{AccentRed}{Định nghĩa:}}
+\[
+  R \text{ có tính \textbf{đối xứng}} \iff \forall a, b \in A,\; aRb \Rightarrow bRa.
+\]
+\textit{Trên đồ thị: \textbf{mỗi mũi tên đều có mũi tên ngược chiều}.}
+
+\noindent
+\begin{minipage}[t]{0.62\textwidth}
+\textbf{\textcolor{AccentRed}{Ví dụ 1:}} $R_1 = \{(1,1), (1,2), (2,1)\}$ trên $A = \{1, 2, 3, 4\}$ $\rightarrow$ \textbf{đối xứng}: cặp $(1, 2)$ có cặp ngược $(2, 1)$, còn $(1, 1)$ ngược lại chính nó.
+
+\textbf{\textcolor{AccentRed}{Ví dụ 2:}} Trên $\mathbb{Z}$, $aRb \iff a + b$ là số chẵn $\rightarrow$ \textbf{đối xứng} vì $a + b = b + a$.
+
+\textbf{Phản ví dụ:} Quan hệ $\le$ trên $\mathbb{Z}$ \textbf{không} đối xứng: $1 \le 2$ nhưng $2 \nleq 1$.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.34\textwidth}
+\centering
+\vspace{0pt}
+\begin{tikzpicture}[scale=0.9]
+  \node[vnode] (1) at (0, 1.3) {$1$};
+  \node[vnode] (2) at (1.7, 1.3) {$2$};
+  \node[vnode] (3) at (0, 0) {$3$};
+  \node[vnode] (4) at (1.7, 0) {$4$};
+  \draw[relarr] (1) to[bend left=18] (2);
+  \draw[relarr] (2) to[bend left=18] (1);
+  \draw[relarr] (1) to[out=205, in=155, looseness=5] (1);
+  \node[font=\small] at (0.85, -0.75) {Đồ thị của $R_1$};
+\end{tikzpicture}
+\end{minipage}
+
+\vspace{8pt}
+\needspace{10\baselineskip}
+\textbf{(c) Tính phản xứng}
+
+\textbf{\textcolor{AccentRed}{Định nghĩa:}}
+\[
+  R \text{ có tính \textbf{phản xứng}} \iff \forall a, b \in A,\; (aRb \land bRa) \Rightarrow a = b.
+\]
+\textit{Phát biểu tương đương: nếu $a \neq b$ thì \textbf{không} thể đồng thời có $aRb$ và $bRa$.}\\
+\textit{Trên đồ thị: giữa hai đỉnh khác nhau \textbf{không có} cặp mũi tên hai chiều.}
+
+\noindent
+\begin{minipage}[t]{0.58\textwidth}
+\textbf{\textcolor{AccentRed}{Ví dụ 1:}} Quan hệ $\le$ trên $\mathbb{Z}$ là \textbf{phản xứng} vì $(a \le b \land b \le a) \Rightarrow a = b$.
+
+\textbf{\textcolor{AccentRed}{Ví dụ 2:}} Quan hệ ``ước của'' trên $\mathbb{Z}^+$ là \textbf{phản xứng}: nếu $a \mid b$ và $b \mid a$ với $a, b > 0$ thì $a \le b$ và $b \le a$, nên $a = b$.
+
+\textbf{Phản ví dụ:} $R_1 = \{(1,1), (1,2), (2,1)\}$ \textbf{không} phản xứng: có $1 R_1 2$ và $2 R_1 1$ nhưng $1 \neq 2$.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.38\textwidth}
+\centering
+\vspace{0pt}
+\begin{tikzpicture}[scale=0.9]
+  \node[vnode] (1) at (0, 1.35) {$1$};
+  \node[vnode] (2) at (1.8, 1.35) {$2$};
+  \node[vnode] (3) at (0, 0) {$3$};
+  \node[vnode] (4) at (1.8, 0) {$4$};
+  \draw[relarr] (1) -- (2);
+  \draw[relarr] (1) -- (3);
+  \draw[relarr] (1) -- (4);
+  \draw[relarr] (2) -- (4);
+  \draw[relarr] (1) to[out=205, in=155, looseness=5] (1);
+  \draw[relarr] (2) to[out=25, in=335, looseness=5] (2);
+  \draw[relarr] (3) to[out=205, in=155, looseness=5] (3);
+  \draw[relarr] (4) to[out=25, in=335, looseness=5] (4);
+  \node[font=\small, align=center] at (0.9, -0.85) {``ước của'' trên $\{1, 2, 3, 4\}$\\\textit{Mọi mũi tên chỉ có một chiều.}};
+\end{tikzpicture}
+\end{minipage}
+
+\vspace{6pt}
+\needspace{10\baselineskip}
+\textbf{Lưu ý: Đối xứng và phản xứng}
+
+\textbf{Câu hỏi:} ``Không đối xứng'' có phải là ``phản xứng'' không?\\
+$\rightarrow$ \textbf{Không!} Hai tính chất này \textbf{không phải} là phủ định của nhau.
+
+Trên $A = \{1, 2, 3\}$:
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Quan hệ} & \textbf{Đối xứng} & \textbf{Phản xứng} \\
+\midrule
+$\{(1, 1), (2, 2)\}$ & Có & Có \\
+$\{(1, 2), (2, 1)\}$ & Có & Không \\
+$\{(1, 2)\}$ & Không & Có \\
+$\{(1, 2), (2, 1), (1, 3)\}$ & Không & Không \\
+\bottomrule
+\end{tabular}
+\end{center}
+\textit{Một quan hệ có thể vừa đối xứng vừa phản xứng, hoặc không có tính chất nào.}
+
+\vspace{6pt}
+\needspace{10\baselineskip}
+\textbf{(d) Tính truyền (bắc cầu)}
+
+Quan hệ $R$ trên tập hợp $A$ được gọi là \textbf{có tính truyền} (bắc cầu) nếu:
+\[
+  \forall a, b, c \in A,\; ((a, b) \in R \land (b, c) \in R) \implies (a, c) \in R.
+\]
+\textit{Trên đồ thị: hễ đi được \textbf{2 bước} $a \to b \to c$ thì phải có \textbf{đường tắt} $a \to c$.}
+
+\noindent
+\begin{minipage}[t]{0.47\textwidth}
+\textbf{\textcolor{AccentRed}{Ví dụ 1:}} Quan hệ $(\le)$ trên $\mathbb{Z}$:
+\begin{itemize}
+  \item Nếu $a \le b$ và $b \le c$ thì chắc chắn $a \le c$.
+  \item \textbf{Kết luận:} Quan hệ $\le$ có tính truyền.
+\end{itemize}
+\textit{Tương tự: ``ước của'' có tính truyền, vì $a \mid b,\; b \mid c \Rightarrow a \mid c$.}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\textbf{\textcolor{AccentRed}{Ví dụ 2:}} $A = \{1, 2, 3\}$, $R = \{(1, 2), (2, 3)\}$.
+\begin{itemize}
+  \item Ta thấy $(1, 2) \in R$ và $(2, 3) \in R$. Tuy nhiên, $(1, 3) \notin R$.
+  \item \textbf{Kết luận:} $R$ \textbf{không} có tính truyền.
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  \node[vnode] (1) at (0, 0) {$1$};
+  \node[vnode] (2) at (1.5, 0.95) {$2$};
+  \node[vnode] (3) at (3.0, 0) {$3$};
+  \draw[relarr] (1) -- (2);
+  \draw[relarr] (2) -- (3);
+  \draw[missarr] (1) -- node[below, font=\small, AccentRed] {thiếu $(1, 3)$} (3);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\begin{baitap}{Luyện tập nhanh: Kiểm tra 4 tính chất}
+Trên $A = \{1, 2, 3\}$, xét hai quan hệ:
+\[
+  R = \{(1, 1), (2, 2), (3, 3), (1, 2), (2, 3), (1, 3)\}, \qquad S = \{(1, 2), (2, 1)\}
+\]
+\noindent
+\begin{minipage}[c]{0.46\textwidth}
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Tính chất} & $R$ & $S$ \\
+\midrule
+Phản xạ & \yes & \no \\
+Đối xứng & \no & \yes \\
+Phản xứng & \yes & \no \\
+Bắc cầu & \yes & \no \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.50\textwidth}
+\textit{$S$ không phản xạ: thiếu $(1, 1)$.}\\[4pt]
+\textit{$S$ không bắc cầu: có $(1, 2), (2, 1)$ nhưng thiếu $(1, 1)$.}\\[6pt]
+\textbf{Nhận xét:} $R$ chính là quan hệ $\le$ trên $\{1, 2, 3\}$.
+\end{minipage}
+\end{baitap}
+
+% ==============================================================================
+\section{Biểu diễn quan hệ bằng ma trận và các phép toán}
+% ==============================================================================
+
+\subsection{Biểu diễn quan hệ bằng ma trận}
+
+\textbf{\textcolor{AccentRed}{Định nghĩa:}} Cho $R$ từ $A = \{a_1, \dots, a_m\}$ đến $B = \{b_1, \dots, b_n\}$. Ma trận $M_R = [m_{ij}]$ (cỡ $m \times n$) được xác định:
+\[
+  m_{ij} = \begin{cases}
+    1 & \text{nếu } (a_i, b_j) \in R, \\
+    0 & \text{nếu } (a_i, b_j) \notin R.
+  \end{cases}
+\]
+\textit{Hàng ứng với phần tử của $A$, cột ứng với phần tử của $B$.}
+
+\noindent
+\begin{minipage}[c]{0.54\textwidth}
+\textbf{\textcolor{AccentRed}{Ví dụ 1:}} $A = \{1, 2, 3\}$, $B = \{1, 2\}$, $aRb \iff a > b$.
+\begin{itemize}
+  \item $R = \{(2, 1), (3, 1), (3, 2)\}$.
+  \item Điền $1$ vào ô (hàng $a$, cột $b$) nếu $a > b$.
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.42\textwidth}
+\centering
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{c|cc}
+$M_R$ & $b=1$ & $b=2$ \\ \hline
+$a=1$ & $0$ & $0$ \\
+$a=2$ & \textcolor{AccentRed}{$1$} & $0$ \\
+$a=3$ & \textcolor{AccentRed}{$1$} & \textcolor{AccentRed}{$1$} \\
+\end{tabular}\\[8pt]
+$M_R = \begin{pmatrix} 0 & 0 \\ 1 & 0 \\ 1 & 1 \end{pmatrix}$
+\end{minipage}
+
+\vspace{8pt}
+\textbf{\textcolor{AccentRed}{Ví dụ 2 (Ma trận của quan hệ ``ước của''):}} $A = \{1, 2, 3, 4\}$, $aRb \iff a$ là ước của $b$. Ma trận vuông cỡ $4 \times 4$.
+
+\noindent
+\begin{minipage}[c]{0.40\textwidth}
+\centering
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{c|cccc}
+$M_R$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+$1$ & $1$ & $1$ & $1$ & $1$ \\
+$2$ & $0$ & $1$ & $0$ & $1$ \\
+$3$ & $0$ & $0$ & $1$ & $0$ \\
+$4$ & $0$ & $0$ & $0$ & $1$ \\
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.56\textwidth}
+Hàng 1: $1$ là ước của mọi số.\\
+Hàng 2: $2$ là ước của $2$ và $4$.\\
+Hàng 3: $3$ chỉ là ước của $3$.\\
+Hàng 4: $4$ chỉ là ước của $4$.
+\end{minipage}
+
+\textbf{Câu hỏi:} Nhìn ma trận, ta thấy gì ở \textbf{đường chéo chính}? Ở hai bên đường chéo?\\
+$\rightarrow$ Đường chéo toàn số $1$. Phần dưới đường chéo toàn số $0$.
+
+\subsection{Nhận biết tính chất qua ma trận \texorpdfstring{$M_R$}{MR} (Ma trận vuông)}
+
+Cho quan hệ $R$ trên tập $A$. Ma trận biểu diễn $M_R = [m_{ij}]$ giúp nhận biết nhanh:
+
+\noindent
+\begin{minipage}[t]{0.31\textwidth}
+\centering
+\textbf{\textcolor{AccentRed}{Phản xạ}}\\[3pt]
+{\small Đường chéo chính toàn số $1$ ($m_{ii} = 1$).}\\[6pt]
+$\begin{pmatrix}
+  \mathbf{1} & \cdot & \cdot \\
+  \cdot & \mathbf{1} & \cdot \\
+  \cdot & \cdot & \mathbf{1}
+\end{pmatrix}$
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.33\textwidth}
+\centering
+\textbf{\textcolor{PrimaryBlue}{Đối xứng}}\\[3pt]
+{\small Đối xứng gương qua đường chéo chính ($m_{ij} = m_{ji}$).}\\[6pt]
+\begin{tikzpicture}[baseline=(m.center)]
+  \node[inner sep=0pt] (m) {$\begin{pmatrix}
+    \cdot & \mathbf{a} & \cdot \\
+    \mathbf{a} & \cdot & \mathbf{b} \\
+    \cdot & \mathbf{b} & \cdot
+  \end{pmatrix}$};
+  \draw[dashed, gray] (-0.52, 0.58) -- (0.52, -0.58);
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.33\textwidth}
+\centering
+\textbf{\textcolor{AccentGreen}{Phản xứng}}\\[3pt]
+{\small Với $i \neq j$, không có cặp $(m_{ij}, m_{ji})$ nào cùng bằng $1$.}\\[6pt]
+\begin{tikzpicture}[baseline=(m.center)]
+  \node[inner sep=0pt] (m) {$\begin{pmatrix}
+    \cdot & \mathbf{1} & \mathbf{0} \\
+    \mathbf{0} & \cdot & \mathbf{1} \\
+    \mathbf{1} & \mathbf{0} & \cdot
+  \end{pmatrix}$};
+  \draw[dashed, gray] (-0.52, 0.58) -- (0.52, -0.58);
+\end{tikzpicture}
+\end{minipage}
+
+\vspace{4pt}
+\textit{Lưu ý: Tính \textbf{bắc cầu} khó nhận ra trực tiếp từ ma trận, cần kiểm tra theo định nghĩa.}
+
+\vspace{4pt}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{\textcolor{AccentRed}{Ví dụ 1:}} Trên $A = \{1, 2, 3\}$:
+\[
+  M_1 = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}
+\]
+\begin{itemize}
+  \item Đường chéo toàn $1 \Rightarrow$ \textbf{phản xạ}.
+  \item $m_{12} = 1$ nhưng $m_{21} = 0 \Rightarrow$ \textbf{không đối xứng}.
+  \item Không có cặp $m_{ij} = m_{ji} = 1\;(i \neq j) \Rightarrow$ \textbf{phản xứng}.
+\end{itemize}
+\textit{(Đây là quan hệ $\le$ trên $\{1, 2, 3\}$.)}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{\textcolor{AccentRed}{Ví dụ 2:}} Trên $A = \{1, 2, 3\}$:
+\[
+  M_2 = \begin{pmatrix} 1 & 1 & 0 \\ 1 & 1 & 1 \\ 0 & 1 & 1 \end{pmatrix}
+\]
+\begin{itemize}
+  \item Đường chéo toàn $1 \Rightarrow$ \textbf{phản xạ}.
+  \item $M_2$ đối xứng qua đường chéo $\Rightarrow$ \textbf{đối xứng, không phản xứng}.
+  \item Bắc cầu? $1 R 2,\; 2 R 3$ nhưng $m_{13} = 0 \Rightarrow$ \textbf{không bắc cầu}.
+\end{itemize}
+\end{minipage}
+
+\subsection{Các phép toán trên quan hệ}
+
+Cho $R, S$ là các quan hệ từ $A$ đến $B$. Vì quan hệ là \textbf{tập hợp}, ta có các phép toán sau:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{lll}
+\toprule
+\textbf{Phép toán} & \textbf{Định nghĩa} & \textbf{Trên ma trận} \\
+\midrule
+Quan hệ ngược $R^{-1}$ & $\{(b, a) \mid (a, b) \in R\}$ & \textbf{Chuyển vị:} $M_{R^{-1}} = M_R^T$ \\
+Quan hệ bù $\overline{R}$ & $\{(a, b) \mid (a, b) \notin R\}$ & Đổi $0 \leftrightarrow 1$ ở mọi ô \\
+Hợp $R \cup S$ & $(a, b) \in R$ hoặc $(a, b) \in S$ & Ô bằng $1$ nếu \textbf{ít nhất một} ô bằng $1$ (OR) \\
+Giao $R \cap S$ & $(a, b) \in R$ và $(a, b) \in S$ & Ô bằng $1$ nếu \textbf{cả hai} ô bằng $1$ (AND) \\
+Hiệu $R \setminus S$ & $(a, b) \in R$ và $(a, b) \notin S$ & $M_R$ là $1$ \textbf{và} $M_S$ là $0$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Ví dụ:} Trên $\mathbb{Z}$, $R = \{(a, b) \mid a > b\}$. Khi đó $R^{-1} = \{(a, b) \mid a < b\}$, $\overline{R} = \{(a, b) \mid a \le b\}$.
+
+\textbf{Ví dụ bằng ma trận:} Trên $A = \{1, 2\}$, cho $M_R = \begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix}$ và $M_S = \begin{bmatrix} 1 & 0 \\ 1 & 0 \end{bmatrix}$.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{ccccc}
+$M_{R^{-1}}$ & $M_{\overline{R}}$ & $M_{R \cup S}$ & $M_{R \cap S}$ & $M_{R \setminus S}$ \\[4pt]
+$\begin{bmatrix} 1 & 0 \\ 1 & 0 \end{bmatrix}$ &
+$\begin{bmatrix} 0 & 0 \\ 1 & 1 \end{bmatrix}$ &
+$\begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}$ &
+$\begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$ &
+$\begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}$ \\[14pt]
+{\footnotesize đổi hàng thành cột} &
+{\footnotesize đổi $0$ và $1$} &
+{\footnotesize OR từng ô} &
+{\footnotesize AND từng ô} &
+{\footnotesize $1$ ở $R$, $0$ ở $S$}
+\end{tabular}
+\end{center}
+
+\textbf{Nhận xét:} $R \cup S$, $R \cap S$ được tính ``từng ô'', giống phép toán trên chuỗi bit đã học.
+
+\subsection{Bài tập và Lời giải mẫu}
+
+\begin{baitap}{Bài tập: Tính chất của quan hệ}
+\textbf{Bài 5:} Đối với mỗi quan hệ dưới đây trên tập $\{1, 2, 3, 4\}$, hãy xác định xem nó có phản xạ, đối xứng, bắc cầu không?
+\begin{enumerate}[label=\alph*)]
+  \item $\{(1, 2), (2, 3), (3, 2)\}$
+  \item $\{(1, 1), (2, 2), (3, 3), (4, 4)\}$
+  \item $\{(1, 3), (1, 4), (2, 3), (3, 1), (3, 2), (4, 1)\}$
+\end{enumerate}
+
+\textbf{Bài 7:} Xác định xem quan hệ $R$ trên tập số thực có tính phản xạ, đối xứng, phản xứng, bắc cầu hay không, với $(x, y) \in R$ khi và chỉ khi:
+\begin{enumerate}[label=\alph*)]
+  \item $x = 2y$ \qquad\qquad b) $x + y = 2$ \qquad\qquad c) $xy \ge 0$
+\end{enumerate}
+\end{baitap}
+
+\begin{baitap}{Bài tập: Phép toán trên quan hệ}
+\textbf{Bài 20:} Cho $R$ là một quan hệ được biểu diễn bởi ma trận
+\[
+  M_R = \begin{bmatrix} 0 & 1 & 1 \\ 1 & 1 & 0 \\ 1 & 0 & 1 \end{bmatrix}
+\]
+Tìm ma trận biểu diễn quan hệ $\overline{R}$ và $R^{-1}$.
+
+\textbf{Bài 21:} Cho $R_1$ và $R_2$ là hai quan hệ trên tập $A$ được biểu diễn bằng các ma trận:
+\[
+  M_{R_1} = \begin{bmatrix} 0 & 1 & 0 \\ 1 & 1 & 1 \\ 1 & 0 & 0 \end{bmatrix}, \qquad
+  M_{R_2} = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 1 & 1 \\ 1 & 1 & 1 \end{bmatrix}
+\]
+Tìm ma trận của: \quad a) $R_1 \cup R_2,\; R_1 \cap R_2$ \qquad b) $R_1 \setminus R_2,\; R_2 \setminus R_1$.
+\end{baitap}
+
+\begin{baitap}{Bài tập: Đọc quan hệ từ đồ thị có hướng}
+\textbf{Bài 23:} Hãy liệt kê các cặp được sắp trong các quan hệ được biểu diễn bởi các đồ thị có hướng sau:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.88]
+  % Graph a)
+  \node[font=\bfseries] at (-0.6, 2.0) {a)};
+  \node[vnode] (a1) at (0.7, 1.55) {$a$};
+  \node[vnode] (b1) at (0, 0) {$b$};
+  \node[vnode] (c1) at (1.4, 0) {$c$};
+  \draw[relarr] (a1) -- (b1);
+  \draw[relarr] (a1) -- (c1);
+  \draw[relarr] (b1) to[bend left=18] (c1);
+  \draw[relarr] (c1) to[bend left=18] (b1);
+
+  % Graph b)
+  \begin{scope}[xshift=4.3cm]
+    \node[font=\bfseries] at (-0.75, 2.0) {b)};
+    \node[vnode] (a2) at (0, 1.45) {$a$};
+    \node[vnode] (b2) at (1.7, 1.45) {$b$};
+    \node[vnode] (c2) at (0, 0) {$c$};
+    \node[vnode] (d2) at (1.7, 0) {$d$};
+    \draw[relarr] (a2) to[bend left=18] (b2);
+    \draw[relarr] (b2) to[bend left=18] (a2);
+    \draw[relarr] (c2) -- (a2);
+    \draw[relarr] (c2) -- (d2);
+    \draw[relarr] (a2) to[out=205, in=155, looseness=5] (a2);
+    \draw[relarr] (b2) to[out=25, in=335, looseness=5] (b2);
+    \draw[relarr] (c2) to[out=205, in=155, looseness=5] (c2);
+    \draw[relarr] (d2) to[out=25, in=335, looseness=5] (d2);
+  \end{scope}
+
+  % Graph c)
+  \begin{scope}[xshift=8.8cm]
+    \node[font=\bfseries] at (-0.75, 2.0) {c)};
+    \node[vnode] (a3) at (0, 1.45) {$a$};
+    \node[vnode] (b3) at (1.7, 1.45) {$b$};
+    \node[vnode] (c3) at (0, 0) {$c$};
+    \node[vnode] (d3) at (1.7, 0) {$d$};
+    \draw[relarr] (a3) to[bend left=18] (b3);
+    \draw[relarr] (b3) to[bend left=18] (a3);
+    \draw[relarr] (a3) to[bend left=18] (c3);
+    \draw[relarr] (c3) to[bend left=18] (a3);
+    \draw[relarr] (b3) to[bend left=14] (c3);
+    \draw[relarr] (c3) to[bend left=14] (b3);
+    \draw[relarr] (a3) to[out=205, in=155, looseness=5] (a3);
+    \draw[relarr] (b3) to[out=25, in=335, looseness=5] (b3);
+    \draw[relarr] (d3) to[out=25, in=335, looseness=5] (d3);
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\textit{Gợi ý: mỗi mũi tên $x \to y$ cho một cặp $(x, y)$; mỗi vòng tại $x$ cho cặp $(x, x)$.}
+\end{baitap}
+
+\begin{baitap}{Lời giải Bài 5}
+Trên $\{1, 2, 3, 4\}$:
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\small
+\begin{tabular}{@{} >{\raggedright\arraybackslash}p{4.3cm} >{\raggedright\arraybackslash}p{2.7cm} >{\raggedright\arraybackslash}p{3.6cm} >{\raggedright\arraybackslash}p{3.9cm} @{}}
+\toprule
+\textbf{Quan hệ} & \textbf{Phản xạ} & \textbf{Đối xứng} & \textbf{Bắc cầu} \\
+\midrule
+a) $\{(1,2), (2,3), (3,2)\}$ &
+\no: thiếu $(1,1)$ &
+\no: có $(1,2)$, thiếu $(2,1)$ &
+\no: $(1,2), (2,3)$ nhưng thiếu $(1,3)$ \\
+b) $\{(1,1), (2,2), (3,3), (4,4)\}$ &
+\yes: đủ $4$ vòng &
+\yes: mỗi cặp ngược lại chính nó &
+\yes: chỉ có dạng $(a,a), (a,a) \Rightarrow (a,a)$ \\
+c) $\{(1,3), (1,4), (2,3),$ $(3,1), (3,2), (4,1)\}$ &
+\no: thiếu $(1,1)$ &
+\yes: $(1,3)\text{--}(3,1)$, $(1,4)\text{--}(4,1)$, $(2,3)\text{--}(3,2)$ &
+\no: $(1,3), (3,1)$ nhưng thiếu $(1,1)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Nhận xét:} b) là quan hệ \textbf{bằng nhau} ($aRb \iff a = b$), có đủ $3$ tính chất.
+\end{baitap}
+
+\begin{baitap}{Lời giải Bài 7}
+\textit{Mẹo: để chứng minh ``Không'', chỉ cần chỉ ra \textbf{một phản ví dụ}.}
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\small
+\begin{tabular}{@{} >{\raggedright\arraybackslash}p{2.0cm} >{\raggedright\arraybackslash}p{2.6cm} >{\raggedright\arraybackslash}p{2.7cm} >{\raggedright\arraybackslash}p{3.3cm} >{\raggedright\arraybackslash}p{3.4cm} @{}}
+\toprule
+ & \textbf{Phản xạ} & \textbf{Đối xứng} & \textbf{Phản xứng} & \textbf{Bắc cầu} \\
+\midrule
+a) $x = 2y$ &
+\no: $1 \neq 2 \cdot 1$ &
+\no: $2R1$ nhưng $1 \neq 2 \cdot 2$ &
+\yes: $x=2y,\; y=2x \Rightarrow x=4x \Rightarrow x=y=0$ &
+\no: $4R2,\; 2R1$ nhưng $4 \neq 2 \cdot 1$ \\
+b) $x + y = 2$ &
+\no: $0 + 0 \neq 2$ &
+\yes: $x + y = y + x$ &
+\no: $0R2,\; 2R0$ nhưng $0 \neq 2$ &
+\no: $0R2,\; 2R0$ nhưng $0 + 0 \neq 2$ \\
+c) $xy \ge 0$ &
+\yes: $x \cdot x = x^2 \ge 0$ &
+\yes: $xy = yx$ &
+\no: $1R2,\; 2R1$ nhưng $1 \neq 2$ &
+\no: $1R0,\; 0R(-1)$ nhưng $1 \cdot (-1) < 0$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{3pt}
+\textbf{Chú ý câu c):} số $0$ ``nối'' được với mọi số, nên tính bắc cầu bị phá vỡ khi đi qua $0$.
+\end{baitap}
+
+\begin{baitap}{Lời giải Bài 20}
+\[
+  M_R = \begin{bmatrix} 0 & 1 & 1 \\ 1 & 1 & 0 \\ 1 & 0 & 1 \end{bmatrix}
+\]
+\noindent
+\begin{minipage}[t]{0.47\textwidth}
+\centering
+\textbf{Quan hệ bù $\overline{R}$:} đổi $0 \leftrightarrow 1$
+\[
+  M_{\overline{R}} = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{bmatrix}
+\]
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.50\textwidth}
+\centering
+\textbf{Quan hệ ngược $R^{-1}$:} chuyển vị (hàng $i$ thành cột $i$)
+\[
+  M_{R^{-1}} = M_R^T = \begin{bmatrix} 0 & 1 & 1 \\ 1 & 1 & 0 \\ 1 & 0 & 1 \end{bmatrix}
+\]
+\end{minipage}
+
+\textbf{Câu hỏi:} Vì sao $M_{R^{-1}}$ giống hệt $M_R$?\\
+$\rightarrow$ Vì $M_R$ \textbf{đối xứng} qua đường chéo chính. Tổng quát: $R$ đối xứng $\iff R^{-1} = R$.
+\end{baitap}
+
+\begin{baitap}{Lời giải Bài 21}
+\[
+  M_{R_1} = \begin{bmatrix} 0 & 1 & 0 \\ 1 & 1 & 1 \\ 1 & 0 & 0 \end{bmatrix}, \qquad
+  M_{R_2} = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 1 & 1 \\ 1 & 1 & 1 \end{bmatrix}
+\]
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{cccc}
+$M_{R_1 \cup R_2}$ (OR) & $M_{R_1 \cap R_2}$ (AND) & $M_{R_1 \setminus R_2}$ & $M_{R_2 \setminus R_1}$ \\[4pt]
+$\begin{bmatrix} 0 & 1 & 0 \\ 1 & 1 & 1 \\ 1 & 1 & 1 \end{bmatrix}$ &
+$\begin{bmatrix} 0 & 1 & 0 \\ 0 & 1 & 1 \\ 1 & 0 & 0 \end{bmatrix}$ &
+$\begin{bmatrix} 0 & 0 & 0 \\ \textcolor{AccentRed}{1} & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}$ &
+$\begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & \textcolor{AccentRed}{1} & \textcolor{AccentRed}{1} \end{bmatrix}$ \\[22pt]
+{\footnotesize $1$ nếu ít nhất một ô là $1$} &
+{\footnotesize $1$ nếu cả hai ô là $1$} &
+{\footnotesize $1$ ở $R_1$, $0$ ở $R_2$} &
+{\footnotesize $1$ ở $R_2$, $0$ ở $R_1$}
+\end{tabular}
+\end{center}
+\textbf{Kiểm tra:} $R_1 \cup R_2 = (R_1 \cap R_2) \cup (R_1 \setminus R_2) \cup (R_2 \setminus R_1)$: số ô bằng $1$ là $7 = 4 + 1 + 2$. $\checkmark$
+\end{baitap}
+
+\begin{baitap}{Lời giải Bài 23}
+\begin{itemize}
+  \item \textbf{a)} $\{(a, b), (a, c), (b, c), (c, b)\}$ \quad \textit{(4 mũi tên, không có vòng).}
+  \item \textbf{b)} $\{(a, a), (b, b), (c, c), (d, d), (a, b), (b, a), (c, a), (c, d)\}$ \quad \textit{(4 vòng và 4 mũi tên).}
+  \item \textbf{c)} $\{(a, a), (b, b), (d, d), (a, b), (b, a), (a, c), (c, a), (b, c), (c, b)\}$ \quad \textit{(3 vòng --- không có vòng tại $c$ --- và 6 mũi tên).}
+\end{itemize}
+\textbf{Câu hỏi thêm:} Quan hệ nào ở trên là đối xứng? $\rightarrow$ Chỉ có \textbf{c)}: mọi mũi tên đều có chiều ngược lại.
+\end{baitap}
+
+% ==============================================================================
+\section{Quan hệ tương đương}
+% ==============================================================================
+
+\subsection{Định nghĩa Quan hệ tương đương}
+
+\textbf{\textcolor{AccentRed}{Định nghĩa:}} Quan hệ $R$ trên $A$ gọi là \textcolor{AccentRed}{tương đương} nếu nó có tính chất: \textbf{phản xạ, đối xứng và bắc cầu}.
+
+\textit{Ý tưởng: quan hệ tương đương gom các phần tử ``giống nhau'' theo một tiêu chí nào đó.}
+\begin{itemize}
+  \item \textbf{Ví dụ 1:} Quan hệ \textbf{cùng họ} giữa các sinh viên trong lớp. (Ai cũng cùng họ với chính mình; A cùng họ B thì B cùng họ A; A cùng họ B, B cùng họ C thì A cùng họ C.)
+  \item \textbf{Ví dụ 2:} Quan hệ đồng dư modulo $m$ trên $\mathbb{Z}$: $a \equiv b \pmod{m} \iff (a - b) \chiahet m$.
+  \item \textbf{Ví dụ 3:} $R$ trên $\mathbb{R}$ sao cho $aRb \iff a - b \in \mathbb{Z}$ là quan hệ tương đương. (Hai số có cùng ``phần lẻ thập phân'', ví dụ $2.3\,R\,5.3$.)
+\end{itemize}
+\textbf{Phản ví dụ:} Quan hệ $\le$ trên $\mathbb{Z}$ \textbf{không} tương đương vì không đối xứng.
+
+\vspace{6pt}
+\textbf{\textcolor{AccentRed}{Ví dụ 1 (Quan hệ tương đương):}} Xét tập $A = \{1, 2, 3, 4, 5, 6\}$. Quan hệ $R$ trên $A$ xác định bởi: $aRb \iff a \equiv b \pmod{3}$ (chia cho $3$ cùng số dư).
+
+\textbf{\textcolor{PrimaryBlue}{Kiểm tra 3 tính chất:}}
+\begin{itemize}
+  \item \textbf{Phản xạ:} $\forall a \in A,\; a - a = 0 \chiahet 3 \Rightarrow a \equiv a \pmod{3} \Rightarrow (a, a) \in R$.
+  \item \textbf{Đối xứng:} Nếu $a - b \chiahet 3$ thì $b - a = -(a - b) \chiahet 3 \Rightarrow aRb \Rightarrow bRa$.
+  \item \textbf{Bắc cầu:} Nếu $a - b \chiahet 3$ và $b - c \chiahet 3$ thì $a - c = (a - b) + (b - c) \chiahet 3$.
+  \item \textbf{Kết luận:} $R$ là quan hệ tương đương.
+\end{itemize}
+\textbf{Câu hỏi:} Những phần tử nào có quan hệ $R$ với số $1$? $\rightarrow$ Các số chia $3$ dư $1$: \textbf{1 và 4}. \textit{(Đây chính là ``lớp tương đương'' của $1$.)}
+
+\vspace{6pt}
+\needspace{11\baselineskip}
+\textbf{\textcolor{AccentRed}{Ví dụ 2 (Quan hệ KHÔNG tương đương):}} Xét tập $A = \{1, 2, 3\}$. Cho quan hệ
+\[
+  S = \{(1, 1), (2, 2), (3, 3), (1, 2), (2, 1), (2, 3), (3, 2)\}.
+\]
+\noindent
+\begin{minipage}[c]{0.60\textwidth}
+\textbf{\textcolor{PrimaryBlue}{Phân tích các tính chất:}}
+\begin{itemize}
+  \item \textbf{Phản xạ:} Có $(1,1), (2,2), (3,3) \in S \Rightarrow$ \textbf{Thỏa mãn}.
+  \item \textbf{Đối xứng:} Có $(1,2)\text{--}(2,1)$ và $(2,3)\text{--}(3,2) \in S \Rightarrow$ \textbf{Thỏa mãn}.
+  \item \textbf{Bắc cầu:} Ta thấy $(1, 2) \in S$ và $(2, 3) \in S$, nhưng cặp \textcolor{AccentRed}{\textbf{(1, 3)}} không có trong $S$ ($1S2 \land 2S3$ nhưng $1 \notrel{S} 3$).
+  \item \textbf{Kết luận:} $S$ \textbf{không} là quan hệ tương đương vì vi phạm tính bắc cầu.
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.36\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.9]
+  \node[vnode] (1) at (0, 0) {$1$};
+  \node[vnode] (2) at (1.5, 1.15) {$2$};
+  \node[vnode] (3) at (3.0, 0) {$3$};
+  \draw[relarr] (1) to[bend left=16] (2);
+  \draw[relarr] (2) to[bend left=16] (1);
+  \draw[relarr] (2) to[bend left=16] (3);
+  \draw[relarr] (3) to[bend left=16] (2);
+  \draw[missarr] (1) -- node[below, font=\small, AccentRed] {thiếu $(1, 3)$} (3);
+  \draw[relarr] (1) to[out=205, in=155, looseness=5] (1);
+  \draw[relarr] (2) to[out=115, in=65, looseness=5] (2);
+  \draw[relarr] (3) to[out=25, in=335, looseness=5] (3);
+\end{tikzpicture}
+\end{minipage}
+
+\subsection{Lớp tương đương}
+
+\textbf{\textcolor{AccentRed}{Định nghĩa:}} Cho $R$ là quan hệ tương đương trên $A$ và $a \in A$. \textbf{Lớp tương đương} của $a$ là
+\[
+  [a]_R = \{b \in A \mid bRa\}
+\]
+\textit{Tức là tập tất cả các phần tử ``tương đương'' với $a$.}
+
+\noindent
+\begin{minipage}[c]{0.55\textwidth}
+\textbf{\textcolor{AccentRed}{Ví dụ 1:}} $A = \{1, \dots, 6\}$, $aRb \iff a \equiv b \pmod{3}$.
+\begin{itemize}
+  \item $[1]_R = \{1, 4\}$ \quad (chia $3$ dư $1$)
+  \item $[2]_R = \{2, 5\}$ \quad (chia $3$ dư $2$)
+  \item $[3]_R = \{3, 6\}$ \quad (chia hết cho $3$)
+\end{itemize}
+\textit{Nhận xét: $[1]_R = [4]_R$ vì $1 R 4$.}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.42\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.95]
+  \begin{scope}
+    \clip (0,0) ellipse (2.3cm and 0.95cm);
+    \fill[red!12] (-2.4, -1.1) rectangle (-0.78, 1.1);
+    \fill[blue!12] (-0.78, -1.1) rectangle (0.78, 1.1);
+    \fill[green!14] (0.78, -1.1) rectangle (2.4, 1.1);
+    \draw[thick] (-0.78, -1.1) -- (-0.78, 1.1);
+    \draw[thick] (0.78, -1.1) -- (0.78, 1.1);
+  \end{scope}
+  \draw[thick] (0,0) ellipse (2.3cm and 0.95cm);
+  \node at (-1.45, 0.32) {$1$}; \node at (-1.45, -0.32) {$4$};
+  \node at (0, 0.32) {$2$}; \node at (0, -0.32) {$5$};
+  \node at (1.45, 0.32) {$3$}; \node at (1.45, -0.32) {$6$};
+  \node at (2.35, 0.85) {$A$};
+\end{tikzpicture}
+\end{minipage}
+
+\textbf{\textcolor{AccentRed}{Ví dụ 2:}} Đồng dư modulo $8$ trên $\mathbb{Z}$:\\
+$[0]_8 = \{\dots, -16, -8, 0, 8, 16, \dots\}$, \qquad $[1]_8 = \{\dots, -15, -7, 1, 9, 17, \dots\}$.
+
+\subsection{Tập thương (Quotient Set)}
+
+\textbf{\textcolor{AccentRed}{Định nghĩa:}} $A/R = \{[a]_R \mid a \in A\}$ là tập hợp chứa tất cả các lớp tương đương của $A$.\\
+\textit{Mỗi \textbf{lớp} là một \textbf{phần tử} của tập thương.}
+
+\noindent
+\begin{minipage}[c]{0.52\textwidth}
+\textbf{\textcolor{AccentRed}{Ví dụ 1:}} $A = \{1, \dots, 6\}$, $a \equiv b \pmod{3}$.
+\begin{itemize}
+  \item \textbf{Các lớp:} $[1] = \{1, 4\}$, $[2] = \{2, 5\}$, $[3] = \{3, 6\}$.
+  \item \textbf{Tập thương:} $A/R = \{\{1, 4\}, \{2, 5\}, \{3, 6\}\}$.
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.44\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.95]
+  \node[PrimaryBlue, font=\bfseries] at (0, 1.05) {Tập thương $A/R$};
+  \draw[thick] (0,0) ellipse (2.5cm and 0.72cm);
+  \node[draw, rounded corners=4pt, fill=red!12, inner sep=4pt, font=\small] at (-1.48, 0) {$\{1, 4\}$};
+  \node[draw, rounded corners=4pt, fill=blue!12, inner sep=4pt, font=\small] at (0, 0) {$\{2, 5\}$};
+  \node[draw, rounded corners=4pt, fill=green!14, inner sep=4pt, font=\small] at (1.48, 0) {$\{3, 6\}$};
+  \node[font=\footnotesize\itshape] at (0, -1.05) {(Mỗi lớp là một phần tử)};
+\end{tikzpicture}
+\end{minipage}
+
+\textbf{\textcolor{AccentRed}{Ví dụ 2:}} Đồng dư modulo $3$ trên $\mathbb{Z}$: $\mathbb{Z}/{\equiv_3} = \{[0], [1], [2]\}$ (chỉ $3$ phần tử, dù $\mathbb{Z}$ vô hạn).
+
+\textbf{Tính chất quan trọng:} Các lớp tương đương \textbf{không giao nhau} và \textbf{phủ kín} $A$: chúng tạo thành một \textbf{phân hoạch} của $A$.
+
+\subsection{Bài tập và Lời giải mẫu}
+
+\begin{baitap}{Bài tập: Quan hệ tương đương (1)}
+\textbf{Bài 1:} Xét quan hệ tương đương $T$ trên $\mathbb{R}$ xác định bởi $xTy \iff x - y \in \mathbb{Z}$.
+\begin{enumerate}[label=\alph*)]
+  \item Xác định lớp tương đương của $1$ đối với quan hệ $T$.
+  \item Xác định lớp tương đương của $1/2$ đối với quan hệ $T$.
+\end{enumerate}
+
+\textbf{Bài 2:} Trên tập số nguyên $\mathbb{Z}$, xét quan hệ hai ngôi $T$ như sau: $\forall x, y \in \mathbb{Z},\; xTy \iff x - y$ là số chẵn.
+\begin{itemize}
+  \item $T$ có phải là một quan hệ tương đương hay không? Vì sao?
+  \item Nếu $T$ là một quan hệ tương đương, hãy tìm các lớp tương đương và tập hợp thương $\mathbb{Z}/T$.
+\end{itemize}
+\end{baitap}
+
+\begin{baitap}{Lời giải Bài 2 (1): Kiểm tra quan hệ tương đương}
+$\forall x, y \in \mathbb{Z},\; xTy \iff x - y$ là số chẵn.\\
+\textit{Gợi mở: ``$x - y$ chẵn'' nghĩa là $x - y = 2k$ với $k \in \mathbb{Z}$.}
+\begin{itemize}
+  \item \textbf{Phản xạ:} $\forall x \in \mathbb{Z},\; x - x = 0 = 2 \cdot 0$ là số chẵn $\Rightarrow xTx$.
+  \item \textbf{Đối xứng:} Giả sử $xTy$, tức $x - y = 2k$. Khi đó $y - x = 2(-k)$ là số chẵn $\Rightarrow yTx$.
+  \item \textbf{Bắc cầu:} Giả sử $xTy$ và $yTz$, tức $x - y = 2k,\; y - z = 2l$. Khi đó $x - z = (x - y) + (y - z) = 2(k + l)$ là số chẵn $\Rightarrow xTz$.
+\end{itemize}
+$T$ có đủ $3$ tính chất phản xạ, đối xứng, bắc cầu $\Rightarrow$ \textbf{$T$ là quan hệ tương đương}.
+\end{baitap}
+
+\begin{baitap}{Lời giải Bài 2 (2): Lớp tương đương và tập thương}
+\begin{itemize}
+  \item \textbf{Câu hỏi:} Số nào có quan hệ $T$ với $0$? $\rightarrow xT0 \iff x - 0 = x$ chẵn.
+  \[
+    [0]_T = \{x \in \mathbb{Z} \mid x \text{ chẵn}\} = \{\dots, -4, -2, 0, 2, 4, \dots\}
+  \]
+  \item \textbf{Câu hỏi:} Số nào có quan hệ $T$ với $1$? $\rightarrow xT1 \iff x - 1$ chẵn $\iff x$ lẻ.
+  \[
+    [1]_T = \{x \in \mathbb{Z} \mid x \text{ lẻ}\} = \{\dots, -3, -1, 1, 3, 5, \dots\}
+  \]
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[x=1.05cm, y=1cm]
+  \draw[->, thick] (-4.9, 0) -- (5.0, 0);
+  \foreach \x in {-4,-2,0,2,4} {
+    \fill[blue!65!white] (\x, 0) circle (3.2pt);
+    \node[below=4pt, font=\small] at (\x, 0) {$\x$};
+  }
+  \foreach \x in {-3,-1,1,3} {
+    \fill[AccentRed!80!white] (\x, 0) circle (3.2pt);
+    \node[below=4pt, font=\small] at (\x, 0) {$\x$};
+  }
+  \node[PrimaryBlue, font=\small] at (-3.3, 0.55) {$[0]_T$: số chẵn};
+  \node[AccentRed, font=\small] at (3.3, 0.55) {$[1]_T$: số lẻ};
+\end{tikzpicture}
+\end{center}
+Mọi số nguyên đều chẵn hoặc lẻ, nên chỉ có \textbf{2 lớp}. \textbf{Tập thương:} $\mathbb{Z}/T = \{[0]_T, [1]_T\}$.
+\end{baitap}
+
+\begin{baitap}{Bài tập: Quan hệ tương đương (2)}
+\textbf{Bài 3:} Cho tập hợp $A = \{-2, -1, 0, 1, 2, 3, 4, 5\}$, xét quan hệ hai ngôi $R$ trên $A$ như sau:
+\[
+  xRy \iff x - 3y \text{ là số chẵn}
+\]
+\begin{enumerate}[label=\alph*)]
+  \item Chứng minh $R$ là một quan hệ tương đương trên tập $A$.
+  \item Tìm các lớp tương đương $[1]_R$ và $[2]_R$.
+\end{enumerate}
+\textit{Gợi ý: $x - 3y = (x - y) - 2y$. So sánh với Bài 2.}
+
+\textbf{Bài 4:} Trên mặt phẳng tọa độ $\mathbb{R}^2$, xét quan hệ $R$ định nghĩa như sau:
+\[
+  (x, y)R(a, b) \iff x^2 + y^2 = a^2 + b^2
+\]
+\begin{enumerate}[label=\alph*)]
+  \item Chứng minh $R$ là một quan hệ tương đương trên $\mathbb{R}^2$.
+  \item Mô tả hình học của lớp tương đương $[(3, 4)]_R$.
+  \item Nêu ý nghĩa hình học tổng quát của các lớp tương đương đối với quan hệ này.
+\end{enumerate}
+\end{baitap}
+
+\begin{baitap}{Bài tập: Quan hệ tương đương (3)}
+\textbf{Bài 5:} Cho tập hợp $S = \{1, 2, 3, 4, 5\}$. Gọi $P(S)$ là tập lũy thừa của $S$. Xét quan hệ $R$ trên $P(S)$ định nghĩa bởi:
+\[
+  ARB \iff |A| = |B| \quad (\text{với } |A|, |B| \text{ là số phần tử của tập hợp})
+\]
+\begin{enumerate}[label=\alph*)]
+  \item Chứng minh $R$ là một quan hệ tương đương trên $P(S)$.
+  \item Tập thương $P(S)/R$ có bao nhiêu phần tử?
+  \item Tìm số phần tử của lớp tương đương chứa tập $A = \{1, 2\}$.
+\end{enumerate}
+
+\textbf{Bài 6:} Trên tập số nguyên $\mathbb{Z}$, xét quan hệ $R$ định nghĩa bởi:
+\[
+  aRb \iff 3a + 4b \text{ chia hết cho } 7
+\]
+\begin{enumerate}[label=\alph*)]
+  \item Chứng minh $R$ là một quan hệ tương đương. \textit{Gợi ý: Thử biểu diễn $3a + 4b$ qua hiệu $(a - b)$.}
+  \item Tìm lớp tương đương $[0]_R$.
+  \item Chứng minh rằng quan hệ này thực chất chính là quan hệ đồng dư modulo $7$.
+\end{enumerate}
+\end{baitap}
+
+\begin{baitap}{Bài tập: Quan hệ tương đương (4)}
+\textbf{Bài 7:} Cho hàm số $f : \mathbb{Z} \to \mathbb{Z}$ xác định bởi $f(n) = n^2 + n + 1$. Xét quan hệ $R$ trên $\mathbb{Z}$ sao cho:
+\[
+  nRm \iff f(n) = f(m)
+\]
+\begin{enumerate}[label=\alph*)]
+  \item Chứng minh $R$ là một quan hệ tương đương.
+  \item Xác định các phần tử của lớp tương đương $[1]_R$.
+  \item Một lớp tương đương bất kỳ trong quan hệ này có tối đa bao nhiêu phần tử?
+\end{enumerate}
+
+\textbf{Bài 8:} Cho tập $A = \{1, 2, 3, 4, 5, 6\}$.
+\begin{enumerate}[label=\alph*)]
+  \item Tìm số quan hệ tương đương khác nhau trên tập $A$ sao cho mỗi lớp tương đương có đúng $2$ phần tử.
+  \item Nếu biết một quan hệ tương đương $R$ tạo ra tập thương $A/R = \{\{1, 3, 5\}, \{2, 4, 6\}\}$, hãy liệt kê tất cả các cặp thuộc quan hệ $R$.
+\end{enumerate}
+\end{baitap}
+
+% ==============================================================================
+\needspace{14\baselineskip}
+\section{Quan hệ thứ tự}
+% ==============================================================================
+
+\subsection{Định nghĩa Quan hệ thứ tự (Poset)}
+
+\textbf{\textcolor{AccentRed}{Định nghĩa:}} Quan hệ $R$ trên $A$ gọi là \textcolor{AccentRed}{quan hệ thứ tự} nếu nó có tính chất: \textbf{phản xạ, phản xứng và bắc cầu}. Ký hiệu là $\preceq$.\\
+Cặp $(A, \preceq)$ gọi là tập sắp thứ tự (\textbf{poset}).
+
+\textit{So sánh: tương đương cần \textbf{đối xứng}, thứ tự cần \textbf{phản xứng}.}
+
+\begin{itemize}
+  \item \textbf{\textcolor{AccentRed}{Ví dụ 1:}} $(\mathbb{Z}, \le)$ là poset:
+  \begin{itemize}
+    \item Phản xạ: $a \le a$. \quad Phản xứng: $a \le b,\; b \le a \Rightarrow a = b$. \quad Bắc cầu: $a \le b \le c \Rightarrow a \le c$.
+  \end{itemize}
+  \item \textbf{\textcolor{AccentRed}{Ví dụ 2:}} $(P(S), \subseteq)$ là poset, với $P(S)$ là tập các tập con của $S$:
+  \begin{itemize}
+    \item Phản xạ: $X \subseteq X$. \quad Phản xứng: $X \subseteq Y,\; Y \subseteq X \Rightarrow X = Y$. \quad Bắc cầu: $X \subseteq Y \subseteq Z \Rightarrow X \subseteq Z$.
+  \end{itemize}
+\end{itemize}
+\textit{Tương tự, $(\mathbb{Z}^+, \mid)$ (quan hệ ước số) cũng là poset.}
+
+\subsection{Thứ tự toàn phần và thứ tự bán phần}
+
+\begin{itemize}
+  \item \textbf{Thứ tự toàn phần:} Mọi cặp phần tử đều so sánh được ($a \preceq b$ hoặc $b \preceq a$).
+  \item \textbf{Thứ tự bán phần:} Tồn tại các phần tử \textbf{không so sánh được}.
+\end{itemize}
+
+\noindent
+\begin{minipage}[t]{0.50\textwidth}
+\textbf{\textcolor{AccentRed}{Ví dụ 1:}} $(\mathbb{Z}^+, \le)$ là thứ tự \textbf{toàn phần}. Hai số nguyên dương bất kỳ luôn so sánh được.
+
+\vspace{6pt}
+\textbf{\textcolor{AccentRed}{Ví dụ 2:}} $(\mathbb{Z}^+, \mid)$ là thứ tự \textbf{bán phần} vì $5$ và $7$ không so sánh được: $5 \nmid 7$ và $7 \nmid 5$.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.46\textwidth}
+\textbf{\textcolor{AccentRed}{Ví dụ 3:}} $(P(\{a, b\}), \subseteq)$ là thứ tự \textbf{bán phần} vì $\{a\} \not\subseteq \{b\}$ và $\{b\} \not\subseteq \{a\}$.
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+  \node (ab) at (0, 2.0) {$\{a, b\}$};
+  \node[AccentRed] (a) at (-1.25, 1.0) {$\{a\}$};
+  \node[AccentRed] (b) at (1.25, 1.0) {$\{b\}$};
+  \node (e) at (0, 0) {$\emptyset$};
+  \draw[semithick] (e) -- (a) -- (ab) -- (b) -- (e);
+  \draw[<->, dashed, AccentRed] (a) -- node[above, font=\small] {?} (b);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\subsection{Biểu đồ Hasse}
+
+Biểu đồ Hasse là cách vẽ \textbf{gọn} một poset hữu hạn. Xuất phát từ đồ thị có hướng:
+
+\noindent
+\begin{minipage}[c]{0.58\textwidth}
+\textbf{Ví dụ 1:} $(\{1, 2, 3, 4, 6, 12\}, \mid)$
+\begin{enumerate}
+  \item Vẽ đồ thị có hướng đầy đủ, xếp $b$ ở \textbf{trên} $a$ nếu $a \prec b$.
+  \item Bỏ các \textbf{vòng} (vì phản xạ là hiển nhiên).
+  \item Bỏ các cạnh \textbf{bắc cầu} (suy ra được từ các cạnh khác), ví dụ $1 \to 4$ (vì $1 \to 2 \to 4$).
+  \item Bỏ \textbf{mũi tên}, vì chiều luôn từ dưới lên.
+\end{enumerate}
+\textit{Chỉ giữ lại các cặp ``kề nhau'': $a \prec b$ và không có $c$ nào nằm giữa.}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.38\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.9]
+  \node[vnode] (1) at (0, 0) {$1$};
+  \node[vnode] (2) at (-0.95, 1.05) {$2$};
+  \node[vnode] (3) at (0.95, 1.05) {$3$};
+  \node[vnode] (4) at (-1.45, 2.2) {$4$};
+  \node[vnode] (6) at (0.4, 2.2) {$6$};
+  \node[vnode] (12) at (-0.55, 3.3) {$12$};
+  \draw[thick] (1) -- (2) -- (4) -- (12) -- (6) -- (3) -- (1);
+  \draw[thick] (2) -- (6);
+\end{tikzpicture}
+\end{minipage}
+
+\vspace{8pt}
+\needspace{12\baselineskip}
+\textbf{Ví dụ 2:} Biểu đồ Hasse của $(P(S), \subseteq)$ với $S = \{a, b, c\}$.\\
+\textit{Gợi mở: Xếp các tập con theo \textbf{số phần tử}: $0$ phần tử ở dưới cùng, $3$ phần tử ở trên cùng.}
+
+\begin{center}
+\begin{tikzpicture}[x=1.55cm, y=1.1cm]
+  \node (e) at (0, 0) {$\emptyset$};
+  \node (a) at (-1, 1) {$\{a\}$};
+  \node (b) at (0, 1) {$\{b\}$};
+  \node (c) at (1, 1) {$\{c\}$};
+  \node (ab) at (-1, 2) {$\{a, b\}$};
+  \node (ac) at (0, 2) {$\{a, c\}$};
+  \node (bc) at (1, 2) {$\{b, c\}$};
+  \node (abc) at (0, 3) {$\{a, b, c\}$};
+
+  \draw[semithick] (e) -- (a) (e) -- (b) (e) -- (c);
+  \draw[semithick] (a) -- (ab) (a) -- (ac);
+  \draw[semithick] (b) -- (ab) (b) -- (bc);
+  \draw[semithick] (c) -- (ac) (c) -- (bc);
+  \draw[semithick] (ab) -- (abc) (ac) -- (abc) (bc) -- (abc);
+
+  \node[gray, font=\small, anchor=west] at (1.75, 0) {$0$ phần tử};
+  \node[gray, font=\small, anchor=west] at (1.75, 1) {$1$ phần tử};
+  \node[gray, font=\small, anchor=west] at (1.75, 2) {$2$ phần tử};
+  \node[gray, font=\small, anchor=west] at (1.75, 3) {$3$ phần tử};
+\end{tikzpicture}
+\end{center}
+\textit{Chú ý: không nối $\emptyset$ với $\{a, b\}$ vì đã có đường $\emptyset - \{a\} - \{a, b\}$.}
+
+\subsection{Phần tử tối tiểu và tối đại}
+
+Trong poset $(S, \preceq)$, phần tử $a$ là:
+\begin{itemize}
+  \item \textbf{Tối tiểu:} Nếu không có $x \neq a$ sao cho $x \preceq a$.\\
+  \textit{(Trên biểu đồ Hasse: không có phần tử nào nằm dưới và nối với $a$.)}
+  \item \textbf{Tối đại:} Nếu không có $x \neq a$ sao cho $a \preceq x$.\\
+  \textit{(Trên biểu đồ Hasse: không có phần tử nào nằm trên và nối với $a$.)}
+\end{itemize}
+\textbf{Nhận xét:} Trong poset hữu hạn, phần tử tối đại và tối tiểu luôn tồn tại nhưng \textbf{có thể không duy nhất}.\\
+\textit{Mẹo: Vẽ biểu đồ Hasse trước. Tối tiểu là các điểm ở ``đáy'', tối đại là các điểm ở ``đỉnh'' của từng nhánh.}
+
+\vspace{6pt}
+\noindent
+\begin{minipage}[t]{0.50\textwidth}
+\textbf{Ví dụ 1:} $\{2, 4, 5, 10, 12, 20, 25\}$ với quan hệ ước số.
+\begin{center}
+\begin{tikzpicture}[x=1.0cm, y=1.1cm]
+  \node[hmin, label=below:{$2$}] (2) at (0, 0) {};
+  \node[hmin, label=below:{$5$}] (5) at (1.3, 0) {};
+  \node[hdot, label=left:{$4$}] (4) at (-0.35, 1) {};
+  \node[hdot, label=right:{$10$}] (10) at (0.65, 1) {};
+  \node[hmax, label=right:{$25$}] (25) at (1.65, 1) {};
+  \node[hmax, label=above:{$12$}] (12) at (-1.0, 2) {};
+  \node[hmax, label=above:{$20$}] (20) at (0.35, 2) {};
+  \draw[semithick] (2) -- (4) -- (12);
+  \draw[semithick] (4) -- (20) -- (10) -- (2);
+  \draw[semithick] (5) -- (10) (5) -- (25);
+\end{tikzpicture}
+\end{center}
+Tối đại: \textcolor{AccentRed}{\textbf{12, 20, 25}}. \quad Tối tiểu: \textcolor{PrimaryBlue}{\textbf{2, 5}}.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.46\textwidth}
+\textbf{Ví dụ 2:} $(\{1, 2, 3, 4, 6, 12\}, \mid)$.
+\begin{center}
+\begin{tikzpicture}[x=1.0cm, y=0.82cm]
+  \node[hmin, label=right:{$1$}] (1) at (0, 0) {};
+  \node[hdot, label=left:{$2$}] (2) at (-0.65, 0.9) {};
+  \node[hdot, label=right:{$3$}] (3) at (0.65, 0.9) {};
+  \node[hdot, label=left:{$4$}] (4) at (-1.0, 1.85) {};
+  \node[hdot, label=right:{$6$}] (6) at (0.25, 1.85) {};
+  \node[hmax, label=right:{$12$}] (12) at (-0.38, 2.75) {};
+  \draw[semithick] (1) -- (2) -- (4) -- (12) -- (6) -- (3) -- (1);
+  \draw[semithick] (2) -- (6);
+\end{tikzpicture}
+\end{center}
+Tối tiểu: \textcolor{PrimaryBlue}{\textbf{1}} (duy nhất).\\
+Tối đại: \textcolor{AccentRed}{\textbf{12}} (duy nhất).
+\end{minipage}
+
+\vspace{4pt}
+\textit{So sánh: Ví dụ 1 có nhiều phần tử tối đại và tối tiểu, Ví dụ 2 chỉ có một phần tử mỗi loại.}
+
+\subsection{Bài tập và Lời giải mẫu}
+
+\begin{baitap}{Bài tập: Quan hệ thứ tự (1)}
+\textbf{Bài 1:} Trên tập hợp $X$, ta xét quan hệ hai ngôi $R$ như sau:
+\[
+  xRy \iff x^2 + 3x \le y^2 + 3y
+\]
+\begin{enumerate}[label=\alph*)]
+  \item \textbf{Trường hợp tập hợp $X = \mathbb{R}$:} Quan hệ $R$ có những tính chất nào trong các tính chất: Phản xạ, Đối xứng, Phản xứng, Bắc cầu? Giải thích tại sao?
+  \item \textbf{Trường hợp tập hợp $X = \mathbb{N}$:} $R$ có phải là một quan hệ thứ tự trên $\mathbb{N}$ không? Tại sao? Nếu là quan hệ thứ tự, đây là thứ tự bán phần hay toàn phần?
+\end{enumerate}
+
+\textbf{Bài 2:} Cho $\mid$ là quan hệ ``chia hết'' trên tập số nguyên $\mathbb{Z}$:
+\[
+  \forall a, b \in \mathbb{Z},\; a \mid b \iff \exists k \in \mathbb{Z} : b = k \cdot a
+\]
+\begin{enumerate}[label=\alph*)]
+  \item Hãy kiểm tra các tính chất: phản xạ, phản xứng và bắc cầu của quan hệ $\mid$ trên $\mathbb{Z}$. Quan hệ $\mid$ có thực sự là một quan hệ thứ tự trên $\mathbb{Z}$ không? Giải thích tại sao?
+  \item Quan hệ $\mid$ trên $\mathbb{Z}$ (nếu là thứ tự) có phải là thứ tự toàn phần không? Tại sao?
+\end{enumerate}
+\end{baitap}
+
+\begin{baitap}{Bài tập: Quan hệ thứ tự (2)}
+\textbf{Bài 3:} Cho tập $A = \{1, 2, 3, 4, 5\}$. Xét quan hệ $R$ trên $A$ xác định bởi:
+\[
+  R = \{(1, 1); (2, 1); (2, 2); (2, 4); (3, 1); (3, 2); (3, 3); (3, 4); (3, 5); (4, 4); (5, 5)\}
+\]
+\begin{enumerate}[label=\alph*)]
+  \item $R$ có là quan hệ tương đương không? Có là quan hệ thứ tự không? Tại sao?
+  \item Nếu $R$ là quan hệ thứ tự, hãy vẽ biểu đồ Hasse cho $(A, R)$.
+\end{enumerate}
+
+\textbf{Bài 4:} Cho tập $X = \{2; 4; 6; 8; 10; 14; 16; 15; 20; 30; 36; 40; 60\}$. Trên $X$ cho quan hệ $\mid$ là quan hệ ``ước số của''.
+\begin{enumerate}[label=\alph*)]
+  \item Vẽ biểu đồ Hasse cho $(X, \mid)$.
+  \item Tìm các phần tử tối đại và phần tử tối tiểu của $X$.
+\end{enumerate}
+\end{baitap}
+
+\begin{baitap}{Lời giải Bài 3 (1): Kiểm tra các tính chất}
+\[
+  R = \{(1,1); (2,1); (2,2); (2,4); (3,1); (3,2); (3,3); (3,4); (3,5); (4,4); (5,5)\}
+\]
+
+\noindent
+\begin{minipage}[c]{0.60\textwidth}
+\begin{itemize}
+  \item \textbf{Phản xạ:} Có đủ $(1,1), (2,2), (3,3), (4,4), (5,5) \Rightarrow$ \yes.
+  \item \textbf{Đối xứng:} $(2, 1) \in R$ nhưng $(1, 2) \notin R \Rightarrow$ \no.
+  \item \textbf{Phản xứng:} Với $a \neq b$, không có cặp nào xuất hiện cả hai chiều $\Rightarrow$ \yes.
+  \item \textbf{Bắc cầu:} Xét các cặp ``nối tiếp'' $(a, b), (b, c)$ với $a \neq b \neq c$:
+  \begin{itemize}
+    \item $(3, 2), (2, 1) \Rightarrow (3, 1) \in R\;\checkmark$
+    \item $(3, 2), (2, 4) \Rightarrow (3, 4) \in R\;\checkmark$
+  \end{itemize}
+  Không còn trường hợp nào khác $\Rightarrow$ \yes.
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.36\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.88]
+  \node[vnode] (3) at (0, 0) {$3$};
+  \node[vnode] (2) at (-1.0, 1.1) {$2$};
+  \node[vnode] (5) at (1.0, 1.1) {$5$};
+  \node[vnode] (1) at (-1.5, 2.3) {$1$};
+  \node[vnode] (4) at (-0.35, 2.3) {$4$};
+  \draw[relarr] (3) -- (2);
+  \draw[relarr] (3) -- (5);
+  \draw[relarr] (2) -- (1);
+  \draw[relarr] (2) -- (4);
+  \draw[relarr] (3) -- (4);
+  \draw[relarr] (3) to[bend left=48] (1);
+  \node[gray, font=\footnotesize] at (0, -0.65) {(không vẽ các vòng)};
+\end{tikzpicture}
+\end{minipage}
+
+\textbf{\textcolor{AccentRed}{Kết luận:}} $R$ \textbf{không} là quan hệ tương đương (không đối xứng). $R$ \textbf{là} quan hệ thứ tự.
+\end{baitap}
+
+\begin{baitap}{Lời giải Bài 3 (2): Vẽ biểu đồ Hasse}
+\textbf{Quy ước:} $(a, b) \in R$ nghĩa là $a \preceq b$, nên $b$ được vẽ \textbf{phía trên} $a$.
+
+\noindent
+\begin{minipage}[c]{0.58\textwidth}
+\begin{enumerate}
+  \item Bỏ các vòng $(1, 1), \dots, (5, 5)$.
+  \item Bỏ các cặp bắc cầu: $(3, 1)$ vì $3 \prec 2 \prec 1$; $(3, 4)$ vì $3 \prec 2 \prec 4$.
+  \item Các cặp kề nhau còn lại: $(3, 2), (3, 5), (2, 1), (2, 4)$.
+\end{enumerate}
+\textbf{Nhận xét:}
+\begin{itemize}
+  \item Tối tiểu: \textbf{3}. \qquad Tối đại: \textbf{1, 4, 5}.
+  \item $1$ và $4$ không so sánh được $\Rightarrow$ thứ tự \textbf{bán phần}.
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.38\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.88]
+  \node[vnode] (3) at (0, 0) {$3$};
+  \node[vnode] (2) at (-0.95, 1.1) {$2$};
+  \node[vnode] (5) at (0.95, 1.1) {$5$};
+  \node[vnode] (1) at (-1.55, 2.3) {$1$};
+  \node[vnode] (4) at (-0.35, 2.3) {$4$};
+  \draw[thick] (3) -- (2) -- (1);
+  \draw[thick] (2) -- (4);
+  \draw[thick] (3) -- (5);
+  \node[font=\small\itshape] at (-0.25, -0.7) {Biểu đồ Hasse của $(A, R)$};
+\end{tikzpicture}
+\end{minipage}
+\end{baitap}
+
+\begin{baitap}{Bài tập: Quan hệ thứ tự (3)}
+\textbf{Bài 10:} Trong các trường hợp sau, hãy tìm các phần tử lớn nhất, nhỏ nhất, tối đại, tối tiểu (nếu có) của các tập hợp đã cho với quan hệ thứ tự tương ứng. Vẽ các biểu đồ Hasse.
+\begin{enumerate}[label=\alph*)]
+  \item $U_{30} = \{n \in \mathbb{N} \mid n \mid 30\}$ với quan hệ ước số $\mid$.
+  \item $X = \{2; 3; 4; 6; 8; 10; 80\}$ với quan hệ ước số $\mid$.
+  \item $X = \{1, 2, 3, 4, 6, 8, 10, 11\}$ với quan hệ $R$ xác định bởi: $xRy \iff x = y$ hay $x \le y - 1$.
+\end{enumerate}
+
+\textbf{Bài 11:} Cho tập hợp $X = \{2, 5, 8, 10, 20, 40\}$ và $\chiahet$ là quan hệ ``chia hết'' trên $X$.
+\begin{enumerate}[label=\alph*)]
+  \item Chứng tỏ $\chiahet$ là quan hệ thứ tự. Vẽ biểu đồ Hasse cho $(X, \chiahet)$.
+  \item Tìm các phần tử tối đại và tối tiểu của $X$.
+  \item Tìm các phần tử lớn nhất và nhỏ nhất của $X$.
+\end{enumerate}
+\end{baitap}
+
+\begin{baitap}{Bài tập: Quan hệ thứ tự (4)}
+\textbf{Bài 12:} Cho tập $X = \{1, 2, 3, 4, 5\}$. Cho $R$ và $S$ là $2$ quan hệ hai ngôi trên tập $X$ có ma trận biểu diễn lần lượt là:
+\[
+  M_R = \begin{bmatrix}
+    1 & 0 & 0 & 0 & 0 \\
+    1 & 1 & 0 & 1 & 0 \\
+    1 & 1 & 1 & 1 & 1 \\
+    0 & 0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 0 & 1
+  \end{bmatrix}, \qquad
+  M_S = \begin{bmatrix}
+    1 & 0 & 1 & 1 & 0 \\
+    0 & 1 & 1 & 1 & 0 \\
+    0 & 0 & 1 & 1 & 0 \\
+    0 & 0 & 0 & 1 & 0 \\
+    1 & 1 & 1 & 1 & 1
+  \end{bmatrix}
+\]
+Chứng minh $R$ và $S$ là quan hệ thứ tự trên tập $X$. Hãy vẽ biểu đồ Hasse cho các quan hệ này.
+
+\textit{Gợi ý: Phản xạ $\to$ đường chéo chính. Phản xứng $\to$ so sánh các ô đối xứng qua đường chéo. Bắc cầu $\to$ kiểm tra theo định nghĩa.}
+\end{baitap}
+
+\begin{baitap}{Bài tập: Quan hệ thứ tự (5)}
+\textbf{Câu 13:} Cho $S = \{1, 2, 3, 5, 6, 10, 15, 30\}$ (các ước số lớn hơn $0$ của $30$). Hãy vẽ biểu đồ Hasse cho $(S, \mid)$ và $(S, \chiahet)$.\\
+\textit{Gợi ý: So sánh hai biểu đồ. Quan hệ $\chiahet$ là quan hệ ngược của $\mid$.}
+
+\textbf{Câu 14:} Vẽ biểu đồ Hasse cho $S$ với quan hệ thứ tự tương ứng:
+\begin{enumerate}[label=\alph*)]
+  \item $(S = \{1, 2, 3, 4, 5, 6, 7, 8\},\; \chiahet)$
+  \item $(S = \{1, 2, 3, 6, 12, 24, 36, 48\},\; \mid)$
+\end{enumerate}
+\end{baitap}
+
+\end{document}
